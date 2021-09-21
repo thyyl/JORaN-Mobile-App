@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SignUpButton extends StatelessWidget {
-  const SignUpButton({
+class Button extends StatelessWidget {
+  const Button({
     Key? key,
     required this.function,
   }) : super(key: key);
@@ -24,7 +24,7 @@ class SignUpButton extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              "Sign Up",
+              "Back",
               style: TextStyle(
                   color: Color(0XFFFFFFFF),
                   fontSize: 17.5,

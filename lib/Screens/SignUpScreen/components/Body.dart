@@ -18,7 +18,7 @@ class Body extends StatelessWidget {
               LogoContainer(),
               SizedBox(height: size.height * 0.05),
               SignUpLogIn(),
-              SizedBox(height: size.height * 0.05),
+              SizedBox(height: size.height * 0.03),
               SignUpForm(),
             ],
           ),

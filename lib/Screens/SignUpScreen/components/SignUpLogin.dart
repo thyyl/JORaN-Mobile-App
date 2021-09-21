@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:joran_app/Screens/SignUpScreen/SignUpScreen.dart';
 
 
 class SignUpLogIn extends StatelessWidget {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:joran_app/Screens/SignUpConfirmationScreen/SignUpConfirmationScreen.dart';
 import 'package:joran_app/Screens/SignUpScreen/components/SignUpButton.dart';
 import 'package:joran_app/Screens/SignUpScreen/components/TextFieldLabel.dart';
 
@@ -14,6 +15,8 @@ class _SignUpFormState extends State<SignUpForm> {
   final _confirmPasswordController = TextEditingController();
 
   String statusSelection = "Status 1";
+  bool passwordObscure = true;
+  bool confirmPasswordObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +41,11 @@ class _SignUpFormState extends State<SignUpForm> {
             buildStatusFormField(),
             SizedBox(height: size.height * 0.05),
             SignUpButton(
-              function: () {},
+              function: () {
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => SignUpConfirmationScreen()
+                ));
+              },
             )
           ],
         ),
@@ -51,7 +58,7 @@ class _SignUpFormState extends State<SignUpForm> {
       padding: const EdgeInsets.only(top: 5.0),
       child: Container(
         width: MediaQuery.of(context).size.width * 0.4,
-        height: MediaQuery.of(context).size.height * 0.055,
+        height: MediaQuery.of(context).size.height * 0.05,
         decoration: buildNeumorphicTextField(),
         child: DropdownButtonHideUnderline(
           child: DropdownButton<String>(
@@ -87,34 +94,52 @@ class _SignUpFormState extends State<SignUpForm> {
   Padding buildConfirmPasswordFormField() {
     return Padding(
       padding: const EdgeInsets.only(top: 5.0),
-      child: Container(
-        width: MediaQuery.of(context).size.width * 0.8,
-        height: MediaQuery.of(context).size.height * 0.055,
-        decoration: buildNeumorphicTextField(),
-        child: TextFormField(
-          decoration: InputDecoration(
-            hintText: "Confirm your password",
-            enabledBorder: outlineBorder(),
-            focusedBorder: outlineBorder(),
-            hintStyle: TextStyle(
+      child: Stack(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width * 0.8,
+            height: MediaQuery.of(context).size.height * 0.055,
+            decoration: buildNeumorphicTextField(),
+            child: TextFormField(
+              decoration: InputDecoration(
+                hintText: "Confirm your password",
+                enabledBorder: outlineBorder(),
+                focusedBorder: outlineBorder(),
+                hintStyle: TextStyle(
+                    fontFamily: "NunitoSans",
+                    fontSize: 17.5,
+                    fontWeight:
+                    FontWeight.w700,
+                    color: Colors.black.withOpacity(.25)
+                ),
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                contentPadding: EdgeInsets.only(top: 20, left: 20),
+              ),
+              style: TextStyle(
                 fontFamily: "NunitoSans",
                 fontSize: 17.5,
-                fontWeight:
-                FontWeight.w700,
-                color: Colors.black.withOpacity(.25)
+                fontWeight: FontWeight.w700,
+                color: Colors.black.withOpacity(.5),
+              ),
+              obscureText: confirmPasswordObscure,
+              controller: _confirmPasswordController,
             ),
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            contentPadding: EdgeInsets.only(top: 20, left: 20),
           ),
-          style: TextStyle(
-            fontFamily: "NunitoSans",
-            fontSize: 17.5,
-            fontWeight: FontWeight.w700,
-            color: Colors.black.withOpacity(.5),
-          ),
-          obscureText: true,
-          controller: _confirmPasswordController,
-        ),
+          Positioned(
+            right: 15,
+            top: 10,
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  confirmPasswordObscure = !confirmPasswordObscure;
+                });
+              },
+              child: Image(
+                image: AssetImage("assets/pictures/visible.png"),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -122,34 +147,52 @@ class _SignUpFormState extends State<SignUpForm> {
   Padding buildPasswordFormField() {
     return Padding(
       padding: const EdgeInsets.only(top: 5.0),
-      child: Container(
-        width: MediaQuery.of(context).size.width * 0.8,
-        height: MediaQuery.of(context).size.height * 0.055,
-        decoration: buildNeumorphicTextField(),
-        child: TextFormField(
-          decoration: InputDecoration(
-            hintText: "Enter your password",
-            enabledBorder: outlineBorder(),
-            focusedBorder: outlineBorder(),
-            hintStyle: TextStyle(
+      child: Stack(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width * 0.8,
+            height: MediaQuery.of(context).size.height * 0.055,
+            decoration: buildNeumorphicTextField(),
+            child: TextFormField(
+              decoration: InputDecoration(
+                hintText: "Enter your password",
+                enabledBorder: outlineBorder(),
+                focusedBorder: outlineBorder(),
+                hintStyle: TextStyle(
+                    fontFamily: "NunitoSans",
+                    fontSize: 17.5,
+                    fontWeight:
+                    FontWeight.w700,
+                    color: Colors.black.withOpacity(.25)
+                ),
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                contentPadding: EdgeInsets.only(top: 20, left: 20),
+              ),
+              style: TextStyle(
                 fontFamily: "NunitoSans",
                 fontSize: 17.5,
-                fontWeight:
-                FontWeight.w700,
-                color: Colors.black.withOpacity(.25)
+                fontWeight: FontWeight.w700,
+                color: Colors.black.withOpacity(.5),
+              ),
+              obscureText: passwordObscure,
+              controller: _passwordController,
             ),
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            contentPadding: EdgeInsets.only(top: 20, left: 20),
           ),
-          style: TextStyle(
-            fontFamily: "NunitoSans",
-            fontSize: 17.5,
-            fontWeight: FontWeight.w700,
-            color: Colors.black.withOpacity(.5),
-          ),
-          obscureText: true,
-          controller: _passwordController,
-        ),
+          Positioned(
+            right: 15,
+            top: 10,
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  passwordObscure = !passwordObscure;
+                });
+              },
+              child: Image(
+                image: AssetImage("assets/pictures/visible.png"),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

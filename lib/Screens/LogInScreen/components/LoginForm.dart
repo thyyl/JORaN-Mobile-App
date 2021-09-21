@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:joran_app/Screens/LogInScreen/components/LoginButton.dart';
 import 'package:joran_app/Screens/LogInScreen/components/ForgotPassword.dart';
 import 'package:joran_app/Screens/LogInScreen/components/TextFieldLabel.dart';
+import 'package:joran_app/Screens/UserProfileModule/UserProfileOverviewScreen/UserProfileOverviewScreen.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -11,6 +12,8 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  bool obscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,11 @@ class _LoginFormState extends State<LoginForm> {
             ForgotPassword(),
             SizedBox(height: size.height * 0.03),
             LoginButton(
-              function: () {},
+              function: () {
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => UserProfileOverviewScreen()
+                ));
+              },
             )
           ],
         ),
@@ -42,34 +49,52 @@ class _LoginFormState extends State<LoginForm> {
   Padding buildPasswordFormField() {
     return Padding(
       padding: const EdgeInsets.only(top: 5.0),
-      child: Container(
-        width: MediaQuery.of(context).size.width * 0.8,
-        height: MediaQuery.of(context).size.height * 0.055,
-        decoration: buildNeumorphicTextField(),
-        child: TextFormField(
-          decoration: InputDecoration(
-            hintText: "Enter your password",
-            enabledBorder: outlineBorder(),
-            focusedBorder: outlineBorder(),
-            hintStyle: TextStyle(
+      child: Stack(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width * 0.8,
+            height: MediaQuery.of(context).size.height * 0.055,
+            decoration: buildNeumorphicTextField(),
+            child: TextFormField(
+              decoration: InputDecoration(
+                hintText: "Enter your password",
+                enabledBorder: outlineBorder(),
+                focusedBorder: outlineBorder(),
+                hintStyle: TextStyle(
+                    fontFamily: "NunitoSans",
+                    fontSize: 17.5,
+                    fontWeight:
+                    FontWeight.w700,
+                    color: Colors.black.withOpacity(.25)
+                ),
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                contentPadding: EdgeInsets.only(top: 20, left: 20),
+              ),
+              style: TextStyle(
                 fontFamily: "NunitoSans",
                 fontSize: 17.5,
-                fontWeight:
-                FontWeight.w700,
-                color: Colors.black.withOpacity(.25)
+                fontWeight: FontWeight.w700,
+                color: Colors.black.withOpacity(.5),
+              ),
+              obscureText: obscure,
+              controller: _passwordController,
             ),
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            contentPadding: EdgeInsets.only(top: 20, left: 20),
           ),
-          style: TextStyle(
-            fontFamily: "NunitoSans",
-            fontSize: 17.5,
-            fontWeight: FontWeight.w700,
-            color: Colors.black.withOpacity(.5),
-          ),
-          obscureText: true,
-          controller: _passwordController,
-        ),
+          Positioned(
+            right: 15,
+            top: 10,
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  obscure = !obscure;
+                });
+              },
+              child: Image(
+                image: AssetImage("assets/pictures/visible.png"),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

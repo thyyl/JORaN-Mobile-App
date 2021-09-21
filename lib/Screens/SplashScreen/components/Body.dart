@@ -17,11 +17,11 @@ class Body extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(
+                  onTap: () => Navigator.push(
+                    context, MaterialPageRoute(
                         builder: (context) => LogInScreen()
-                    ));
-                  },
+                    )
+                  ),
                   child: Image(image: AssetImage("assets/logo/joranLogo.png"))
                 ),
                 SizedBox(height: size.height * 0.025),

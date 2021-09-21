@@ -27,7 +27,7 @@ class LoginButton extends StatelessWidget {
               "Log In",
               style: TextStyle(
                   color: Color(0XFFFFFFFF),
-                  fontSize: 20,
+                  fontSize: 17.5,
                   fontFamily: "NunitoSans",
                   fontWeight: FontWeight.bold
               ),
