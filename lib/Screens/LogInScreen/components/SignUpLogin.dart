@@ -29,26 +29,11 @@ class SignUpLogIn extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          AnimatedContainer(
-            duration: const Duration(seconds: 1),
-            curve: Curves.fastOutSlowIn,
-            width: size.width * 0.38,
-            child: Center(
-              child: Text(
-                "Sign Up",
-                style: TextStyle(
-                  color: Color(0XFF76787A),
-                  fontFamily: "NunitoSans",
-                  fontSize: 22.5,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-            ),
-            ),
-          VerticalDivider(thickness: 1.5),
           GestureDetector(
             onTap: () {
-              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(
+                  builder: (context) => SignUpScreen()
+              ));
             },
             child: AnimatedContainer(
               duration: const Duration(seconds: 1),
@@ -56,13 +41,30 @@ class SignUpLogIn extends StatelessWidget {
               width: size.width * 0.38,
               child: Center(
                 child: Text(
-                  "Log In",
+                  "Sign Up",
                   style: TextStyle(
                     color: Color(0XFF76787A),
                     fontFamily: "NunitoSans",
                     fontSize: 22.5,
                     fontWeight: FontWeight.w600,
                   ),
+                ),
+              ),
+            ),
+          ),
+          VerticalDivider(thickness: 1.5),
+          AnimatedContainer(
+            duration: const Duration(seconds: 1),
+            curve: Curves.fastOutSlowIn,
+            width: size.width * 0.38,
+            child: Center(
+              child: Text(
+                "Log In",
+                style: TextStyle(
+                  color: Color(0XFF76787A),
+                  fontFamily: "NunitoSans",
+                  fontSize: 22.5,
+                  fontWeight: FontWeight.w900,
                 ),
               ),
             ),

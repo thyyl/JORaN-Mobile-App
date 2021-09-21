@@ -15,10 +15,10 @@ class TextFieldLabel extends StatelessWidget {
       child: Text(
         label,
         style: TextStyle(
-            fontSize: 15,
-            fontFamily: "NunitoSans",
-            fontWeight: FontWeight.w800,
-            color: Colors.black.withOpacity(.5)
+          fontSize: 15,
+          fontFamily: "NunitoSans",
+          fontWeight: FontWeight.w800,
+          color: Colors.black.withOpacity(.5)
         ),
       ),
     );

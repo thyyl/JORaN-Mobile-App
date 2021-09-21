@@ -16,6 +16,11 @@ class LogoContainer extends StatelessWidget {
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
+          Positioned(
+            top: size.height * 0.0175,
+            right: -size.width * 0.03,
+            child: Image(image: AssetImage("assets/pictures/BackgroundImage.png")),
+          ),
           Image(
             image: AssetImage("assets/logo/joran.png"),
             width: size.width * 0.55,

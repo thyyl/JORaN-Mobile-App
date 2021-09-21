@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class LoginButton extends StatelessWidget {
-  const LoginButton({
+class SignUpButton extends StatelessWidget {
+  const SignUpButton({
     Key? key,
     required this.function,
   }) : super(key: key);
@@ -24,9 +24,9 @@ class LoginButton extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              "Google",
+              "Sign Up",
               style: TextStyle(
-                  color: Color(0XFF76787A),
+                  color: Color(0XFFFFFFFF),
                   fontSize: 20,
                   fontFamily: "NunitoSans",
                   fontWeight: FontWeight.bold

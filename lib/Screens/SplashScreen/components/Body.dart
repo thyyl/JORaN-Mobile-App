@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:joran_app/Screens/SignUpScreen/SignUpScreen.dart';
+import 'package:joran_app/Screens/LogInScreen/LogInScreen.dart';
 import 'package:joran_app/Screens/SplashScreen/components/Background.dart';
 
 class Body extends StatelessWidget {
@@ -19,7 +19,7 @@ class Body extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => SignUpScreen()
+                        builder: (context) => LogInScreen()
                     ));
                   },
                   child: Image(image: AssetImage("assets/logo/joranLogo.png"))

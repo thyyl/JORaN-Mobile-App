@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:joran_app/Screens/SignUpScreen/components/LoginButton.dart';
-import 'package:joran_app/Screens/SignUpScreen/components/ForgotPassword.dart';
+import 'package:joran_app/Screens/SignUpScreen/components/SignUpButton.dart';
 import 'package:joran_app/Screens/SignUpScreen/components/TextFieldLabel.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -9,8 +8,12 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
+
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+
+  String statusSelection = "Status 1";
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +30,90 @@ class _SignUpFormState extends State<SignUpForm> {
             SizedBox(height: size.height * 0.03),
             TextFieldLabel(label: "Password"),
             buildPasswordFormField(),
-            SizedBox(height: size.height * 0.025),
-            ForgotPassword(),
             SizedBox(height: size.height * 0.03),
-            LoginButton(
+            TextFieldLabel(label: "Confirm Password"),
+            buildConfirmPasswordFormField(),
+            SizedBox(height: size.height * 0.03),
+            TextFieldLabel(label: "Status"),
+            buildStatusFormField(),
+            SizedBox(height: size.height * 0.05),
+            SignUpButton(
               function: () {},
             )
           ],
+        ),
+      ),
+    );
+  }
+
+  Padding buildStatusFormField() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 5.0),
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.4,
+        height: MediaQuery.of(context).size.height * 0.055,
+        decoration: buildNeumorphicTextField(),
+        child: DropdownButtonHideUnderline(
+          child: DropdownButton<String>(
+            value: statusSelection,
+            onChanged: (dynamic newValue) {
+              setState(() {
+                statusSelection = newValue;
+              });
+            },
+            items: <String>['Status 1', 'Status 2'].map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: Text(
+                    value,
+                    style: TextStyle(
+                      fontFamily: "NunitoSans",
+                      fontSize: 17.5,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black.withOpacity(.5),
+                    ),
+                  ),
+                ),
+              );
+            }).toList(),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Padding buildConfirmPasswordFormField() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 5.0),
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.8,
+        height: MediaQuery.of(context).size.height * 0.055,
+        decoration: buildNeumorphicTextField(),
+        child: TextFormField(
+          decoration: InputDecoration(
+            hintText: "Confirm your password",
+            enabledBorder: outlineBorder(),
+            focusedBorder: outlineBorder(),
+            hintStyle: TextStyle(
+                fontFamily: "NunitoSans",
+                fontSize: 17.5,
+                fontWeight:
+                FontWeight.w700,
+                color: Colors.black.withOpacity(.25)
+            ),
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+            contentPadding: EdgeInsets.only(top: 20, left: 20),
+          ),
+          style: TextStyle(
+            fontFamily: "NunitoSans",
+            fontSize: 17.5,
+            fontWeight: FontWeight.w700,
+            color: Colors.black.withOpacity(.5),
+          ),
+          obscureText: true,
+          controller: _confirmPasswordController,
         ),
       ),
     );
@@ -44,7 +124,7 @@ class _SignUpFormState extends State<SignUpForm> {
       padding: const EdgeInsets.only(top: 5.0),
       child: Container(
         width: MediaQuery.of(context).size.width * 0.8,
-        height: MediaQuery.of(context).size.height * 0.06,
+        height: MediaQuery.of(context).size.height * 0.055,
         decoration: buildNeumorphicTextField(),
         child: TextFormField(
           decoration: InputDecoration(
@@ -59,11 +139,11 @@ class _SignUpFormState extends State<SignUpForm> {
                 color: Colors.black.withOpacity(.25)
             ),
             floatingLabelBehavior: FloatingLabelBehavior.always,
-            contentPadding: EdgeInsets.all(20),
+            contentPadding: EdgeInsets.only(top: 20, left: 20),
           ),
           style: TextStyle(
             fontFamily: "NunitoSans",
-            fontSize: 20,
+            fontSize: 17.5,
             fontWeight: FontWeight.w700,
             color: Colors.black.withOpacity(.5),
           ),
@@ -79,7 +159,7 @@ class _SignUpFormState extends State<SignUpForm> {
       padding: const EdgeInsets.only(top: 5.0),
       child: Container(
         width: MediaQuery.of(context).size.width * 0.8,
-        height: MediaQuery.of(context).size.height * 0.06,
+        height: MediaQuery.of(context).size.height * 0.055,
         decoration: buildNeumorphicTextField(),
         child: TextFormField(
           decoration: InputDecoration(
@@ -87,18 +167,18 @@ class _SignUpFormState extends State<SignUpForm> {
             enabledBorder: outlineBorder(),
             focusedBorder: outlineBorder(),
             hintStyle: TextStyle(
-              fontFamily: "NunitoSans",
-              fontSize: 17.5,
-              fontWeight:
-              FontWeight.w700,
-              color: Colors.black.withOpacity(.25)
+                fontFamily: "NunitoSans",
+                fontSize: 17.5,
+                fontWeight:
+                FontWeight.w700,
+                color: Colors.black.withOpacity(.25)
             ),
             floatingLabelBehavior: FloatingLabelBehavior.always,
-            contentPadding: EdgeInsets.all(20),
+            contentPadding: EdgeInsets.only(top: 20, left: 20),
           ),
           style: TextStyle(
             fontFamily: "NunitoSans",
-            fontSize: 20,
+            fontSize: 17.5,
             fontWeight: FontWeight.w700,
             color: Colors.black.withOpacity(.5),
           ),
@@ -110,21 +190,21 @@ class _SignUpFormState extends State<SignUpForm> {
 
   BoxDecoration buildNeumorphicTextField() {
     return BoxDecoration(
-      color: Color(0XFFEDF1F4),
-      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-      boxShadow: [
-        BoxShadow(
-            blurRadius: 5.0,
-            offset: Offset(-3, -3),
-            color: Colors.white.withOpacity(.7)
-        ),
-        BoxShadow(
-            blurRadius: 5.0,
-            offset: Offset(3, 3),
-            color: Colors.black.withOpacity(.15)
-        )
-      ]
-  );
+        color: Color(0XFFEDF1F4),
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        boxShadow: [
+          BoxShadow(
+              blurRadius: 5.0,
+              offset: Offset(-3, -3),
+              color: Colors.white.withOpacity(.7)
+          ),
+          BoxShadow(
+              blurRadius: 5.0,
+              offset: Offset(3, 3),
+              color: Colors.black.withOpacity(.15)
+          )
+        ]
+    );
   }
 
   OutlineInputBorder outlineBorder() {
@@ -135,5 +215,3 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 }
-
-
