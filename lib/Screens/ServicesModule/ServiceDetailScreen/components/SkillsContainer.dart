@@ -25,10 +25,22 @@ class _SkillsContainerState extends State<SkillsContainer> {
       child: Column(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(
                 children: [
+                  GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          skillsIndex = (skillsIndex - 1) % skillsLength;
+                        });
+                      },
+                      child: Transform.rotate(
+                        angle: pi,
+                        child: Image(image: AssetImage("assets/pictures/next.png"))
+                      )
+                  ),
+                  SizedBox(width: size.width * 0.02),
                   Container(
                     height: size.height * 0.05,
                     width: size.width * 0.45,
@@ -59,22 +71,6 @@ class _SkillsContainerState extends State<SkillsContainer> {
                   )
                 ],
               ),
-              GestureDetector(
-                onTap: () {
-                  showCupertinoModalBottomSheet(
-                    context: context, builder: (context) => EditSkillsContainer()
-                  );
-                },
-                child: Text(
-                  "Edit Skills",
-                  style: TextStyle(
-                    color: Color(0XFF5783C3),
-                    fontFamily: "NunitoSans",
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              )
             ],
           ),
           AnimatedContainer(

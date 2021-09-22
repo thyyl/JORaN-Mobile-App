@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:joran_app/FlashyTabBar.dart';
-import 'package:joran_app/Screens/HomeModule/HomeOverviewScreen/HomeOverviewScreen.dart';
+import 'package:joran_app/Screens/HomeModule/HomeOverviewScreen/components/Body.dart';
 import 'package:joran_app/Screens/JobsModule/JobsOverviewScreen/JobsOverviewScreen.dart';
-import 'package:joran_app/Screens/UserProfileModule/UserProfileOverviewScreen/components/Body.dart';
+import 'package:joran_app/Screens/UserProfileModule/UserProfileOverviewScreen/UserProfileOverviewScreen.dart';
 import 'package:joran_app/constants.dart';
 import 'package:page_transition/page_transition.dart';
 
-class UserProfileOverviewScreen extends StatefulWidget {
+
+class HomeOverviewScreen extends StatefulWidget {
   @override
-  _UserProfileOverviewScreenState createState() => _UserProfileOverviewScreenState();
+  _HomeOverviewScreenState createState() => _HomeOverviewScreenState();
 }
 
-class _UserProfileOverviewScreenState extends State<UserProfileOverviewScreen> {
-  int _selectedIndex = 4;
+class _HomeOverviewScreenState extends State<HomeOverviewScreen> {
+  int _selectedIndex = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +36,9 @@ class _UserProfileOverviewScreenState extends State<UserProfileOverviewScreen> {
               );
               break;
 
-            case 2:
+            case 4:
               Navigator.pushReplacement(context, PageTransition(
-                  type: PageTransitionType.fade, child: HomeOverviewScreen())
+                type: PageTransitionType.fade, child: UserProfileOverviewScreen())
               );
               break;
           }
@@ -47,4 +48,3 @@ class _UserProfileOverviewScreenState extends State<UserProfileOverviewScreen> {
     );
   }
 }
-

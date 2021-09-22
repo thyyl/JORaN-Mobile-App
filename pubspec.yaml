@@ -29,6 +29,11 @@ dependencies:
   image_cropper: ^1.4.1
   radar_chart: ^2.0.1
   modal_bottom_sheet: ^2.0.0
+  syncfusion_flutter_sliders: ^19.2.62
+  syncfusion_flutter_charts: ^19.2.62
+  page_transition: "^2.0.2"
+  carousel_slider: ^4.0.0
+  glassmorphism: ^3.0.0
 
 dev_dependencies:
   flutter_test:

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:joran_app/Screens/UserProfileModule/UserProfileEditSkillsScreen/components/AddNewSkillsContainer.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class TopLevelBar extends StatelessWidget {
+  const TopLevelBar({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -21,7 +23,7 @@ class TopLevelBar extends StatelessWidget {
           ),
         ),
         Text(
-          "Your Skills",
+          "Job Details",
           style: TextStyle(
               color: Color(0XFF76787A),
               fontSize: 25,
@@ -29,18 +31,12 @@ class TopLevelBar extends StatelessWidget {
               fontWeight: FontWeight.bold
           ),
         ),
-        GestureDetector(
-          onTap: () => showCupertinoModalBottomSheet(
-            context: context, builder: (context) => AddNewSkillsContainer()
-          ),
-          child: Container(
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(15)
-            ),
-            child: Icon(Icons.add),
+        Container(
+          height: 40,
+          width: 40,
+          decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(15)
           ),
         ),
       ],

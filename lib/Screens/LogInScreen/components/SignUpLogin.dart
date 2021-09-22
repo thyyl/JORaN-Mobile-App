@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:joran_app/Screens/SignUpScreen/SignUpScreen.dart';
+import 'package:page_transition/page_transition.dart';
 
 
 class SignUpLogIn extends StatelessWidget {
@@ -31,9 +32,9 @@ class SignUpLogIn extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => SignUpScreen()
-              ));
+              Navigator.push(context, PageTransition(
+                  type: PageTransitionType.fade, child: SignUpScreen())
+              );
             },
             child: AnimatedContainer(
               duration: const Duration(seconds: 1),

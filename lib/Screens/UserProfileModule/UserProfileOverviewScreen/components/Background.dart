@@ -25,7 +25,11 @@ class Background extends StatelessWidget {
               height: size.height * 0.3,
               width: size.width * 0.375,
               child: ClipRRect(
-                  borderRadius: BorderRadius.circular(30.0),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40.0),
+                    topRight: Radius.circular(40.0),
+                    bottomLeft: Radius.circular(40.0),
+                  ),
                   child: Image(
                     image: AssetImage("assets/pictures/user.jpg"),
                     fit: BoxFit.cover,

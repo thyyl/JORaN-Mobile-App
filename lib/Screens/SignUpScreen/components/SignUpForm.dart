@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:joran_app/Screens/SignUpConfirmationScreen/SignUpConfirmationScreen.dart';
 import 'package:joran_app/Screens/SignUpScreen/components/SignUpButton.dart';
 import 'package:joran_app/Screens/SignUpScreen/components/TextFieldLabel.dart';
+import 'package:page_transition/page_transition.dart';
 
 class SignUpForm extends StatefulWidget {
   @override
@@ -42,9 +43,9 @@ class _SignUpFormState extends State<SignUpForm> {
             SizedBox(height: size.height * 0.05),
             SignUpButton(
               function: () {
-                Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => SignUpConfirmationScreen()
-                ));
+                Navigator.push(context, PageTransition(
+                    type: PageTransitionType.fade, child: SignUpConfirmationScreen())
+                );
               },
             )
           ],

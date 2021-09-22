@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:joran_app/Screens/LogInScreen/LogInScreen.dart';
 import 'package:joran_app/Screens/SplashScreen/components/Background.dart';
+import 'package:page_transition/page_transition.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -17,10 +18,8 @@ class Body extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
-                  onTap: () => Navigator.push(
-                    context, MaterialPageRoute(
-                        builder: (context) => LogInScreen()
-                    )
+                  onTap: () => Navigator.push(context, PageTransition(
+                    type: PageTransitionType.fade, child: LogInScreen())
                   ),
                   child: Image(image: AssetImage("assets/logo/joranLogo.png"))
                 ),

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:joran_app/FlashyTabBar.dart';
 import 'package:joran_app/Screens/HomeModule/HomeOverviewScreen/HomeOverviewScreen.dart';
-import 'package:joran_app/Screens/JobsModule/JobsOverviewScreen/JobsOverviewScreen.dart';
-import 'package:joran_app/Screens/UserProfileModule/UserProfileOverviewScreen/components/Body.dart';
+import 'package:joran_app/Screens/ServicesModule/ServicesOverviewScreen/components/Body.dart';
+import 'package:joran_app/Screens/UserProfileModule/UserProfileOverviewScreen/UserProfileOverviewScreen.dart';
 import 'package:joran_app/constants.dart';
 import 'package:page_transition/page_transition.dart';
 
-class UserProfileOverviewScreen extends StatefulWidget {
+class ServicesOverviewScreen extends StatefulWidget {
   @override
-  _UserProfileOverviewScreenState createState() => _UserProfileOverviewScreenState();
+  _ServicesOverviewScreenState createState() => _ServicesOverviewScreenState();
 }
 
-class _UserProfileOverviewScreenState extends State<UserProfileOverviewScreen> {
-  int _selectedIndex = 4;
+class _ServicesOverviewScreenState extends State<ServicesOverviewScreen> {
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -29,15 +29,15 @@ class _UserProfileOverviewScreenState extends State<UserProfileOverviewScreen> {
           });
 
           switch(_selectedIndex) {
-            case 0:
-              Navigator.pushReplacement(context, PageTransition(
-                  type: PageTransitionType.fade, child: JobsOverviewScreen())
-              );
-              break;
-
             case 2:
               Navigator.pushReplacement(context, PageTransition(
                   type: PageTransitionType.fade, child: HomeOverviewScreen())
+              );
+              break;
+
+            case 4:
+              Navigator.pushReplacement(context, PageTransition(
+                  type: PageTransitionType.fade, child: UserProfileOverviewScreen())
               );
               break;
           }
