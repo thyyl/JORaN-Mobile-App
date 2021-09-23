@@ -33,6 +33,7 @@ dependencies:
   syncfusion_flutter_charts: ^19.2.62
   page_transition: "^2.0.2"
   carousel_slider: ^4.0.0
+  slide_to_confirm: ^1.1.0
   glassmorphism: ^3.0.0
 
 dev_dependencies:

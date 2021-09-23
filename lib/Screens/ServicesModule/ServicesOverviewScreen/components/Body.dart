@@ -5,7 +5,6 @@ import 'package:joran_app/Screens/ServicesModule/ServicesOverviewScreen/componen
 import 'package:joran_app/Screens/ServicesModule/ServicesOverviewScreen/components/JobServiceBar.dart';
 import 'package:joran_app/Screens/ServicesModule/ServicesOverviewScreen/components/MidLevelBar.dart';
 import 'package:joran_app/Screens/ServicesModule/ServicesOverviewScreen/components/ServiceCategory.dart';
-import 'package:joran_app/Screens/ServicesModule/ServicesOverviewScreen/components/ServiceContainer.dart';
 import 'package:page_transition/page_transition.dart';
 
 class Body extends StatelessWidget {

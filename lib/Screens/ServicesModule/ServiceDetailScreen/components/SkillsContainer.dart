@@ -2,9 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:joran_app/Screens/UserProfileModule/UserProfileEditSkillsScreen/components/EditSkillsContainer.dart';
 import 'package:radar_chart/radar_chart.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class SkillsContainer extends StatefulWidget {
   @override

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:joran_app/FlashyTabBar.dart';
 import 'package:joran_app/Screens/HomeModule/HomeOverviewScreen/HomeOverviewScreen.dart';
 import 'package:joran_app/Screens/JobsModule/JobsOverviewScreen/JobsOverviewScreen.dart';
+import '../../NotificationModule/NotificationOverviewScreen/NotificationOverviewScreen.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileOverviewScreen/components/Body.dart';
 import 'package:joran_app/constants.dart';
 import 'package:page_transition/page_transition.dart';
@@ -38,6 +39,12 @@ class _UserProfileOverviewScreenState extends State<UserProfileOverviewScreen> {
             case 2:
               Navigator.pushReplacement(context, PageTransition(
                   type: PageTransitionType.fade, child: HomeOverviewScreen())
+              );
+              break;
+
+            case 3:
+              Navigator.pushReplacement(context, PageTransition(
+                  type: PageTransitionType.fade, child: NotificationOverviewScreen())
               );
               break;
           }

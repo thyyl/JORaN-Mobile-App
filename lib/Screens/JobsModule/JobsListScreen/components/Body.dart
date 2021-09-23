@@ -4,11 +4,8 @@ import 'package:joran_app/Screens/JobsModule/JobsListScreen/components/Backgroun
 import 'package:joran_app/Screens/JobsModule/JobsListScreen/components/BasicJobsList.dart';
 import 'package:joran_app/Screens/JobsModule/JobsListScreen/components/CarouselAdvertisement.dart';
 import 'package:joran_app/Screens/JobsModule/JobsListScreen/components/FeaturedJobsList.dart';
-import 'package:joran_app/Screens/JobsModule/JobsListScreen/components/JobServiceBar.dart';
 import 'package:joran_app/Screens/JobsModule/JobsListScreen/components/JobTitleResults.dart';
 import 'package:joran_app/Screens/JobsModule/JobsListScreen/components/TopLevelBar.dart';
-import 'package:joran_app/Screens/ServicesModule/ServicesOverviewScreen/ServicesOverviewScreen.dart';
-import 'package:page_transition/page_transition.dart';
 
 class Body extends StatelessWidget {
   @override

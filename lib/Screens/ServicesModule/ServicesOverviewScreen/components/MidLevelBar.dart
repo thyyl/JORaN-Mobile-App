@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:joran_app/Screens/ServicesModule/ServicesAddServiceScreen/ServicesAddServiceScreen.dart';
+import 'package:page_transition/page_transition.dart';
 
 class MidLevelBar extends StatelessWidget {
   const MidLevelBar({
@@ -22,7 +24,9 @@ class MidLevelBar extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () => Navigator.push(context, PageTransition(
+                type: PageTransitionType.fade, child: ServicesAddServiceScreen())
+            ),
             child: Text(
               "Add Services",
               style: TextStyle(

@@ -16,11 +16,7 @@ class Background extends StatelessWidget {
       width: size.width,
       height: size.height,
       color: Color(0XFFEDF1F4),
-      child: Stack(
-        children: [
-          children,
-        ],
-      ),
+      child: children,
     );
   }
 }
