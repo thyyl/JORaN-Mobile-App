@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:joran_app/Screens/UserProfileModule/UserProfileOverviewScreen/UserProfileOverviewScreen.dart';
+import 'package:page_transition/page_transition.dart';
 
 class TopLevelBar extends StatelessWidget {
   const TopLevelBar({
@@ -16,14 +18,19 @@ class TopLevelBar extends StatelessWidget {
 
     return Row(
       children: [
-        Container(
-          height: 45,
-          width: 45,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(15.0),
-            child: Image(
-              image: AssetImage(image),
-              fit: BoxFit.cover,
+        GestureDetector(
+          onTap: () => Navigator.pushReplacement(context, PageTransition(
+              type: PageTransitionType.fade, child: UserProfileOverviewScreen())
+          ),
+          child: Container(
+            height: 45,
+            width: 45,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15.0),
+              child: Image(
+                image: AssetImage(image),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),

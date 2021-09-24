@@ -16,16 +16,8 @@ class RequirementContainerIndividual extends StatelessWidget {
       height: size.height * 0.08,
       width: size.width * 0.25,
       decoration: BoxDecoration(
-          border: Border.all(color: Colors.white),
           borderRadius: BorderRadius.circular(10.0),
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0XFFEAFFFE).withOpacity(0.5),
-              Color(0XFFCDC9F1).withOpacity(0.5),
-            ],
-          )
+          color: Colors.white
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 5.0),

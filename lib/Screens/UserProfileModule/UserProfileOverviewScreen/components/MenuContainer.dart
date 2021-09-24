@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileEditSkillsScreen/UserProfileEditSkillsScreen.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileOverviewScreen/components/MenuContainerIndividual.dart';
+import 'package:joran_app/Screens/UserProfileModule/UserProfileServiceScreen/UserProfileServiceScreen.dart';
+import 'package:page_transition/page_transition.dart';
 
 class MenuContainer extends StatelessWidget {
   @override
@@ -21,10 +23,15 @@ class MenuContainer extends StatelessWidget {
                 title: "Bachelor Degree",
                 description: "Bachelor in Biomedical Science",
               ),
-              MenuIndividualContainer(
-                color: Colors.white,
-                title: "Payment Method",
-                description: "Public Bank\n123456789",
+              GestureDetector(
+                onTap: () => Navigator.push(context, PageTransition(
+                    type: PageTransitionType.fade, child: UserProfileServiceScreen())
+                ),
+                child: MenuIndividualContainer(
+                  color: Colors.white,
+                  title: "Your Services",
+                  description: "Update Your Services",
+                ),
               )
             ],
           ),

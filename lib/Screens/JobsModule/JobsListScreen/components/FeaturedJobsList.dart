@@ -14,7 +14,8 @@ class FeaturedJobsList extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 20.0),
             child: GestureDetector(
               onTap: () => Navigator.push(context, PageTransition(
-                  type: PageTransitionType.fade, child: JobsDetailScreen())
+                  type: PageTransitionType.fade, child: JobsDetailScreen()
+                )
               ),
               child: JobContainerIndividual()
             ),

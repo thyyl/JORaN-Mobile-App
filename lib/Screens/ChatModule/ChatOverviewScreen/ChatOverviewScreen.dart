@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:joran_app/FlashyTabBar.dart';
-import 'package:joran_app/Screens/ChatModule/ChatOverviewScreen/ChatOverviewScreen.dart';
+import 'package:joran_app/Screens/ChatModule/ChatOverviewScreen/components/Body.dart';
 import 'package:joran_app/Screens/HomeModule/HomeOverviewScreen/HomeOverviewScreen.dart';
-import '../../NotificationModule/NotificationOverviewScreen/NotificationOverviewScreen.dart';
-import 'package:joran_app/Screens/ServicesModule/ServicesOverviewScreen/components/Body.dart';
+import 'package:joran_app/Screens/JobsModule/JobsOverviewScreen/JobsOverviewScreen.dart';
+import 'package:joran_app/Screens/NotificationModule/NotificationOverviewScreen/NotificationOverviewScreen.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileOverviewScreen/UserProfileOverviewScreen.dart';
 import 'package:joran_app/constants.dart';
 import 'package:page_transition/page_transition.dart';
 
-class ServicesOverviewScreen extends StatefulWidget {
+class ChatOverviewScreen extends StatefulWidget {
   @override
-  _ServicesOverviewScreenState createState() => _ServicesOverviewScreenState();
+  _ChatOverviewScreenState createState() => _ChatOverviewScreenState();
 }
 
-class _ServicesOverviewScreenState extends State<ServicesOverviewScreen> {
-  int _selectedIndex = 0;
+class _ChatOverviewScreenState extends State<ChatOverviewScreen> {
+  int _selectedIndex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +31,9 @@ class _ServicesOverviewScreenState extends State<ServicesOverviewScreen> {
           });
 
           switch(_selectedIndex) {
-            case 1:
+            case 0:
               Navigator.pushReplacement(context, PageTransition(
-                  type: PageTransitionType.fade, child: ChatOverviewScreen())
+                  type: PageTransitionType.fade, child: JobsOverviewScreen())
               );
               break;
 
@@ -61,4 +61,3 @@ class _ServicesOverviewScreenState extends State<ServicesOverviewScreen> {
     );
   }
 }
-
