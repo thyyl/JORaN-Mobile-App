@@ -15,7 +15,7 @@ class _SignUpFormState extends State<SignUpForm> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
-  String statusSelection = "Status 1";
+  String statusSelection = "Normal";
   bool passwordObscure = true;
   bool confirmPasswordObscure = true;
 
@@ -69,7 +69,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 statusSelection = newValue;
               });
             },
-            items: <String>['Status 1', 'Status 2'].map<DropdownMenuItem<String>>((String value) {
+            items: <String>['Normal', 'Entrepreneur'].map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
                 child: Padding(

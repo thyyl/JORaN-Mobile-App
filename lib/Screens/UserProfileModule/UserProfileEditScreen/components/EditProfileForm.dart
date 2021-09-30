@@ -12,14 +12,16 @@ class _EditProfileFormState extends State<EditProfileForm> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _contactController = TextEditingController();
-  final _websiteController = TextEditingController();
-  final _educationController = TextEditingController();
   final _specialisationController = TextEditingController();
   final _bankController = TextEditingController();
   final _bankAccountController = TextEditingController();
   final _descriptionController = TextEditingController();
 
   bool obscure = true;
+  String educationSelection = "Bachelor";
+  List<String> educationSelectionList = [
+    "SPM / O-Level", "STPM / A-Level / Diploma", "Bachelor", "Master", "PhD",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -69,12 +71,8 @@ class _EditProfileFormState extends State<EditProfileForm> {
               buildContactTextField("0145758394"),
               SizedBox(height: size.height * 0.02),
 
-              TextFieldLabel(text: "Website"),
-              buildWebTextField("www.abigailsarahwilliams.com"),
-              SizedBox(height: size.height * 0.02),
-
               TextFieldLabel(text: "Education Level"),
-              buildEducationTextField("Bachelor"),
+              buildEducationFormField(),
               SizedBox(height: size.height * 0.02),
 
               TextFieldLabel(text: "Specialisation"),
@@ -254,75 +252,42 @@ class _EditProfileFormState extends State<EditProfileForm> {
     );
   }
 
-  Padding buildEducationTextField(String education) {
+  Padding buildEducationFormField() {
     return Padding(
-      padding: const EdgeInsets.only(top: 10.0),
+      padding: const EdgeInsets.only(top: 5.0),
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.055,
         width: MediaQuery.of(context).size.width * 0.8,
+        height: MediaQuery.of(context).size.height * 0.05,
         decoration: BoxDecoration(
           color: Colors.white.withOpacity(0.5),
           borderRadius: BorderRadius.circular(10),
         ),
-        child: TextFormField(
-          decoration: InputDecoration(
-            hintText: education,
-            enabledBorder: outlineBorder(),
-            focusedBorder: outlineBorder(),
-            hintStyle: TextStyle(
-                fontFamily: "NunitoSans",
-                fontSize: 17.5,
-                fontWeight:
-                FontWeight.w700,
-                color: Colors.black.withOpacity(.25)
-            ),
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            contentPadding: EdgeInsets.only(top: 20, left: 20),
+        child: DropdownButtonHideUnderline(
+          child: DropdownButton<String>(
+            value: educationSelection,
+            onChanged: (dynamic newValue) {
+              setState(() {
+                educationSelection = newValue;
+              });
+            },
+            items: educationSelectionList.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: Text(
+                    value,
+                    style: TextStyle(
+                      fontFamily: "NunitoSans",
+                      fontSize: 17.5,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black.withOpacity(.5),
+                    ),
+                  ),
+                ),
+              );
+            }).toList(),
           ),
-          style: TextStyle(
-            fontFamily: "NunitoSans",
-            fontSize: 17.5,
-            fontWeight: FontWeight.w700,
-            color: Colors.black.withOpacity(.5),
-          ),
-          controller: _educationController,
-        ),
-      ),
-    );
-  }
-
-  Padding buildWebTextField(String web) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10.0),
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.055,
-        width: MediaQuery.of(context).size.width * 0.8,
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.5),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: TextFormField(
-          decoration: InputDecoration(
-            hintText: web,
-            enabledBorder: outlineBorder(),
-            focusedBorder: outlineBorder(),
-            hintStyle: TextStyle(
-                fontFamily: "NunitoSans",
-                fontSize: 17.5,
-                fontWeight:
-                FontWeight.w700,
-                color: Colors.black.withOpacity(.25)
-            ),
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            contentPadding: EdgeInsets.only(top: 20, left: 20),
-          ),
-          style: TextStyle(
-            fontFamily: "NunitoSans",
-            fontSize: 17.5,
-            fontWeight: FontWeight.w700,
-            color: Colors.black.withOpacity(.5),
-          ),
-          controller: _websiteController,
         ),
       ),
     );
@@ -346,8 +311,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
             hintStyle: TextStyle(
                 fontFamily: "NunitoSans",
                 fontSize: 17.5,
-                fontWeight:
-                FontWeight.w700,
+                fontWeight: FontWeight.w700,
                 color: Colors.black.withOpacity(.25)
             ),
             floatingLabelBehavior: FloatingLabelBehavior.always,

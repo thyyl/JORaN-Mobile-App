@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:joran_app/Screens/UserProfileModule/UserProfileEditSkillsScreen/components/AboutYouContainer.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileEditSkillsScreen/components/Background.dart';
+import 'package:joran_app/Screens/UserProfileModule/UserProfileEditSkillsScreen/components/RatingsRow.dart';
+import 'package:joran_app/Screens/UserProfileModule/UserProfileEditSkillsScreen/components/SkillsContainer.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileEditSkillsScreen/components/TopLevelBar.dart';
 
 class Body extends StatelessWidget {
@@ -23,7 +25,7 @@ class Body extends StatelessWidget {
                   height: size.height * 0.325,
                   width: size.width * 0.5,
                   child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20.0),
+                      borderRadius: BorderRadius.circular(50),
                       child: Image(
                         image: AssetImage("assets/pictures/user.jpg"),
                         fit: BoxFit.cover,
@@ -33,7 +35,9 @@ class Body extends StatelessWidget {
                   // child: FadeInImage.assetNetwork(placeholder: placeholder, image: image),
                 ),
                 SizedBox(height: size.height * 0.025),
-                AboutYouContainer(description: "Testing"),
+                RatingsRow(),
+                SizedBox(height: size.height * 0.025),
+                SkillsContainer()
               ],
             ),
           ),

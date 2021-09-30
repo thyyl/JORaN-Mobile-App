@@ -19,11 +19,24 @@ class _AddNewSkillsContainerState extends State<AddNewSkillsContainer> {
     return Container(
       height: size.height * 0.425,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20.0),
+                child: Center(
+                  child: Container(
+                    height: size.height * 0.005,
+                    width: size.width * 0.2,
+                    decoration: BoxDecoration(
+                        color: Colors.grey.shade400,
+                        borderRadius: BorderRadius.circular(20.0)
+                    ),
+                  ),
+                ),
+              ),
               Center(
                 child: Text(
                   "Add Skill",
@@ -80,7 +93,7 @@ class _AddNewSkillsContainerState extends State<AddNewSkillsContainer> {
                     _skillProficiency = value;
                   });
                 },
-                activeColor: Color(0xFF5D37B9),
+                activeColor: Color(0XFF87A5A6),
               ),
               SizedBox(height: size.height * 0.025),
               DoneButton(

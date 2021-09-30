@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:joran_app/Screens/JobsModule/JobsDetailScreen/components/ApplyButton.dart';
 
 class Background extends StatelessWidget {
   const Background({

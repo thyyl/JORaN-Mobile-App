@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:joran_app/Screens/LogInScreen/LogInScreen.dart';
 import 'package:joran_app/Screens/SplashScreen/components/Background.dart';
-import 'package:page_transition/page_transition.dart';
 
 class Body extends StatelessWidget {
   @override

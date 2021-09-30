@@ -31,9 +31,19 @@ class Body extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: size.height * 0.05),
-                SearchForm(),
-                SizedBox(height: size.height * 0.05),
-                FeaturedCompanyList()
+                Container(
+                  height: size.height * 0.45,
+                  child: SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        SearchForm(),
+                        SizedBox(height: size.height * 0.05),
+                        FeaturedCompanyList(),
+                      ],
+                    ),
+                  ),
+                )
               ],
             ),
           ),

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:joran_app/Screens/UserProfileModule/UserProfileEditSkillsScreen/components/SkillsContainer.dart';
 
 class Background extends StatefulWidget {
   @override
@@ -25,13 +24,13 @@ class _BackgroundState extends State<Background> {
       color: Color(0XFFEDF1F4),
       child: Stack(
         children: [
-          Positioned(
-              bottom: 0,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                child: SkillsContainer(),
-              )
-          ),
+          // Positioned(
+          //     bottom: 0,
+          //     child: Padding(
+          //       padding: const EdgeInsets.symmetric(horizontal: 30.0),
+          //       child: SkillsContainer(),
+          //     )
+          // ),
           widget.children,
         ],
       ),

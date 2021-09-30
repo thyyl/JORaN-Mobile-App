@@ -19,24 +19,24 @@ class UserProfileMidLevel extends StatelessWidget {
                 Container(
                   width: size.width * 0.4,
                   child: Text(
-                    "Lending a kind hand",
-                    style: TextStyle(
-                        color: Color(0XFF76787A),
-                        fontSize: 25,
-                        fontFamily: "NunitoSans",
-                        fontWeight: FontWeight.w800
-                    ),
-                  ),
-                ),
-                Container(
-                  width: size.width * 0.4,
-                  child: Text(
                     "Abigail Sarah Williams",
                     style: TextStyle(
                         color: Color(0XFF76787A),
                         fontSize: 25,
                         fontFamily: "NunitoSans",
                         fontWeight: FontWeight.w600
+                    ),
+                  ),
+                ),
+                Container(
+                  width: size.width * 0.4,
+                  child: Text(
+                    "Lending a kind hand",
+                    style: TextStyle(
+                        color: Color(0XFF76787A),
+                        fontSize: 25,
+                        fontFamily: "NunitoSans",
+                        fontWeight: FontWeight.w800
                     ),
                   ),
                 ),
