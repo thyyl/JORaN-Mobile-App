@@ -10,7 +10,10 @@ class EditSkillsContainer extends StatefulWidget {
 class _EditSkillsContainerState extends State<EditSkillsContainer> {
 
   double _skillProficiency = 10;
-  final _skillController = TextEditingController();
+  String skillsSelection = "C++ Programming";
+  List<String> skillsSelectionList = [
+    "C++ Programming", "Java Programming", "Python Programming",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -115,28 +118,32 @@ class _EditSkillsContainerState extends State<EditSkillsContainer> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
         ),
-        child: TextFormField(
-          decoration: InputDecoration(
-            hintText: "C++ Programming",
-            enabledBorder: outlineBorder(),
-            focusedBorder: outlineBorder(),
-            hintStyle: TextStyle(
-                fontFamily: "NunitoSans",
-                fontSize: 17.5,
-                fontWeight:
-                FontWeight.w700,
-                color: Colors.black.withOpacity(.25)
-            ),
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            contentPadding: EdgeInsets.only(top: 20, left: 10),
+        child: DropdownButtonHideUnderline(
+          child: DropdownButton<String>(
+            value: skillsSelection,
+            onChanged: (dynamic newValue) {
+              setState(() {
+                skillsSelection = newValue;
+              });
+            },
+            items: skillsSelectionList.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: Text(
+                    value,
+                    style: TextStyle(
+                      fontFamily: "NunitoSans",
+                      fontSize: 17.5,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black.withOpacity(.5),
+                    ),
+                  ),
+                ),
+              );
+            }).toList(),
           ),
-          style: TextStyle(
-            fontFamily: "NunitoSans",
-            fontSize: 17.5,
-            fontWeight: FontWeight.w700,
-            color: Colors.black.withOpacity(.5),
-          ),
-          controller: _skillController,
         ),
       ),
     );

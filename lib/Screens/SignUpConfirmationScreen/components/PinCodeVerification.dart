@@ -1,7 +1,10 @@
 import 'dart:async';
 
+import 'package:concentric_transition/concentric_transition.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:joran_app/Screens/IntroductionScreen/LetsGetStartedScreen/LetsGetStartedScreen.dart';
+import 'package:joran_app/Screens/IntroductionScreen/ProfileDetailsScreen/ProfileDetailsScreen.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class PinCodeVerification extends StatefulWidget {
@@ -26,6 +29,10 @@ class _PinCodeVerificationState extends State<PinCodeVerification> {
   String currentText = "";
   final formKey = GlobalKey<FormState>();
 
+  List<StatelessWidget> pages = [
+    LetsGetStarted(), ProfileDetailsScreen(), LetsGetStarted()
+  ];
+
   ToastFuture showNotification(String content) {
     return showToast(
       content,
@@ -47,8 +54,14 @@ class _PinCodeVerificationState extends State<PinCodeVerification> {
 
     } else {
       showNotification("nice!");
+
+      Navigator.push(context, ConcentricPageRoute(builder: (ctx) {
+        return LetsGetStarted();
+      }));
     }
   }
+
+
 
   @override
   void initState() {

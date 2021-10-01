@@ -7,7 +7,7 @@ class ServiceContainerList extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return Container(
-      height: size.height * 0.425,
+      height: size.height * 0.325,
       child: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(

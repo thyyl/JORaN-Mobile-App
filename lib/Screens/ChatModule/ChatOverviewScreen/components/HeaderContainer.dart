@@ -8,10 +8,10 @@ class HeaderContainer extends StatelessWidget {
 
     return Container(
       alignment: Alignment.bottomLeft,
-      height: size.height * 0.15,
+      height: size.height * 0.125,
       width: size.width,
       decoration: BoxDecoration(
-          color: Color(0XFFF4F4F4),
+          color: Color(0XFFEDF1F4),
           boxShadow: [
             BoxShadow(
                 offset: Offset(-1, 1),

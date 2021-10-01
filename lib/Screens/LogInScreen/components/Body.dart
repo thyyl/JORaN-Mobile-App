@@ -28,7 +28,7 @@ class Body extends StatelessWidget {
               SizedBox(height: size.height * 0.025),
               GoogleLoginButton(
                 function: () {},
-              )
+              ),
             ],
           ),
         ),

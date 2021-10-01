@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:joran_app/Screens/SignUpScreen/components/Background.dart';
+import 'package:joran_app/Screens/SignUpScreen/components/GoogleSignUpButton.dart';
 import 'package:joran_app/Screens/SignUpScreen/components/LogoContainer.dart';
+import 'package:joran_app/Screens/SignUpScreen/components/OrDivider.dart';
 import 'package:joran_app/Screens/SignUpScreen/components/SignUpForm.dart';
 import 'package:joran_app/Screens/SignUpScreen/components/SignUpLogin.dart';
 
@@ -20,6 +22,12 @@ class Body extends StatelessWidget {
               SignUpLogIn(),
               SizedBox(height: size.height * 0.03),
               SignUpForm(),
+              SizedBox(height: size.height * 0.025),
+              OrDivider(),
+              SizedBox(height: size.height * 0.025),
+              GoogleSignUpButton(
+                function: () {},
+              )
             ],
           ),
         ),

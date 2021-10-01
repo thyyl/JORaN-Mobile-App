@@ -1,6 +1,6 @@
-class SkillsModel {
+class Skills{
   String name;
   double proficiency;
 
-  SkillsModel(this.name, this.proficiency);
+  Skills(this.name, this.proficiency);
 }

@@ -15,7 +15,6 @@ class _SignUpFormState extends State<SignUpForm> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
-  String statusSelection = "Normal";
   bool passwordObscure = true;
   bool confirmPasswordObscure = true;
 
@@ -38,9 +37,6 @@ class _SignUpFormState extends State<SignUpForm> {
             TextFieldLabel(label: "Confirm Password"),
             buildConfirmPasswordFormField(),
             SizedBox(height: size.height * 0.03),
-            TextFieldLabel(label: "Status"),
-            buildStatusFormField(),
-            SizedBox(height: size.height * 0.05),
             SignUpButton(
               function: () {
                 Navigator.push(context, PageTransition(
@@ -49,44 +45,6 @@ class _SignUpFormState extends State<SignUpForm> {
               },
             )
           ],
-        ),
-      ),
-    );
-  }
-
-  Padding buildStatusFormField() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 5.0),
-      child: Container(
-        width: MediaQuery.of(context).size.width * 0.4,
-        height: MediaQuery.of(context).size.height * 0.05,
-        decoration: buildNeumorphicTextField(),
-        child: DropdownButtonHideUnderline(
-          child: DropdownButton<String>(
-            value: statusSelection,
-            onChanged: (dynamic newValue) {
-              setState(() {
-                statusSelection = newValue;
-              });
-            },
-            items: <String>['Normal', 'Entrepreneur'].map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: Text(
-                    value,
-                    style: TextStyle(
-                      fontFamily: "NunitoSans",
-                      fontSize: 17.5,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black.withOpacity(.5),
-                    ),
-                  ),
-                ),
-              );
-            }).toList(),
-          ),
         ),
       ),
     );

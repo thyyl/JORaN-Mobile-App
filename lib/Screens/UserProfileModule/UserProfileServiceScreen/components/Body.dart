@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:joran_app/Screens/ServicesModule/ServiceDetailScreen/components/RatingsRow.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileServiceScreen/components/Background.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileServiceScreen/components/ServiceContainerList.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileServiceScreen/components/TopLevelBar.dart';
@@ -14,11 +15,13 @@ class Body extends StatelessWidget {
         children: Padding(
           padding: const EdgeInsets.only(top: 30.0, left: 30.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               TopLevelBar(),
-              SizedBox(height: size.height * 0.075),
+              SizedBox(height: size.height * 0.05),
               UserProfileMidLevel(),
+              SizedBox(height: size.height * 0.025),
+              RatingsRow(),
               SizedBox(height: size.height * 0.025),
               ServiceContainerList()
             ],
