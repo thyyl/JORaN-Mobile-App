@@ -12,20 +12,20 @@ class PlanContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 5.0),
+            padding: const EdgeInsets.only(bottom: 10.0),
             child: Text(
-              "$plan Plan",
+              "Benefits",
               textAlign: TextAlign.left,
               style: TextStyle(
                   fontFamily: "NunitoSans",
-                  fontSize: 27.5,
-                  fontWeight: FontWeight.w700
+                  fontSize: 22.5,
+                  fontWeight: FontWeight.w800
               ),
             ),
           ),

@@ -35,9 +35,10 @@ class TopLevelBar extends StatelessWidget {
           height: 40,
           width: 40,
           decoration: BoxDecoration(
-              color: Colors.transparent,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(15)
           ),
+          child: Icon(Icons.mail_outline_rounded),
         ),
       ],
     );

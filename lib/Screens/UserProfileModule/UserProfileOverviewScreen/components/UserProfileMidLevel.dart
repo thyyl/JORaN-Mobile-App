@@ -23,7 +23,7 @@ class UserProfileMidLevel extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: size.height * 0.05),
+          SizedBox(height: size.height * 0.02),
           GestureDetector(
             onTap: () => Navigator.push(
               context, MaterialPageRoute(
@@ -35,7 +35,20 @@ class UserProfileMidLevel extends StatelessWidget {
               style: TextStyle(
                 color: Color(0XFF5783C3),
                 fontFamily: "NunitoSans",
-                fontSize: 15,
+                fontSize: 17.5,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          SizedBox(height: size.height * 0.02),
+          GestureDetector(
+            onTap: () {},
+            child: Text(
+              "Change Plan",
+              style: TextStyle(
+                color: Color(0XFF5783C3),
+                fontFamily: "NunitoSans",
+                fontSize: 17.5,
                 fontWeight: FontWeight.bold,
               ),
             ),

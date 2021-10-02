@@ -13,7 +13,7 @@ class Body extends StatelessWidget {
         child: SingleChildScrollView(
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.only(top: 80.0),
+              padding: const EdgeInsets.only(top: 60.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -31,7 +31,8 @@ class Body extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5),
                     child: Text(
-                      "We have sent a TAC code to your email. Please enter the TAC code below.",
+                      "We have sent a TAC code to your email. Please enter the TAC code below."
+                      " You could paste TAC codes by long pressing it.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0XFF76787A),
@@ -46,7 +47,7 @@ class Body extends StatelessWidget {
                     tac: "2323",
                     tacCodeController: tacCodeController
                   ),
-                  SizedBox(height: size.height * 0.05),
+                  SizedBox(height: size.height * 0.025),
                   RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(

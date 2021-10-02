@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:joran_app/Screens/IntroductionScreen/PlanSelectionScreen/components/Background.dart';
-import 'package:joran_app/Screens/IntroductionScreen/PlanSelectionScreen/components/PlanContainer.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -39,7 +38,7 @@ class Body extends StatelessWidget {
                 ],
               ),
               SizedBox(height: size.height * 0.1),
-              PlanContainer()
+              // PlanContainer()
             ],
           ),
         ),

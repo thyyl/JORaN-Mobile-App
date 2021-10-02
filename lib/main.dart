@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:joran_app/Models/HomeModel.dart';
 import 'package:joran_app/Screens/LogInScreen/LogInScreen.dart';
 import 'package:joran_app/Screens/SplashScreen/SplashScreen.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -10,7 +12,12 @@ void main() {
     statusBarBrightness: Brightness.light,
     statusBarIconBrightness: Brightness.dark,
   ));
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => HomeModel())],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

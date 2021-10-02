@@ -42,20 +42,11 @@ class _ProfilePictureState extends State<ProfilePicture> {
                         children: [
                           Center(
                             child: Container(
-                              height: 275,
-                              width: 275,
+                              height: size.height * 0.25,
+                              width: size.width * 0.375,
                               decoration: BoxDecoration(
                                   color: Colors.white,
-                                  shape: BoxShape.circle
                               ),
-                            ),
-                          ),
-                          Container(
-                            height: size.height * 0.25,
-                            width: size.width * 0.375,
-                            child: Image(
-                                image: AssetImage(widget.image),
-                                fit: BoxFit.cover,
                             ),
                           ),
                         ],
@@ -97,7 +88,7 @@ class _ProfilePictureState extends State<ProfilePicture> {
       File? croppedImage = await ImageCropper.cropImage(
         sourcePath: _pickedFile.path,
         aspectRatio: CropAspectRatio(
-          ratioX: 1, ratioY: 2,
+          ratioX: 1.15, ratioY: 1.25,
         ),
         compressQuality: 100,
         maxWidth: 700,

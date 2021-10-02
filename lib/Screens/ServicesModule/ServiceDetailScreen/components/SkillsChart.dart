@@ -27,7 +27,7 @@ class _SkillsChartState extends State<SkillsChart> {
     return Padding(
       padding: const EdgeInsets.only(top: 20.0),
       child: Container(
-        height: size.height * 0.25,
+        height: size.height * 0.225,
         width: size.width * 0.9,
         // decoration: BoxDecoration(
         //   color: Colors.white.withOpacity(0.5)

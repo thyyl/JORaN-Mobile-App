@@ -33,7 +33,16 @@ class ProfileDetail extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                     color: Colors.black,
                     fontFamily: "NunitoSans",
-                    fontSize: 22.5,
+                    fontSize: 20,
+                  ),
+                ),
+                Text(
+                  "School of Computer Sciences",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,
+                    fontFamily: "NunitoSans",
+                    fontSize: 20,
                   ),
                 ),
                 Text(

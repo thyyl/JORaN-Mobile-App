@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:joran_app/Screens/HomeModule/HomeOverviewScreen/HomeOverviewScreen.dart';
 import 'package:joran_app/Screens/IntroductionScreen/PlanSelectionScreen/components/PlanContent.dart';
 
 class PlanContainer extends StatefulWidget {

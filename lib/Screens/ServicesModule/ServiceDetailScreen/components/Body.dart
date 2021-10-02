@@ -23,19 +23,22 @@ class _BodyState extends State<Body> {
 
     return SafeArea(
         child: Background(
-          children: Padding(
-            padding: const EdgeInsets.only(top: 20.0, left: 30.0, right: 30.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                TopLevelBar(),
-                SizedBox(height: size.height * 0.025),
-                ProfileDetail(),
-                SizedBox(height: size.height * 0.01),
-                RatingsRow(),
-                SizedBox(height: size.height * 0.025),
-                SkillsContainer()
-              ],
+          children: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20.0, left: 30.0, right: 30.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  TopLevelBar(),
+                  SizedBox(height: size.height * 0.025),
+                  ProfileDetail(),
+                  SizedBox(height: size.height * 0.01),
+                  RatingsRow(),
+                  SizedBox(height: size.height * 0.01),
+                  SkillsContainer()
+                ],
+              ),
             ),
           ),
         )
