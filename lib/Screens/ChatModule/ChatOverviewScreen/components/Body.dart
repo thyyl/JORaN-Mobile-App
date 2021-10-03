@@ -15,13 +15,14 @@ class Body extends StatelessWidget {
           children: [
             HeaderContainer(),
             Container(
-              height: size.height * 0.715,
+              height: size.height * 0.815,
               child: Padding(
                 padding: const EdgeInsets.only(left: 20.0, top: 20.0, bottom: 10.0),
                 child: SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
                   child: Column(
                     children: [
+                      ChatContainer(),
                       ChatContainer(),
                       ChatContainer(),
                       ChatContainer(),

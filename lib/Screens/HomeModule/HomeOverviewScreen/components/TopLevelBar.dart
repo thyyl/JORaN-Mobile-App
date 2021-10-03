@@ -25,11 +25,14 @@ class TopLevelBar extends StatelessWidget {
           child: Container(
             height: 45,
             width: 45,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(15.0),
-              child: Image(
-                image: AssetImage(image),
-                fit: BoxFit.cover,
+            child: Hero(
+              tag: "profile",
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(15.0),
+                child: Image(
+                  image: AssetImage(image),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),

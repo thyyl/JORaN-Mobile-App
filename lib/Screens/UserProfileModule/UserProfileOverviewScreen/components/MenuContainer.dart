@@ -1,3 +1,6 @@
+import 'dart:typed_data';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileEditSkillsScreen/UserProfileEditSkillsScreen.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileOverviewScreen/components/MenuContainerIndividual.dart';
@@ -38,10 +41,13 @@ class MenuContainer extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              MenuIndividualContainer(
-                color: Colors.white,
-                title: "Your Résumé",
-                description: "Upload Your Résumé",
+              GestureDetector(
+                onTap: pdfPicker,
+                child: MenuIndividualContainer(
+                  color: Colors.white,
+                  title: "Your Résumé",
+                  description: "Upload Your Résumé",
+                ),
               ),
               SizedBox(height: size.height * 0.035),
               GestureDetector(
@@ -75,5 +81,23 @@ class MenuContainer extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> pdfPicker() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      allowMultiple: false,
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+
+    );
+
+    if (result != null) {
+      Uint8List? fileBytes = result.files.first.bytes;
+      String fileName = result.files.first.name;
+      print(fileName);
+      // await FirebaseStorage.instance.ref('uploads/$fileName').putData(fileBytes);
+    } else {
+      // User canceled the picker
+    }
   }
 }

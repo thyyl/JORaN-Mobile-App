@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:joran_app/Models/HomeModel.dart';
 import 'package:joran_app/Screens/LogInScreen/LogInScreen.dart';
 import 'package:joran_app/Screens/SplashScreen/SplashScreen.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future main() async {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Color(0XFFEDF1F4),
     statusBarBrightness: Brightness.light,
     statusBarIconBrightness: Brightness.dark,
   ));
+
+  await dotenv.load(fileName: ".env");
+
   runApp(
     MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => HomeModel())],

@@ -35,17 +35,20 @@ class _ProfilePictureState extends State<ProfilePicture> {
                 return Container(
                   height: size.height * 0.25,
                   width: size.width * 0.375,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(30.0),
-                    child: image.value == null
-                      ? Image(
-                          image: AssetImage(widget.image),
-                          fit: BoxFit.cover,
-                      )
-                      : Image.file(
-                          image.value!,
-                          fit: BoxFit.cover,
-                      )
+                  child: Hero(
+                    tag: "profile",
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(30.0),
+                      child: image.value == null
+                        ? Image(
+                            image: AssetImage(widget.image),
+                            fit: BoxFit.cover,
+                        )
+                        : Image.file(
+                            image.value!,
+                            fit: BoxFit.cover,
+                        )
+                    ),
                   ),
                   // TODO FADE IN IMAGE FOR USER PROFILE
                   // child: FadeInImage.assetNetwork(placeholder: placeholder, image: image),

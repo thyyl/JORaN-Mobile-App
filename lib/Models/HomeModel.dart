@@ -31,6 +31,13 @@ class HomeModel with ChangeNotifier, DiagnosticableTreeMixin  {
     notifyListeners();
   }
 
+  void closeLiquidMenu(AnimationController animationController) {
+    isOpening = false;
+    openValue = 0.0;
+    animationController.reset();
+    notifyListeners();
+  }
+
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);

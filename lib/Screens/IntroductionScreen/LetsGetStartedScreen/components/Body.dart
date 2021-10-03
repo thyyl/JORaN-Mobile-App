@@ -42,17 +42,17 @@ class Body extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "Let's get started, shall we?",
+                  "Let's get started!",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: "NunitoSans",
                     fontWeight: FontWeight.w800,
-                    fontSize: 45,
+                    fontSize: 35,
                     color: Colors.black45,
                   ),
                 ),
                 Text(
-                  "We'll need some details of you before we let you through.",
+                  "We'll need some details of you. Please tap anywhere except the white circle to continue.",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: "NunitoSans",

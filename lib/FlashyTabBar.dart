@@ -39,37 +39,44 @@ class FlashyTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     final bg = backgroundColor;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: bg,
-        boxShadow: showElevation ? shadows : [],
-      ),
-      child: SafeArea(
-        child: Container(
-          width: double.infinity,
-          height: this.height,
-          padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: items.map((item) {
-              var index = items.indexOf(item);
-              return Expanded(
-                child: GestureDetector(
-                  onTap: () => onItemSelected(index),
-                  child: _FlashTabBarItem(
-                    item: item,
-                    tabBarHeight: this.height,
-                    iconSize: iconSize,
-                    isSelected: index == selectedIndex,
-                    backgroundColor: bg,
-                    animationDuration: animationDuration,
-                    animationCurve: animationCurve,
+    return Positioned(
+      bottom: size.height * 0.01,
+      left: size.width * 0.05,
+      right: size.width * 0.05,
+      child: Container(
+        decoration: BoxDecoration(
+          color: bg,
+          boxShadow: showElevation ? shadows : [],
+          borderRadius: BorderRadius.circular(20.0)
+        ),
+        child: SafeArea(
+          child: Container(
+            width: size.width * 0.9,
+            height: this.height,
+            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: items.map((item) {
+                var index = items.indexOf(item);
+                return Expanded(
+                  child: GestureDetector(
+                    onTap: () => onItemSelected(index),
+                    child: _FlashTabBarItem(
+                      item: item,
+                      tabBarHeight: this.height,
+                      iconSize: iconSize,
+                      isSelected: index == selectedIndex,
+                      backgroundColor: bg,
+                      animationDuration: animationDuration,
+                      animationCurve: animationCurve,
+                    ),
                   ),
-                ),
-              );
-            }).toList(),
+                );
+              }).toList(),
+            ),
           ),
         ),
       ),

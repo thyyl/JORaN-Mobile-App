@@ -24,12 +24,15 @@ class Body extends StatelessWidget {
                 Container(
                   height: size.height * 0.325,
                   width: size.width * 0.5,
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: Image(
-                        image: AssetImage("assets/pictures/user.jpg"),
-                        fit: BoxFit.cover,
-                      )
+                  child: Hero(
+                    tag: "profile",
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: Image(
+                          image: AssetImage("assets/pictures/user.jpg"),
+                          fit: BoxFit.cover,
+                        )
+                    ),
                   ),
                   // TODO FADE IN IMAGE FOR USER PROFILE
                   // child: FadeInImage.assetNetwork(placeholder: placeholder, image: image),
