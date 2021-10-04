@@ -91,13 +91,13 @@ class MenuContainer extends StatelessWidget {
 
     );
 
-    if (result != null) {
-      Uint8List? fileBytes = result.files.first.bytes;
-      String fileName = result.files.first.name;
-      print(fileName);
-      // await FirebaseStorage.instance.ref('uploads/$fileName').putData(fileBytes);
-    } else {
-      // User canceled the picker
-    }
+  //   if (result != null) {
+  //     Uint8List? fileBytes = result.files.first.bytes;
+  //     String fileName = result.files.first.name;
+  //     print(fileName);
+  //     await FirebaseStorage.instance.ref('uploads/$fileName').putData(fileBytes);
+  //   } else {
+  //     User canceled the picker
+  //   }
   }
 }

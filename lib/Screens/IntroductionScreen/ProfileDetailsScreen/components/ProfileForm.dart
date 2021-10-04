@@ -25,44 +25,38 @@ class _ProfileFormState extends State<ProfileForm> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return Container(
-      height: size.height * 0.35,
-      child: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Form(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextFieldLabel(text: "Name"),
-              buildNameTextField(),
-              SizedBox(height: size.height * 0.02),
+    return Form(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TextFieldLabel(text: "Name"),
+          buildNameTextField(),
+          SizedBox(height: size.height * 0.02),
 
-              TextFieldLabel(text: "Contact"),
-              buildContactTextField(),
-              SizedBox(height: size.height * 0.02),
+          TextFieldLabel(text: "Contact"),
+          buildContactTextField(),
+          SizedBox(height: size.height * 0.02),
 
-              TextFieldLabel(text: "Education Level"),
-              buildEducationFormField(),
-              SizedBox(height: size.height * 0.02),
+          TextFieldLabel(text: "Education Level"),
+          buildEducationFormField(),
+          SizedBox(height: size.height * 0.02),
 
-              TextFieldLabel(text: "Specialisation"),
-              buildSpecialisationTextField(),
-              SizedBox(height: size.height * 0.02),
+          TextFieldLabel(text: "Specialisation"),
+          buildSpecialisationTextField(),
+          SizedBox(height: size.height * 0.02),
 
-              TextFieldLabel(text: "Bank"),
-              buildBankTextField(),
-              SizedBox(height: size.height * 0.02),
+          TextFieldLabel(text: "Bank"),
+          buildBankTextField(),
+          SizedBox(height: size.height * 0.02),
 
-              TextFieldLabel(text: "Bank Account"),
-              buildBankAccountTextField(),
-              SizedBox(height: size.height * 0.02),
+          TextFieldLabel(text: "Bank Account"),
+          buildBankAccountTextField(),
+          SizedBox(height: size.height * 0.02),
 
-              TextFieldLabel(text: "Description"),
-              buildDescriptionTextField(),
-              SizedBox(height: size.height * 0.02),
-            ],
-          ),
-        ),
+          TextFieldLabel(text: "Description"),
+          buildDescriptionTextField(),
+          SizedBox(height: size.height * 0.02),
+        ],
       ),
     );
   }

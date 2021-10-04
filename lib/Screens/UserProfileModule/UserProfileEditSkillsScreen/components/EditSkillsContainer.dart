@@ -59,15 +59,36 @@ class _EditSkillsContainerState extends State<EditSkillsContainer> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Name",
-                      style: TextStyle(
-                          fontFamily: "NunitoSans",
-                          color: Color(0XFF76787A),
-                          fontWeight: FontWeight.w600,
-                          fontSize: 17.5,
-                          decoration: TextDecoration.none
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Name",
+                          style: TextStyle(
+                              fontFamily: "NunitoSans",
+                              color: Color(0XFF76787A),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 17.5,
+                              decoration: TextDecoration.none
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 20.0),
+                            child: Text(
+                              "Delete Skill",
+                              style: TextStyle(
+                                  fontFamily: "NunitoSans",
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 15,
+                                  decoration: TextDecoration.none
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(height: 5),
                     buildEditSkillsDropDownField(),

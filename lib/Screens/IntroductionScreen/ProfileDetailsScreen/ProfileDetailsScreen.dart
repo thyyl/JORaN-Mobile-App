@@ -7,7 +7,10 @@ class ProfileDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Color(0XFFC7E9F3)),
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Color(0XFFC7E9F3),
+          statusBarIconBrightness: Brightness.dark
+        ),
         toolbarOpacity: 0,
         backgroundColor: Color(0XFFC7E9F3),
         elevation: 0,

@@ -32,7 +32,7 @@ class Body extends StatelessWidget {
                           height: 275,
                           width: 275,
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Colors.black.withOpacity(0.1),
                             shape: BoxShape.circle
                           ),
                         ),
@@ -41,24 +41,30 @@ class Body extends StatelessWidget {
                     ],
                   ),
                 ),
-                Text(
-                  "Let's get started!",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: "NunitoSans",
-                    fontWeight: FontWeight.w800,
-                    fontSize: 35,
-                    color: Colors.black45,
+                Padding(
+                  padding: const EdgeInsets.only(top: 15.0),
+                  child: Text(
+                    "Let's get started!",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: "NunitoSans",
+                      fontWeight: FontWeight.w800,
+                      fontSize: 25,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
-                Text(
-                  "We'll need some details of you. Please tap anywhere except the white circle to continue.",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: "NunitoSans",
-                    fontWeight: FontWeight.w800,
-                    fontSize: 20,
-                    color: Colors.black45,
+                Padding(
+                  padding: const EdgeInsets.only(top: 15.0),
+                  child: Text(
+                    "We'll need some details of you. Please tap anywhere except the white circle to continue.",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: "NunitoSans",
+                      fontWeight: FontWeight.w700,
+                      fontSize: 20,
+                      color: Colors.black45,
+                    ),
                   ),
                 ),
                 SizedBox(height: size.height * 0.1),

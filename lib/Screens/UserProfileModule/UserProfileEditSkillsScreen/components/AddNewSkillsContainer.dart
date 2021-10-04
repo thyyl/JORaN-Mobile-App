@@ -17,7 +17,7 @@ class _AddNewSkillsContainerState extends State<AddNewSkillsContainer> {
     Size size = MediaQuery.of(context).size;
 
     return Container(
-      height: size.height * 0.425,
+      height: size.height * 0.45,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
         child: SingleChildScrollView(

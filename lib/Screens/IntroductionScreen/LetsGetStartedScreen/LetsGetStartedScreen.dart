@@ -7,7 +7,10 @@ class LetsGetStarted extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Color(0XFFE0F3C8)),
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Color(0XFFE0F3C8),
+          statusBarIconBrightness: Brightness.dark,
+        ),
         toolbarOpacity: 0,
         backgroundColor: Color(0XFFE0F3C8),
         elevation: 0,

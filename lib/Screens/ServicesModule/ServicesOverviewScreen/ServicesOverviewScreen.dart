@@ -7,7 +7,6 @@ class ServicesOverviewScreen extends StatefulWidget {
 }
 
 class _ServicesOverviewScreenState extends State<ServicesOverviewScreen> {
-  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {

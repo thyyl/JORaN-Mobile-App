@@ -7,7 +7,10 @@ class SignUpConfirmationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Color(0XFFEDF1F4)),
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Color(0XFFEDF1F4),
+          statusBarIconBrightness: Brightness.dark,
+        ),
         toolbarOpacity: 0,
         backgroundColor: Color(0XFFEDF1F4),
         elevation: 0,
