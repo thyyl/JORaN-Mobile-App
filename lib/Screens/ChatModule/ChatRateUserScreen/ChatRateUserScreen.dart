@@ -3,11 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
-import 'package:joran_app/Screens/ChatModule/ChatRateUserScreen/components/FlareController.dart';
 import 'package:joran_app/Screens/ChatModule/ChatRateUserScreen/components/RateButton.dart';
 import 'package:joran_app/Screens/ChatModule/ChatRateUserScreen/components/SliderPainter.dart';
 import 'package:joran_app/Screens/ChatModule/ChatRateUserScreen/components/TopLevelBar.dart';
-import 'package:lottie/lottie.dart';
 
 class ChatRateUserScreen extends StatefulWidget {
   @override
@@ -15,9 +13,9 @@ class ChatRateUserScreen extends StatefulWidget {
 }
 
 class _ChatRateUserScreenState extends State<ChatRateUserScreen> {
-  FlareRateController _flareRateController = FlareRateController();
   double sliderWidth = 380;
   double _dragPercent = 0.0;
+  String feel = "0-";
   ValueNotifier<String> service = ValueNotifier("Mediocre");
   ValueNotifier<Color> background = ValueNotifier(Color(0XFFFCBDE9));
 
@@ -36,17 +34,76 @@ class _ChatRateUserScreenState extends State<ChatRateUserScreen> {
       setState(() {
         service.value = "Wonderful";
         background.value = Color(0XFFBCFBE4);
+        feel = "75+";
       });
-    else if (_dragPercent >= 0.4 && _dragPercent < 0.8)
+    else if (_dragPercent >= 0.6 && _dragPercent < 0.8)
+      setState(() {
+        service.value = "Satisfied";
+        background.value = Color(0XFFF8ECBD);
+
+        if (_dragPercent > 0.7)
+          setState(() {
+            feel = "75-";
+          });
+        else
+          setState(() {
+            feel = "50+";
+          });
+      });
+    else if (_dragPercent >= 0.4 && _dragPercent < 0.6)
       setState(() {
         service.value = "OK";
-        background.value = Color(0XFFF8ECBD);
+        background.value = Color(0XFFFFCDB2);
+
+        if (_dragPercent > 0.5)
+          setState(() {
+            feel = "50-";
+          });
+        else
+          setState(() {
+            feel = "25+";
+          });
       });
-    else if (_dragPercent < 0.4)
+    else if (_dragPercent >= 0.2 && _dragPercent < 0.4)
       setState(() {
         service.value = "Mediocre";
         background.value = Color(0XFFFCBDE9);
+
+        if (_dragPercent > 0.3)
+          setState(() {
+            feel = "25-";
+          });
       });
+    else if (_dragPercent < 0.2)
+      setState(() {
+        service.value = "Awful";
+        background.value = Color(0XFFD4B2D8);
+
+        if (_dragPercent > 0.1)
+          setState(() {
+            feel = "0+";
+          });
+        else
+          setState(() {
+            feel = "0-";
+          });
+      });
+
+    // if (_dragPercent >= 0.8)
+    //   setState(() {
+    //     service.value = "Wonderful";
+    //     background.value = Color(0XFFBCFBE4);
+    //   });
+    // else if (_dragPercent >= 0.4 && _dragPercent < 0.8)
+    //   setState(() {
+    //     service.value = "OK";
+    //     background.value = Color(0XFFF8ECBD);
+    //   });
+    // else if (_dragPercent < 0.4)
+    //   setState(() {
+    //     service.value = "Mediocre";
+    //     background.value = Color(0XFFFCBDE9);
+    //   });
   }
 
   void _onDragStart(BuildContext context, DragStartDetails details) {
@@ -102,17 +159,20 @@ class _ChatRateUserScreenState extends State<ChatRateUserScreen> {
                       ),
                     ),
                     Container(
+                      // height: size.height * 0.375,
                       height: size.height * 0.375,
-                      width: 340,
-                      // child: FlareActor(
-                      //   "assets/flare/rate.flr",
-                      //   artboard: "Artboard",
-                      //   // controller: _flareRateController,
-                      // ),
-
-                      child: Lottie.asset(
-                        "assets/flare/${service.value.toLowerCase()}.json",
+                      width: size.width * 0.8,
+                      child: FlareActor(
+                        "assets/flare/feelings.flr",
+                        artboard: "Artboard",
+                        fit: BoxFit.fitWidth,
+                        animation: feel,
+                        // controller: _flareRateController,
                       ),
+
+                      // child: Lottie.asset(
+                      //   "assets/flare/${service.value.toLowerCase()}.json",
+                      // ),
                     ),
                     buildSlider(size),
                     SizedBox(height: size.height * 0.025),

@@ -10,25 +10,27 @@ class Body extends StatelessWidget {
 
     return SafeArea(
       child: Background(
-        children: Padding(
-          padding: const EdgeInsets.fromLTRB(30, 30, 30, 0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TopLevelBar(),
-              SizedBox(height: size.height * 0.05),
-              Text(
-                "Let's start a \nservice",
-                style: TextStyle(
-                  color: Color(0XFF76787A),
-                  fontFamily: "NunitoSans",
-                  fontSize: 25,
-                  fontWeight: FontWeight.w700
+        children: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(30, 30, 30, 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TopLevelBar(),
+                SizedBox(height: size.height * 0.05),
+                Text(
+                  "Let's start a \nservice",
+                  style: TextStyle(
+                    color: Color(0XFF76787A),
+                    fontFamily: "NunitoSans",
+                    fontSize: 25,
+                    fontWeight: FontWeight.w700
+                  ),
                 ),
-              ),
-              SizedBox(height: size.height * 0.05),
-              AddServiceForm()
-            ],
+                SizedBox(height: size.height * 0.05),
+                AddServiceForm()
+              ],
+            ),
           ),
         ),
       ),

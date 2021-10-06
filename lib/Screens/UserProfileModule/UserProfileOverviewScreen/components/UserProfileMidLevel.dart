@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:joran_app/Models/UserModel.dart';
+import 'package:joran_app/Provider/UserProvider.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileEditScreen/UserProfileEditScreen.dart';
+import 'package:provider/provider.dart';
 
 class UserProfileMidLevel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    User user = Provider.of<UserProvider>(context).user;
 
     return Padding(
       padding: const EdgeInsets.only(left: 10.0),
@@ -14,7 +18,7 @@ class UserProfileMidLevel extends StatelessWidget {
           Container(
             width: size.width * 0.4,
             child: Text(
-              "Abigail Sarah Williams",
+              user.name,
               style: TextStyle(
                   color: Color(0XFF76787A),
                   fontSize: 25,

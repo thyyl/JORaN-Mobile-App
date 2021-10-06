@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 
 class ProfilePicture extends StatefulWidget {
   @override
-  _ProfilePictureState createState() => _ProfilePictureState();
+  ProfilePictureState createState() => ProfilePictureState();
 
   const ProfilePicture({
     Key? key,
@@ -17,7 +17,7 @@ class ProfilePicture extends StatefulWidget {
   final String image;
 }
 
-class _ProfilePictureState extends State<ProfilePicture> {
+class ProfilePictureState extends State<ProfilePicture> {
 
   ValueNotifier<File?> image = ValueNotifier(null);
   final ImagePicker _picker = ImagePicker();
@@ -99,6 +99,9 @@ class _ProfilePictureState extends State<ProfilePicture> {
       setState(() {
         image.value = File(croppedImage!.path);
       });
+
+      // Provider.of<UserProvider>(context, listen: false).setUpdate(7, );
+
     } on PlatformException {
 
     }

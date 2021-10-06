@@ -10,27 +10,30 @@ class Body extends StatelessWidget {
 
     return SafeArea(
       child: Background(
-        children: Padding(
-          padding: const EdgeInsets.only(top: 20.0, left: 20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Text(
-                  "My Profile",
-                  style: TextStyle(
-                    color: Color(0XFF76787A),
-                    fontSize: 25,
-                    fontFamily: "NunitoSans",
-                    fontWeight: FontWeight.bold
+        children: SingleChildScrollView(
+          physics: NeverScrollableScrollPhysics(),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 20.0, left: 20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Text(
+                    "My Profile",
+                    style: TextStyle(
+                      color: Color(0XFF76787A),
+                      fontSize: 25,
+                      fontFamily: "NunitoSans",
+                      fontWeight: FontWeight.bold
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: size.height * 0.075),
-              UserProfileMidLevel(),
-              SizedBox(height: size.height * 0.05),
-              MenuContainer()
-            ],
+                SizedBox(height: size.height * 0.075),
+                UserProfileMidLevel(),
+                SizedBox(height: size.height * 0.05),
+                MenuContainer()
+              ],
+            ),
           ),
         ),
       )

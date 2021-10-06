@@ -16,42 +16,36 @@ class Body extends StatelessWidget {
       child: Background(
         children: Padding(
           padding: const EdgeInsets.only(left: 20.0, right:20, top: 30.0),
-          child: SingleChildScrollView(
-            physics: NeverScrollableScrollPhysics(),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 15.0),
-                  child: TopLevelBar(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 15.0),
+                child: TopLevelBar(),
+              ),
+              Container(
+                height: size.height * 0.8425,
+                child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  child: Column(
+                    children: [
+                      CarouselAdvertisement(),
+                      SizedBox(height: size.height * 0.025),
+                      JobTitleResults(
+                        job: "Cloud Computing",
+                        results: "256",
+                      ),
+                      Column(
+                        children: [
+                          FeaturedJobsList(),
+                          BasicJobsList(),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
-                CarouselAdvertisement(),
-                SizedBox(height: size.height * 0.025),
-                // JobServiceBar(
-                //   serviceFunction: () {
-                //     Navigator.pushReplacement(context, PageTransition(
-                //         type: PageTransitionType.fade, child: ServicesOverviewScreen())
-                //     );
-                //   }
-                // ),
-                JobTitleResults(
-                  job: "Cloud Computing",
-                  results: "256",
-                ),
-                Container(
-                  height: size.height * 0.475,
-                  child: SingleChildScrollView(
-                    physics: BouncingScrollPhysics(),
-                    child: Column(
-                      children: [
-                        FeaturedJobsList(),
-                        BasicJobsList(),
-                      ],
-                    ),
-                  )
-                )
-              ],
-            ),
+              )
+            ],
           ),
         ),
       )

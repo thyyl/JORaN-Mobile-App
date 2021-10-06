@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:joran_app/Models/HomeModel.dart';
+import 'package:joran_app/Models/UserModel.dart';
+import 'package:joran_app/Provider/ServiceProvider.dart';
+import 'package:joran_app/Provider/SkillsProvider.dart';
 import 'package:joran_app/Screens/LogInScreen/LogInScreen.dart';
 import 'package:joran_app/Screens/SplashScreen/SplashScreen.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:provider/provider.dart';
+
+import 'Provider/UserProvider.dart';
 
 Future main() async {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -18,7 +23,12 @@ Future main() async {
 
   runApp(
     MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => HomeModel())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => HomeModel()),
+        ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => ServiceProvider()),
+        ChangeNotifierProvider(create: (_) => SkillsProvider()),
+      ],
       child: MyApp(),
     ),
   );

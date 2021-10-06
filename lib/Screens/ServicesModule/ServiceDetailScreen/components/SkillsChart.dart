@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:joran_app/Models/SkillsModel.dart';
+import 'package:joran_app/FakeData.dart';
 
 class SkillsChart extends StatefulWidget {
   @override
@@ -8,15 +8,6 @@ class SkillsChart extends StatefulWidget {
 }
 
 class _SkillsChartState extends State<SkillsChart> {
-
-  final List<Skills> skillData = [
-    Skills('C++ Programming', 35),
-    Skills('Java Programming', 72),
-    Skills('Python Programming', 100),
-    Skills('JavaScript Programming', 35),
-    Skills('Dart Programming', 72),
-    Skills('.Net Programming', 100),
-  ];
 
   int touchedIndex = -1;
 

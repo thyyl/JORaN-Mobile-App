@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:joran_app/Models/SkillsModel.dart';
+import 'package:joran_app/Provider/SkillsProvider.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileEditSkillsScreen/components/EditSkillsContainer.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileEditSkillsScreen/components/SkillsChart.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:provider/provider.dart';
 
 class SkillsContainer extends StatefulWidget {
   @override
@@ -10,10 +14,21 @@ class SkillsContainer extends StatefulWidget {
 }
 
 class _SkillsContainerState extends State<SkillsContainer> {
-
   @override
   Widget build(BuildContext context) {
+    List<Skills> skillsSelectionList = Provider.of<SkillsProvider>(context).skillList;
     Size size = MediaQuery.of(context).size;
+
+    ToastFuture showNotification(String content) {
+      return showToast(
+        content,
+        context: context,
+        animation: StyledToastAnimation.fade,
+        reverseAnimation: StyledToastAnimation.fade,
+        duration: Duration(seconds: 3),
+        position: StyledToastPosition.center,
+      );
+    }
 
     return Container(
       width: size.width * 0.8,
@@ -49,9 +64,14 @@ class _SkillsContainerState extends State<SkillsContainer> {
               ),
               GestureDetector(
                 onTap: () {
-                  showCupertinoModalBottomSheet(
-                    context: context, builder: (context) => EditSkillsContainer()
-                  );
+                  if (skillsSelectionList.isNotEmpty) {
+                    showCupertinoModalBottomSheet(
+                        context: context, builder: (context) => EditSkillsContainer(
+                      firstSkill: skillsSelectionList.first,
+                    ));
+                  } else {
+                    showNotification("There is nothings to be edited");
+                  }
                 },
                 child: Text(
                   "Edit Skills",

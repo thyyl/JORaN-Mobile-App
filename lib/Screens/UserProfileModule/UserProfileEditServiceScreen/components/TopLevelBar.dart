@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class TopLevelBar extends StatelessWidget {
   const TopLevelBar({
-    Key? key,
+    Key? key, required this.deleteFunction,
   }) : super(key: key);
+
+  final VoidCallback deleteFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class TopLevelBar extends StatelessWidget {
           ),
         ),
         GestureDetector(
-          onTap: () {},
+          onTap: deleteFunction,
           child: Container(
             height: 40,
             width: 40,

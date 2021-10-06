@@ -21,6 +21,7 @@ class _BodyState extends State<Body> {
         children: SingleChildScrollView(
           physics: AlwaysScrollableScrollPhysics(),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               SizedBox(height: size.height * 0.125),
               Padding(
@@ -108,8 +109,7 @@ class _BodyState extends State<Body> {
               hintStyle: TextStyle(
                   fontFamily: "NunitoSans",
                   fontSize: 17.5,
-                  fontWeight:
-                  FontWeight.w700,
+                  fontWeight: FontWeight.w700,
                   color: Colors.black.withOpacity(.25)
               ),
               floatingLabelBehavior: FloatingLabelBehavior.always,

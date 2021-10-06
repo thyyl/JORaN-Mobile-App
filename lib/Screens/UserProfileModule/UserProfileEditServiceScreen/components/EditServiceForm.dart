@@ -1,32 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:joran_app/Models/ServiceModel.dart';
+import 'package:joran_app/Provider/ServiceProvider.dart';
 import 'package:joran_app/Screens/ServicesModule/ServicesAddServiceScreen/components/TextFieldLabel.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileEditServiceScreen/components/PostButton.dart';
+import 'package:joran_app/constants.dart';
+import 'package:provider/provider.dart';
 
-class AddServiceForm extends StatefulWidget {
+class EditServiceForm extends StatefulWidget {
+  const EditServiceForm({
+    Key? key,
+    required this.service,
+    required this.category
+  }) : super(key: key);
+
   @override
-  _AddServiceFormState createState() => _AddServiceFormState();
+  _EditServiceFormState createState() => _EditServiceFormState(category);
+
+  final Service service;
+  final String category;
 }
 
-class _AddServiceFormState extends State<AddServiceForm> {
+class _EditServiceFormState extends State<EditServiceForm> {
+
+  _EditServiceFormState(this.cat) {
+    this.categorySelection = this.cat;
+  }
 
   final _nameController = TextEditingController();
   final _priceController = TextEditingController();
-  final _locationController = TextEditingController();
 
-  String categorySelection = "Accounting";
-  List<String> categoryList = [
-    "Accounting",
-    "Architecture",
-    "Art",
-    "Engineering",
-    "Computer Science",
-    "Language",
-    "Maths"
-    "Open",
-    "Pharmacy",
-    "Science",
-    "Co-curricular",
-  ];
+  late String categorySelection;
+  final cat;
 
   @override
   Widget build(BuildContext context) {
@@ -46,53 +51,12 @@ class _AddServiceFormState extends State<AddServiceForm> {
 
           TextFieldLabel(text: "Price"),
           buildPriceTextField(),
-          SizedBox(height: size.height * 0.02),
-
-          TextFieldLabel(text: "Location"),
-          buildLocationTextField(),
           SizedBox(height: size.height * 0.05),
 
           PostButton(
-            function: () {}
+            function: () => validateForm(context)
           )
         ],
-      ),
-    );
-  }
-
-  Padding buildLocationTextField() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10.0),
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.055,
-        width: MediaQuery.of(context).size.width * 0.8,
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.5),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: TextFormField(
-          decoration: InputDecoration(
-            hintText: "Please enter a location",
-            enabledBorder: outlineBorder(),
-            focusedBorder: outlineBorder(),
-            hintStyle: TextStyle(
-                fontFamily: "NunitoSans",
-                fontSize: 17.5,
-                fontWeight:
-                FontWeight.w700,
-                color: Colors.black.withOpacity(.25)
-            ),
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            contentPadding: EdgeInsets.only(top: 20, left: 20),
-          ),
-          style: TextStyle(
-            fontFamily: "NunitoSans",
-            fontSize: 17.5,
-            fontWeight: FontWeight.w700,
-            color: Colors.black.withOpacity(.5),
-          ),
-          controller: _locationController,
-        ),
       ),
     );
   }
@@ -109,7 +73,7 @@ class _AddServiceFormState extends State<AddServiceForm> {
         ),
         child: TextFormField(
           decoration: InputDecoration(
-            hintText: "Please enter a price",
+            hintText: "RM ${widget.service.price}",
             enabledBorder: outlineBorder(),
             focusedBorder: outlineBorder(),
             hintStyle: TextStyle(
@@ -194,7 +158,7 @@ class _AddServiceFormState extends State<AddServiceForm> {
         ),
         child: TextFormField(
           decoration: InputDecoration(
-            hintText: "Please enter a title",
+            hintText: widget.service.title,
             enabledBorder: outlineBorder(),
             focusedBorder: outlineBorder(),
             hintStyle: TextStyle(
@@ -224,6 +188,61 @@ class _AddServiceFormState extends State<AddServiceForm> {
       borderRadius: BorderRadius.circular(28),
       borderSide: BorderSide(color: Colors.transparent),
       gapPadding: 10,
+    );
+  }
+
+  void validateForm(BuildContext context) {
+    bool nothingToUpdate = true;
+
+    if (_nameController.text.isNotEmpty) {
+      if (_nameController.text != widget.service.title) {
+        setState(() {
+          Provider.of<ServiceProvider>(context, listen: false)
+              .setUpdateService(widget.service.serviceID, _nameController.text, 1);
+        });
+
+        nothingToUpdate = false;
+        showNotification("Successfully updated.", context);
+        // TODO UPDATE DATABASE
+      }
+    }
+
+    if (categorySelection != widget.service.category) {
+      setState(() {
+        Provider.of<ServiceProvider>(context, listen: false)
+            .setUpdateService(widget.service.serviceID, categorySelection, 2);
+      });
+
+      nothingToUpdate = false;
+      showNotification("Successfully updated.", context);
+      // TODO UPDATE DATABASE
+    }
+
+    if (_priceController.text.isNotEmpty) {
+      if (_priceController.text != widget.service.price) {
+        setState(() {
+          Provider.of<ServiceProvider>(context, listen: false)
+              .setUpdateService(widget.service.serviceID, _priceController.text, 3);
+        });
+
+        nothingToUpdate = false;
+        showNotification("Successfully updated.", context);
+        // TODO UPDATE DATABASE
+      }
+    }
+
+    if (nothingToUpdate)
+      showNotification("There is nothing to update.", context);
+  }
+
+  ToastFuture showNotification(String content, BuildContext context) {
+    return showToast(
+      content,
+      context: context,
+      animation: StyledToastAnimation.fade,
+      reverseAnimation: StyledToastAnimation.fade,
+      duration: Duration(seconds: 3),
+      position: StyledToastPosition.center,
     );
   }
 }

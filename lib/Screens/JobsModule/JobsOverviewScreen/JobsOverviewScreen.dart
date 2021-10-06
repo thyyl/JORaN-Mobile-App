@@ -10,6 +10,7 @@ class _JobsOverviewScreenState extends State<JobsOverviewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0XFFEDF1F4),
       body: Body(),
     );
   }

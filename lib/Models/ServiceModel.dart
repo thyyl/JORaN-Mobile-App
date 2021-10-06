@@ -1,13 +1,22 @@
 class Service {
+  String serviceID;
   String title;
   String category;
   String price;
-  String location;
 
-  Service(
-    this.title,
-    this.category,
-    this.price,
-    this.location,
-  );
+  Service({
+    required this.serviceID,
+    required this.title,
+    required this.category,
+    required this.price,
+  });
+
+  factory Service.fromJson(Map<String, dynamic> responseData){
+    return Service(
+      serviceID: responseData['serviceID'],
+      title: responseData['title'],
+      category: responseData['category'],
+      price: responseData['price'],
+    );
+  }
 }

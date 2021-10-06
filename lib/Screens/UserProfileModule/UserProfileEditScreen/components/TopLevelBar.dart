@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 class TopLevelBar extends StatelessWidget {
+
+  final VoidCallback onSaved;
+
+  const TopLevelBar({Key? key, required this.onSaved}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -28,7 +33,7 @@ class TopLevelBar extends StatelessWidget {
           ),
         ),
         GestureDetector(
-          onTap: () => Navigator.pop(context),
+          onTap: onSaved,
           child: Container(
             height: 40,
             width: 40,

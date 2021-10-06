@@ -16,7 +16,7 @@ class ResetButton extends StatelessWidget {
       child: GestureDetector(
         onTap: function,
         child: Container(
-          width: size.width * 0.35,
+          width: size.width * 0.4,
           height: size.height * 0.05,
           decoration: BoxDecoration(
               color: Color(0XFF87A5A6),

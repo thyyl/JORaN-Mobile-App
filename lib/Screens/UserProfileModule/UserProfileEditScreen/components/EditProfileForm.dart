@@ -1,34 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:joran_app/Models/UserModel.dart';
+import 'package:joran_app/Provider/UserProvider.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileEditScreen/components/TextFieldLabel.dart';
+import 'package:provider/provider.dart';
 
 class EditProfileForm extends StatefulWidget {
+  const EditProfileForm({
+    Key? key,
+    required this.educationSelection,
+  }) : super(key: key);
+
+  final String educationSelection;
+
   @override
-  _EditProfileFormState createState() => _EditProfileFormState();
+  EditProfileFormState createState() => EditProfileFormState(educationSelection);
 }
 
-class _EditProfileFormState extends State<EditProfileForm> {
+class EditProfileFormState extends State<EditProfileForm> {
 
-  final _nameController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _contactController = TextEditingController();
-  final _specialisationController = TextEditingController();
-  final _bankController = TextEditingController();
-  final _bankAccountController = TextEditingController();
-  final _descriptionController = TextEditingController();
+  EditProfileFormState(this.education) {
+    this.educationSelection = this.education;
+  }
+
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final contactController = TextEditingController();
+  final specialisationController = TextEditingController();
+  final descriptionController = TextEditingController();
 
   bool obscure = true;
-  String educationSelection = "Bachelor";
+  final education;
+  late String educationSelection;
   List<String> educationSelectionList = [
-    "SPM / O-Level", "STPM / A-Level / Diploma", "Bachelor", "Master", "PhD",
+    "SPM / O-Level", "STPM / A-Level / Diploma", "Bachelor Degree", "Master", "PhD",
   ];
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    User user = Provider.of<UserProvider>(context).user;
 
     return Container(
-      height: size.height * 0.45,
+      height: size.height * 0.48,
       child: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Form(
@@ -36,11 +50,11 @@ class _EditProfileFormState extends State<EditProfileForm> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextFieldLabel(text: "Name"),
-              buildNameTextField("Abigail Sarah Williams"),
+              buildNameTextField(user.name),
               SizedBox(height: size.height * 0.02),
 
               TextFieldLabel(text: "Email"),
-              buildNameTextField("abigailsarah@student.usm.my"),
+              buildEmailTextField(user.email),
               SizedBox(height: size.height * 0.02),
 
               Padding(
@@ -64,11 +78,11 @@ class _EditProfileFormState extends State<EditProfileForm> {
                   ],
                 ),
               ),
-              buildPasswordTextField("12345638427837429"),
+              buildPasswordTextField(user.password),
               SizedBox(height: size.height * 0.02),
 
               TextFieldLabel(text: "Contact"),
-              buildContactTextField("0145758394"),
+              buildContactTextField(user.contact),
               SizedBox(height: size.height * 0.02),
 
               TextFieldLabel(text: "Education Level"),
@@ -76,102 +90,18 @@ class _EditProfileFormState extends State<EditProfileForm> {
               SizedBox(height: size.height * 0.02),
 
               TextFieldLabel(text: "Specialisation"),
-              buildSpecialisationTextField("Biomedical Science"),
-              SizedBox(height: size.height * 0.02),
-
-              TextFieldLabel(text: "Bank"),
-              buildBankTextField("Public Bank"),
-              SizedBox(height: size.height * 0.02),
-
-              TextFieldLabel(text: "Bank Account"),
-              buildBankAccountTextField("123456789"),
+              buildSpecialisationTextField(user.specialisation),
               SizedBox(height: size.height * 0.02),
 
               TextFieldLabel(text: "Description"),
-              buildDescriptionTextField("Biomedical Science"),
+              buildDescriptionTextField(user.description),
               SizedBox(height: size.height * 0.02),
+
+              Container(
+                height: size.height * 0.2,
+              )
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  Padding buildBankAccountTextField(String bankAccount) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10.0),
-      child: Container(
-        height: MediaQuery
-            .of(context)
-            .size
-            .height * 0.055,
-        width: MediaQuery
-            .of(context)
-            .size
-            .width * 0.8,
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.5),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: TextFormField(
-          decoration: InputDecoration(
-            hintText: bankAccount,
-            enabledBorder: outlineBorder(),
-            focusedBorder: outlineBorder(),
-            hintStyle: TextStyle(
-                fontFamily: "NunitoSans",
-                fontSize: 17.5,
-                fontWeight:
-                FontWeight.w700,
-                color: Colors.black.withOpacity(.25)
-            ),
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            contentPadding: EdgeInsets.only(top: 20, left: 20),
-          ),
-          style: TextStyle(
-            fontFamily: "NunitoSans",
-            fontSize: 17.5,
-            fontWeight: FontWeight.w700,
-            color: Colors.black.withOpacity(.5),
-          ),
-          controller: _bankAccountController,
-        ),
-      ),
-    );
-  }
-
-  Padding buildBankTextField(String bank) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10.0),
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.055,
-        width: MediaQuery.of(context).size.width * 0.8,
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.5),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: TextFormField(
-          decoration: InputDecoration(
-            hintText: bank,
-            enabledBorder: outlineBorder(),
-            focusedBorder: outlineBorder(),
-            hintStyle: TextStyle(
-                fontFamily: "NunitoSans",
-                fontSize: 17.5,
-                fontWeight:
-                FontWeight.w700,
-                color: Colors.black.withOpacity(.25)
-            ),
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            contentPadding: EdgeInsets.only(top: 20, left: 20),
-          ),
-          style: TextStyle(
-            fontFamily: "NunitoSans",
-            fontSize: 17.5,
-            fontWeight: FontWeight.w700,
-            color: Colors.black.withOpacity(.5),
-          ),
-          controller: _bankController,
         ),
       ),
     );
@@ -188,7 +118,8 @@ class _EditProfileFormState extends State<EditProfileForm> {
           borderRadius: BorderRadius.circular(10),
         ),
         child: TextFormField(
-          maxLines: 3,
+          maxLines: 5,
+          textAlign: TextAlign.justify,
           decoration: InputDecoration(
             hintText: description,
             enabledBorder: outlineBorder(),
@@ -201,7 +132,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
                 color: Colors.black.withOpacity(.25)
             ),
             floatingLabelBehavior: FloatingLabelBehavior.always,
-            contentPadding: EdgeInsets.only(top: 20, left: 20),
+            contentPadding: EdgeInsets.only(top: 20, left: 20, right: 20),
           ),
           style: TextStyle(
             fontFamily: "NunitoSans",
@@ -209,7 +140,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
             fontWeight: FontWeight.w700,
             color: Colors.black.withOpacity(.5),
           ),
-          controller: _descriptionController,
+          controller: descriptionController,
         ),
       ),
     );
@@ -246,7 +177,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
             fontWeight: FontWeight.w700,
             color: Colors.black.withOpacity(.5),
           ),
-          controller: _specialisationController,
+          controller: specialisationController,
         ),
       ),
     );
@@ -323,7 +254,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
             fontWeight: FontWeight.w700,
             color: Colors.black.withOpacity(.5),
           ),
-          controller: _contactController,
+          controller: contactController,
         ),
       ),
     );
@@ -348,6 +279,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
               borderRadius: BorderRadius.circular(10),
             ),
             child: TextFormField(
+              readOnly: true,
               decoration: InputDecoration(
                 hintText: obscure ? passwordObscured : password,
                 enabledBorder: outlineBorder(),
@@ -368,7 +300,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
                 fontWeight: FontWeight.w700,
                 color: Colors.black.withOpacity(.5),
               ),
-              controller: _passwordController,
+              controller: passwordController,
             ),
           ),
           Positioned(
@@ -376,10 +308,13 @@ class _EditProfileFormState extends State<EditProfileForm> {
             top: 10,
             child: GestureDetector(
               onTap: () =>
-                setState(() {
-                  obscure = !obscure;
-                }),
-              child: Image(image: AssetImage("assets/pictures/visible.png")),
+                  setState(() {
+                    obscure = !obscure;
+                  }),
+              child: Icon(
+                obscure ? Icons.visibility : Icons.visibility_off,
+                color: Colors.black.withOpacity(.25),
+              ),
             ),
           )
         ],
@@ -418,7 +353,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
             fontWeight: FontWeight.w700,
             color: Colors.black.withOpacity(.5),
           ),
-          controller: _emailController,
+          controller: emailController,
         ),
       ),
     );
@@ -455,7 +390,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
             fontWeight: FontWeight.w700,
             color: Colors.black.withOpacity(.5),
           ),
-          controller: _nameController,
+          controller: nameController,
         ),
       ),
     );

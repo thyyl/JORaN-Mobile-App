@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:joran_app/FakeData.dart';
+import 'package:joran_app/Provider/UserProvider.dart';
 import 'package:joran_app/Screens/LogInScreen/components/LoginButton.dart';
 import 'package:joran_app/Screens/LogInScreen/components/ForgotPassword.dart';
 import 'package:joran_app/Screens/LogInScreen/components/TextFieldLabel.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileOverviewScreen/UserProfileOverviewScreen.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -36,6 +39,8 @@ class _LoginFormState extends State<LoginForm> {
             SizedBox(height: size.height * 0.03),
             LoginButton(
               function: () {
+                Provider.of<UserProvider>(context, listen: false).setUser(fakeUserData);
+
                 Navigator.push(context, PageTransition(
                     type: PageTransitionType.fade, child: UserProfileOverviewScreen())
                 );

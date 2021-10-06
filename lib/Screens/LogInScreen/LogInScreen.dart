@@ -18,6 +18,7 @@ class LogInScreen extends StatelessWidget {
         toolbarHeight: 0,
 
       ),
+      backgroundColor: Color(0XFFEDF1F4),
       body: Body(),
     );
     

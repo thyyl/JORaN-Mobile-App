@@ -11,6 +11,7 @@ class _HomeOverviewScreenState extends State<HomeOverviewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0XFFEDF1F4),
       body: Body(),
     );
   }

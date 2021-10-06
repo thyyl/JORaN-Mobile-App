@@ -4,7 +4,6 @@ import 'package:flare_flutter/flare.dart';
 import 'package:flare_flutter/flare_controller.dart';
 
 class FlareRateController extends FlareController {
-  FlutterActorArtboard? _artboard;
   late ActorAnimation _rateAnimation;
 
   double _slidePercent = 0.0;

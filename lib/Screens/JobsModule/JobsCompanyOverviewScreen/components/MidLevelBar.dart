@@ -60,7 +60,7 @@ class MidLevelBar extends StatelessWidget {
                       style: TextStyle(
                           fontFamily: "NunitoSans",
                           color: Color(0XFF76787A),
-                          fontSize: 22.5,
+                          fontSize: 20,
                           fontWeight: FontWeight.w800
                       ),
                     ),

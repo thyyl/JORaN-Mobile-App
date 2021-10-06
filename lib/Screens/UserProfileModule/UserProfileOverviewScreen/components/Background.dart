@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:joran_app/FlashyTabBar.dart';
+import 'package:joran_app/Models/UserModel.dart';
+import 'package:joran_app/Provider/UserProvider.dart';
 import 'package:joran_app/Screens/ChatModule/ChatOverviewScreen/ChatOverviewScreen.dart';
 import 'package:joran_app/Screens/HomeModule/HomeOverviewScreen/HomeOverviewScreen.dart';
 import 'package:joran_app/Screens/JobsModule/JobsOverviewScreen/JobsOverviewScreen.dart';
 import 'package:joran_app/Screens/NotificationModule/NotificationOverviewScreen/NotificationOverviewScreen.dart';
 import 'package:joran_app/constants.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 
 class Background extends StatefulWidget {
@@ -27,6 +30,7 @@ class _BackgroundState extends State<Background> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    User user = Provider.of<UserProvider>(context).user;
 
     return Container(
       width: size.width,
@@ -49,7 +53,7 @@ class _BackgroundState extends State<Background> {
                       bottomLeft: Radius.circular(40.0),
                     ),
                     child: Image(
-                      image: AssetImage("assets/pictures/user.jpg"),
+                      image: AssetImage(user.userProfilePicture),
                       fit: BoxFit.cover,
                     )
                 ),

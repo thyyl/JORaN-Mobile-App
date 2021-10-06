@@ -15,7 +15,7 @@ class MidLevelBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            "Popular Services",
+            "Search a Service",
             style: TextStyle(
               color: Color(0XFF76787A),
               fontFamily: "NunitoSans",

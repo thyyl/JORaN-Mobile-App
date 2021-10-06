@@ -1,41 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:joran_app/Models/ServiceModel.dart';
+import 'package:joran_app/Provider/ServiceProvider.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileServiceScreen/components/ServiceContainer.dart';
+import 'package:provider/provider.dart';
 
 class ServiceContainerList extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    List<Service> serviceList = Provider.of<ServiceProvider>(context).serviceList;
 
-    return Container(
-      height: size.height * 0.325,
-      child: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            ServiceContainer(
-              name: "Abigail Sarah Williams",
-              image: "assets/pictures/user.jpg",
-              service: "C++ Assignment",
-              fee: "50",
-              ratings: "4.0",
-            ),
-            ServiceContainer(
-              name: "Abigail Sarah Williams",
-              image: "assets/pictures/user.jpg",
-              service: "C++ Assignment",
-              fee: "50",
-              ratings: "4.0",
-            ),
-            ServiceContainer(
-              name: "Abigail Sarah Williams",
-              image: "assets/pictures/user.jpg",
-              service: "C++ Assignment",
-              fee: "50",
-              ratings: "4.0",
-            ),
-          ],
-        ),
-      ),
+    return Column(
+      children: List.generate(serviceList.length, (index) {
+        return ServiceContainer(
+          service: serviceList[index],
+        );
+      })
     );
   }
 }

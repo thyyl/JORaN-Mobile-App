@@ -23,3 +23,19 @@ List<FlashyTabBarItem> tabBarItemList = [
     title: Text('Profile'),
   ),
 ];
+
+List<String> categoryList = [
+  "Accounting",
+  "Architecture",
+  "Art",
+  "Biology",
+  "Engineering",
+  "Chemistry",
+  "Computer Science",
+  "Language",
+  "Maths",
+  "Open",
+  "Pharmaceutical",
+  "Physics",
+  "Co-curricular",
+];

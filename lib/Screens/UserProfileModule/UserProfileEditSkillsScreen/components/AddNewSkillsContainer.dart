@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:joran_app/Models/SkillsModel.dart';
+import 'package:joran_app/Provider/SkillsProvider.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileEditSkillsScreen/components/DoneButton.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
+import 'package:uuid/uuid.dart';
 
 class AddNewSkillsContainer extends StatefulWidget {
   @override
@@ -17,7 +22,7 @@ class _AddNewSkillsContainerState extends State<AddNewSkillsContainer> {
     Size size = MediaQuery.of(context).size;
 
     return Container(
-      height: size.height * 0.45,
+      height: size.height * 0.8,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
         child: SingleChildScrollView(
@@ -97,7 +102,28 @@ class _AddNewSkillsContainerState extends State<AddNewSkillsContainer> {
               ),
               SizedBox(height: size.height * 0.025),
               DoneButton(
-                function: () {},
+                function: () {
+
+                  if (_skillController.text.isNotEmpty && _skillProficiency != 0) {
+                    var uuid = Uuid();
+
+                    Skills skill = Skills(
+                        skillID: uuid.v1(),
+                        name: _skillController.text,
+                        proficiency: _skillProficiency
+                    );
+
+                    Provider.of<SkillsProvider>(context, listen: false).addNewSkill(skill);
+
+                    // TODO update database
+
+                    showNotification("Successfully added.");
+                  } else {
+                    showNotification("There is nothing to add.");
+                  }
+
+
+                },
               )
             ],
           ),
@@ -150,4 +176,14 @@ class _AddNewSkillsContainerState extends State<AddNewSkillsContainer> {
     );
   }
 
+  ToastFuture showNotification(String content) {
+    return showToast(
+      content,
+      context: context,
+      animation: StyledToastAnimation.fade,
+      reverseAnimation: StyledToastAnimation.fade,
+      duration: Duration(seconds: 3),
+      position: StyledToastPosition.center,
+    );
+  }
 }

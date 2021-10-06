@@ -1,23 +1,91 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:joran_app/Models/SkillsModel.dart';
+import 'package:joran_app/Provider/SkillsProvider.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileEditSkillsScreen/components/DoneButton.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class EditSkillsContainer extends StatefulWidget {
+
+  final Skills firstSkill;
+
+  const EditSkillsContainer({Key? key, required this.firstSkill}) : super(key: key);
+
   @override
-  _EditSkillsContainerState createState() => _EditSkillsContainerState();
+  _EditSkillsContainerState createState() => _EditSkillsContainerState(firstSkill);
 }
 
 class _EditSkillsContainerState extends State<EditSkillsContainer> {
 
-  double _skillProficiency = 10;
-  String skillsSelection = "C++ Programming";
-  List<String> skillsSelectionList = [
-    "C++ Programming", "Java Programming", "Python Programming",
-  ];
+  _EditSkillsContainerState(this.skills) {
+    this.skillsSelection = this.skills.name;
+    this._skillProficiency = this.skills.proficiency;
+  }
+
+  final Skills skills;
+  late String skillsSelection;
+  late double _skillProficiency;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    List<Skills> skillsSelectionList = Provider.of<SkillsProvider>(context).skillList;
+
+    Card buildEditSkillsDropDownField() {
+      return Card(
+        shadowColor: Colors.transparent,
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.055,
+          width: MediaQuery.of(context).size.width * 0.8,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton<String>(
+              value: skillsSelection,
+              onChanged: (dynamic newValue) {
+                setState(() {
+                  skillsSelection = newValue;
+                  _skillProficiency = Provider
+                      .of<SkillsProvider>(context, listen: false)
+                      .getSkillIndividual(skillsSelection)
+                      .proficiency;
+                });
+              },
+              items: skillsSelectionList.map<DropdownMenuItem<String>>((Skills value) {
+                return DropdownMenuItem<String>(
+                  value: value.name,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: Text(
+                      value.name,
+                      style: TextStyle(
+                        fontFamily: "NunitoSans",
+                        fontSize: 17.5,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black.withOpacity(.5),
+                      ),
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+        ),
+      );
+    }
+
+    ToastFuture showNotification(String content) {
+      return showToast(
+        content,
+        context: context,
+        animation: StyledToastAnimation.fade,
+        reverseAnimation: StyledToastAnimation.fade,
+        duration: Duration(seconds: 3),
+        position: StyledToastPosition.center,
+      );
+    }
 
     return Container(
       height: size.height * 0.45,
@@ -73,7 +141,20 @@ class _EditSkillsContainerState extends State<EditSkillsContainer> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            if (skillsSelectionList.isNotEmpty) {
+                              Provider
+                                  .of<SkillsProvider>(context, listen: false)
+                                  .deleteSkill(skillsSelection);
+                              skillsSelection = skillsSelectionList.first.name;
+
+                              // TODO update database
+
+                              showNotification("Successfully deleted.");
+                            } else {
+                              showNotification("There is nothing to delete.");
+                            }
+                          },
                           child: Padding(
                             padding: const EdgeInsets.only(right: 20.0),
                             child: Text(
@@ -124,46 +205,6 @@ class _EditSkillsContainerState extends State<EditSkillsContainer> {
                 function: () {},
               )
             ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Card buildEditSkillsDropDownField() {
-    return Card(
-      shadowColor: Colors.transparent,
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.055,
-        width: MediaQuery.of(context).size.width * 0.8,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: DropdownButtonHideUnderline(
-          child: DropdownButton<String>(
-            value: skillsSelection,
-            onChanged: (dynamic newValue) {
-              setState(() {
-                skillsSelection = newValue;
-              });
-            },
-            items: skillsSelectionList.map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: Text(
-                    value,
-                    style: TextStyle(
-                      fontFamily: "NunitoSans",
-                      fontSize: 17.5,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black.withOpacity(.5),
-                    ),
-                  ),
-                ),
-              );
-            }).toList(),
           ),
         ),
       ),
