@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
 
 class MidLevelBar extends StatelessWidget {
+  const MidLevelBar({
+    Key? key,
+    required this.companyName,
+    required this.companyLocation,
+    required this.companyBanner
+  }) : super(key: key);
+
+  final String companyName;
+  final String companyLocation;
+  final String companyBanner;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -24,16 +35,16 @@ class MidLevelBar extends StatelessWidget {
                       style: TextStyle(
                           fontFamily: "NunitoSans",
                           color: Color(0XFF76787A),
-                          fontSize: 17.5,
+                          fontSize: 15,
                           fontWeight: FontWeight.w600
                       ),
                     ),
                     Text(
-                      "Google LLC",
+                      companyName,
                       style: TextStyle(
                           fontFamily: "NunitoSans",
                           color: Color(0XFF76787A),
-                          fontSize: 22.5,
+                          fontSize: 27.5,
                           fontWeight: FontWeight.w800
                       ),
                     ),
@@ -41,7 +52,6 @@ class MidLevelBar extends StatelessWidget {
                 ),
               ),
               Container(
-                height: size.height * 0.15,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,12 +61,12 @@ class MidLevelBar extends StatelessWidget {
                       style: TextStyle(
                           fontFamily: "NunitoSans",
                           color: Color(0XFF76787A),
-                          fontSize: 17.5,
+                          fontSize: 15,
                           fontWeight: FontWeight.w600
                       ),
                     ),
                     Text(
-                      "Mountain View, California, United States",
+                      companyLocation,
                       style: TextStyle(
                           fontFamily: "NunitoSans",
                           color: Color(0XFF76787A),
@@ -92,7 +102,7 @@ class MidLevelBar extends StatelessWidget {
               bottomLeft: Radius.circular(50.0),
             ),
             child: Image(
-              image: AssetImage("assets/pictures/ad1.jpg"),
+              image: AssetImage(companyBanner),
               fit: BoxFit.cover,
             ),
           ),

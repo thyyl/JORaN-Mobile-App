@@ -1,20 +1,21 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:joran_app/FakeData.dart';
+import 'package:joran_app/Models/ServiceModel.dart';
+import 'package:joran_app/Models/SkillsModel.dart';
+import 'package:joran_app/Models/UserModel.dart';
 import 'package:joran_app/Screens/ServicesModule/ServiceDetailScreen/ServiceDetailScreen.dart';
 import 'package:page_transition/page_transition.dart';
 
 class ServiceContainer extends StatelessWidget {
   const ServiceContainer({
     Key? key,
-    required this.name,
+    required this.serviceProvider,
     required this.service,
-    required this.fee,
-    required this.image,
   }) : super(key: key);
 
-  final String name;
-  final String service;
-  final String fee;
-  final String image;
+  final Service service;
+  final User serviceProvider;
 
   @override
   Widget build(BuildContext context) {
@@ -24,66 +25,78 @@ class ServiceContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: GestureDetector(
         onTap: () => Navigator.push(context, PageTransition(
-            type: PageTransitionType.fade, child: ServiceDetailScreen())
+            type: PageTransitionType.fade,
+            child: ServiceDetailScreen(
+              service: service,
+              skills: getSkills(serviceProvider.userID),
+              serviceProvider: serviceProvider
+            ))
         ),
         child: Container(
-          width: size.width * 0.4,
-          height: size.height * 0.325,
+          width: size.width * 0.8,
+          height: size.height * 0.15,
           decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(20.0)
+              borderRadius: BorderRadius.circular(20.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.25),
+                offset: Offset(1, 1),
+                blurRadius: 5
+              )
+            ]
           ),
-          child: Column(
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: size.height * 0.165,
-                width: size.width * 0.4,
+                width: size.width * 0.25,
                 child: ClipRRect(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20.0),
-                    topRight: Radius.circular(20.0)
+                    bottomLeft: Radius.circular(20.0),
                   ),
                   child: Image(
-                    image: AssetImage(image),
+                    image: AssetImage(serviceProvider.userProfilePicture),
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+                padding: const EdgeInsets.fromLTRB(10.0, 15.0, 0, 15.0),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      name,
+                      serviceProvider.name,
                       style: TextStyle(
                         fontSize: 17.5,
-                        fontWeight: FontWeight.w800,
-                        fontFamily: "NunitoSans",
-                      ),
-                    ),
-                    Text(
-                      service,
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontSize: 15,
                         fontWeight: FontWeight.w700,
-                        fontFamily: "NunitoSans",
-                        color: Colors.black.withOpacity(0.5)
+                        fontFamily: "NunitoSans"
                       ),
                     ),
-                    Text(
-                      "RM $fee / service",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: "NunitoSans",
-                        color: Colors.black.withOpacity(0.5)
-                      ),
-                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          service.title,
+                          style: TextStyle(
+                              fontSize: 17.5,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: "NunitoSans"
+                          ),
+                        ),
+                        Text(
+                          "RM ${service.price} / service",
+                          style: TextStyle(
+                              fontSize: 17.5,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: "NunitoSans"
+                          ),
+                        )
+                      ],
+                    )
                   ],
                 ),
               )
@@ -93,4 +106,10 @@ class ServiceContainer extends StatelessWidget {
       ),
     );
   }
+
+
+  List<Skills> getSkills(String id) {
+    return skillData;
+  }
+
 }

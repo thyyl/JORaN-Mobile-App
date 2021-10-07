@@ -10,26 +10,29 @@ class Body extends StatelessWidget {
 
     return SafeArea(
       child: Background(
-        children: Padding(
-          padding: const EdgeInsets.only(top: 30.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CarouselAdvertisement(),
-              SizedBox(height: size.height * 0.025),
-              Text(
-                "Notification",
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 25,
-                  fontFamily: "NunitoSans",
-                  color: Color(0XFF76787A)
+        children: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 30.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CarouselAdvertisement(),
+                SizedBox(height: size.height * 0.025),
+                Text(
+                  "Notification",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 25,
+                    fontFamily: "NunitoSans",
+                    color: Color(0XFF76787A)
+                  ),
                 ),
-              ),
-              SizedBox(height: size.height * 0.025),
-              AppliedContainerList()
-            ],
-          )
+                SizedBox(height: size.height * 0.025),
+                AppliedContainerList(),
+                SizedBox(height: size.height * 0.075),
+              ],
+            )
+          ),
         ),
       ),
     );

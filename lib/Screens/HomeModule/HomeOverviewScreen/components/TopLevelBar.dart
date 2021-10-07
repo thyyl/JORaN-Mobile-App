@@ -6,11 +6,9 @@ class TopLevelBar extends StatelessWidget {
   const TopLevelBar({
     Key? key,
     required this.image,
-    required this.name,
   }) : super(key: key);
 
   final String image;
-  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +37,9 @@ class TopLevelBar extends StatelessWidget {
         ),
         SizedBox(width: size.width * 0.05),
         Text(
-          "Hello, $name!",
+          "Discover",
           style: TextStyle(
-              fontSize: 20,
+              fontSize: 25,
               fontWeight: FontWeight.w800,
               fontFamily: "NunitoSans",
               color: Colors.black.withOpacity(0.65)

@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:joran_app/Models/FeaturedCompanyModel.dart';
 import 'package:joran_app/Screens/JobsModule/JobsCompanyOverviewScreen/JobsCompanyOverviewScreen.dart';
 import 'package:page_transition/page_transition.dart';
 
 class FeaturedCompanyIndividual extends StatelessWidget {
+  const FeaturedCompanyIndividual({
+    Key? key,
+    required this.featuredCompany
+  }) : super(key: key);
+
+  final FeaturedCompany featuredCompany;
+
   @override
   Widget build(BuildContext context) {
 
@@ -10,31 +18,36 @@ class FeaturedCompanyIndividual extends StatelessWidget {
 
     return GestureDetector(
       onTap: () => Navigator.push(context, PageTransition(
-          type: PageTransitionType.fade, child: JobsCompanyOverviewScreen())
+          type: PageTransitionType.fade,
+          child: JobsCompanyOverviewScreen(
+            featuredCompany: featuredCompany,
+          ))
       ),
       child: Padding(
         padding: const EdgeInsets.only(right: 15.0),
         child: Container(
-          height: size.height * 0.15,
+          height: size.height * 0.165,
           width: size.width * 0.25,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(30.0),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image(image: AssetImage("assets/logo/google.png")),
+                Image(image: AssetImage(featuredCompany.companyLogo)),
                 Padding(
                   padding: const EdgeInsets.only(top: 7.5, bottom: 5.0),
                   child: Text(
-                    "Google",
+                    featuredCompany.name,
+                    textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w700,
                         fontFamily: "NunitoSans",
-                        fontSize: 12.5,
+                        fontSize: 15,
                         color: Colors.black
                     ),
                   ),
@@ -42,12 +55,12 @@ class FeaturedCompanyIndividual extends StatelessWidget {
                 Container(
                   width: size.width * 0.15,
                   child: Text(
-                    "12 jobs openings",
+                    "${featuredCompany.jobList.length} jobs openings",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontFamily: "NunitoSans",
-                        fontSize: 10,
+                        fontSize: 12.5,
                         color: Color(0XFF0075F2)
                     ),
                   ),

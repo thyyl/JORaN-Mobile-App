@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:joran_app/FakeData.dart';
+import 'package:joran_app/Provider/NotificationProvider.dart';
 import 'package:joran_app/Provider/UserProvider.dart';
 import 'package:joran_app/Screens/LogInScreen/components/LoginButton.dart';
 import 'package:joran_app/Screens/LogInScreen/components/ForgotPassword.dart';
@@ -39,7 +40,13 @@ class _LoginFormState extends State<LoginForm> {
             SizedBox(height: size.height * 0.03),
             LoginButton(
               function: () {
-                Provider.of<UserProvider>(context, listen: false).setUser(fakeUserData);
+                Provider
+                    .of<UserProvider>(context, listen: false)
+                    .setUser(fakeUserData);
+
+                Provider
+                    .of<NotificationProvider>(context, listen: false)
+                    .setNotificationList(fakeNotificationList);
 
                 Navigator.push(context, PageTransition(
                     type: PageTransitionType.fade, child: UserProfileOverviewScreen())
@@ -95,8 +102,9 @@ class _LoginFormState extends State<LoginForm> {
                   obscure = !obscure;
                 });
               },
-              child: Image(
-                image: AssetImage("assets/pictures/visible.png"),
+              child: Icon(
+                obscure ? Icons.visibility_rounded : Icons.visibility_off_rounded,
+                color: Colors.black.withOpacity(.25),
               ),
             ),
           )

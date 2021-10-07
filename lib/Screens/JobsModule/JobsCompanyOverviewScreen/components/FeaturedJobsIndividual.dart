@@ -1,21 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:joran_app/Models/JobModel.dart';
 import 'package:joran_app/Screens/JobsModule/JobsDetailScreen/JobsDetailScreen.dart';
 import 'package:page_transition/page_transition.dart';
 
 class FeaturedJobsIndividual extends StatelessWidget {
+  const FeaturedJobsIndividual({
+    Key? key,
+    required this.job,
+    required this.companyLogo,
+    required this.companyName,
+  }) : super(key: key);
+
+  final Job job;
+  final String companyLogo;
+  final String companyName;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     return GestureDetector(
       onTap: () => Navigator.push(context, PageTransition(
-          type: PageTransitionType.fade, child: JobsDetailScreen()
+          type: PageTransitionType.fade,
+          child: JobsDetailScreen()
       )
       ),
       child: Padding(
         padding: const EdgeInsets.only(bottom: 20.0),
         child: Container(
-          height: size.height * 0.15,
+          height: size.height * 0.16,
           width: size.width * 0.8,
           decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.5),
@@ -29,21 +42,17 @@ class FeaturedJobsIndividual extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
-                        height: 40,
-                        width: 60,
-                        child: Image(
-                          image: AssetImage("assets/logo/USM.png"),
-                          fit: BoxFit.fitWidth,
-                        )
+                    Image(
+                      image: AssetImage(companyLogo),
+                      fit: BoxFit.contain,
                     ),
                     Text(
-                      "3 days ago",
+                      companyName,
                       style: TextStyle(
-                          color: Color(0XFF76787A),
-                          fontSize: 15,
-                          fontFamily: "NunitoSans",
-                          fontWeight: FontWeight.w600
+                        color: Color(0XFF76787A),
+                        fontSize: 20,
+                        fontFamily: "NunitoSans",
+                        fontWeight: FontWeight.w800
                       ),
                     )
                   ],
@@ -53,33 +62,36 @@ class FeaturedJobsIndividual extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Cloud Computing Lecturer",
-                          style: TextStyle(
-                              color: Color(0XFF76787A),
-                              fontSize: 12.5,
-                              fontFamily: "NunitoSans",
-                              fontWeight: FontWeight.w600
+                    Container(
+                      width: size.width * 0.3,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            job.title,
+                            style: TextStyle(
+                                color: Color(0XFF76787A),
+                                fontSize: 15,
+                                fontFamily: "NunitoSans",
+                                fontWeight: FontWeight.w700
+                            ),
                           ),
-                        ),
-                        Text(
-                          "RM 120k / year",
-                          style: TextStyle(
-                              color: Color(0XFF76787A),
-                              fontSize: 12.5,
-                              fontFamily: "NunitoSans",
-                              fontWeight: FontWeight.w600
-                          ),
-                        )
-                      ],
+                          Text(
+                            "RM ${job.salary}k / year",
+                            style: TextStyle(
+                                color: Color(0XFF76787A),
+                                fontSize: 15,
+                                fontFamily: "NunitoSans",
+                                fontWeight: FontWeight.w700
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     Container(
                       width: size.width * 0.3,
                       child: Text(
-                        "University Sains Malaysia, Penang",
+                        job.location,
                         textAlign: TextAlign.right,
                         style: TextStyle(
                             color: Color(0XFF76787A),

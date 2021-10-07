@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 List<FlashyTabBarItem> tabBarItemList = [
   FlashyTabBarItem(
     icon: Icon(Icons.search),
-    title: Text('Jobs'),
+    title: Text('Search'),
   ),
   FlashyTabBarItem(
     icon: Icon(Icons.chat),
@@ -16,7 +16,7 @@ List<FlashyTabBarItem> tabBarItemList = [
   ),
   FlashyTabBarItem(
     icon: Icon(Icons.notifications),
-    title: Text('Reminder'),
+    title: Text('Notice'),
   ),
   FlashyTabBarItem(
     icon: Icon(Icons.supervised_user_circle_rounded),
@@ -37,5 +37,4 @@ List<String> categoryList = [
   "Open",
   "Pharmaceutical",
   "Physics",
-  "Co-curricular",
 ];

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:joran_app/FakeData.dart';
 import 'package:joran_app/FlashyTabBar.dart';
 import 'package:joran_app/Screens/ChatModule/ChatOverviewScreen/ChatOverviewScreen.dart';
 import 'package:joran_app/Screens/HomeModule/HomeOverviewScreen/HomeOverviewScreen.dart';
@@ -48,19 +49,24 @@ class _BackgroundState extends State<Background> {
               switch(_selectedIndex) {
                 case 0:
                   Navigator.pushReplacement(context, PageTransition(
-                      type: PageTransitionType.fade, child: JobsOverviewScreen())
+                      type: PageTransitionType.fade,
+                      child: JobsOverviewScreen(
+                        featuredCompanyList: fakeFeaturedCompany,
+                      ))
                   );
                   break;
 
                 case 1:
                   Navigator.pushReplacement(context, PageTransition(
-                      type: PageTransitionType.fade, child: ChatOverviewScreen())
+                      type: PageTransitionType.fade,
+                      child: ChatOverviewScreen())
                   );
                   break;
 
                 case 2:
                   Navigator.pushReplacement(context, PageTransition(
-                      type: PageTransitionType.fade, child: HomeOverviewScreen())
+                      type: PageTransitionType.fade,
+                      child: HomeOverviewScreen())
                   );
                   break;
 

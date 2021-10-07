@@ -93,8 +93,9 @@ class _SignUpFormState extends State<SignUpForm> {
                   confirmPasswordObscure = !confirmPasswordObscure;
                 });
               },
-              child: Image(
-                image: AssetImage("assets/pictures/visible.png"),
+              child: Icon(
+                confirmPasswordObscure ? Icons.visibility_rounded : Icons.visibility_off_rounded,
+                color: Colors.black.withOpacity(.25),
               ),
             ),
           )
@@ -146,8 +147,9 @@ class _SignUpFormState extends State<SignUpForm> {
                   passwordObscure = !passwordObscure;
                 });
               },
-              child: Image(
-                image: AssetImage("assets/pictures/visible.png"),
+              child: Icon(
+                passwordObscure ? Icons.visibility_rounded : Icons.visibility_off_rounded,
+                color: Colors.black.withOpacity(.25),
               ),
             ),
           )

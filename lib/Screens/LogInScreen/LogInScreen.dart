@@ -10,7 +10,7 @@ class LogInScreen extends StatelessWidget {
       appBar: AppBar(
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Color(0XFFEDF1F4),
-          statusBarIconBrightness: Brightness.dark
+          statusBarIconBrightness: Brightness.dark,
         ),
         toolbarOpacity: 0,
         backgroundColor: Color(0XFFEDF1F4),

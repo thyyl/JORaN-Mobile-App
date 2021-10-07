@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:joran_app/Models/ServiceModel.dart';
+import 'package:joran_app/Models/SkillsModel.dart';
+import 'package:joran_app/Models/UserModel.dart';
 import 'package:joran_app/Screens/ServicesModule/ServiceDetailScreen/components/Background.dart';
 import 'package:joran_app/Screens/ServicesModule/ServiceDetailScreen/components/ProfileDetail.dart';
 import 'package:joran_app/Screens/ServicesModule/ServiceDetailScreen/components/RatingsRow.dart';
@@ -14,6 +17,17 @@ import 'package:joran_app/Screens/ServicesModule/ServiceDetailScreen/components/
 class Body extends StatefulWidget {
   @override
   _BodyState createState() => _BodyState();
+
+  final User serviceProvider;
+  final Service service;
+  final List<Skills> skills;
+
+  const Body({
+    Key? key,
+    required this.serviceProvider,
+    required this.service,
+    required this.skills,
+  }) : super(key: key);
 }
 
 class _BodyState extends State<Body> {
@@ -32,11 +46,16 @@ class _BodyState extends State<Body> {
                 children: [
                   TopLevelBar(),
                   SizedBox(height: size.height * 0.025),
-                  ProfileDetail(),
+                  ProfileDetail(
+                    serviceProvider: widget.serviceProvider,
+                    service: widget.service,
+                  ),
                   SizedBox(height: size.height * 0.01),
                   RatingsRow(),
                   SizedBox(height: size.height * 0.01),
-                  SkillsContainer()
+                  SkillsContainer(
+                    skills: widget.skills
+                  )
                 ],
               ),
             ),

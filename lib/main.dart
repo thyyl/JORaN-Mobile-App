@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:joran_app/Models/HomeModel.dart';
-import 'package:joran_app/Models/UserModel.dart';
+import 'package:joran_app/Provider/MarketServiceProvider.dart';
+import 'package:joran_app/Provider/NotificationProvider.dart';
 import 'package:joran_app/Provider/ServiceProvider.dart';
 import 'package:joran_app/Provider/SkillsProvider.dart';
 import 'package:joran_app/Screens/LogInScreen/LogInScreen.dart';
@@ -28,6 +29,8 @@ Future main() async {
         ChangeNotifierProvider(create: (_) => UserProvider()),
         ChangeNotifierProvider(create: (_) => ServiceProvider()),
         ChangeNotifierProvider(create: (_) => SkillsProvider()),
+        ChangeNotifierProvider(create: (_) => NotificationProvider()),
+        ChangeNotifierProvider(create: (_) => MarketServiceProvider()),
       ],
       child: MyApp(),
     ),

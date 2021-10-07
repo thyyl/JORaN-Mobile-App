@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:joran_app/Models/ServiceModel.dart';
+import 'package:joran_app/Models/UserModel.dart';
 
 class ProfileDetail extends StatelessWidget {
+  final User serviceProvider;
+  final Service service;
+
+  const ProfileDetail({
+    Key? key,
+    required this.serviceProvider,
+    required this.service,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -8,12 +19,12 @@ class ProfileDetail extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: size.height * 0.25,
+          height: size.height * 0.225,
           width: size.width * 0.4,
           child: ClipRRect(
               borderRadius: BorderRadius.circular(50),
               child: Image(
-                image: AssetImage("assets/pictures/user.jpg"),
+                image: AssetImage(serviceProvider.userProfilePicture),
                 fit: BoxFit.cover,
               )
           ),
@@ -21,14 +32,14 @@ class ProfileDetail extends StatelessWidget {
           // child: FadeInImage.assetNetwork(placeholder: placeholder, image: image),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 20.0),
+          padding: const EdgeInsets.only(top: 15.0),
           child: Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "Abigail Sarah Williams",
+                  serviceProvider.name,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     color: Colors.black,
@@ -37,7 +48,8 @@ class ProfileDetail extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "School of Computer Sciences",
+                  "${serviceProvider.educationLevel} in ${serviceProvider.specialisation}",
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     color: Colors.black,
@@ -45,8 +57,9 @@ class ProfileDetail extends StatelessWidget {
                     fontSize: 20,
                   ),
                 ),
+                SizedBox(height: 10),
                 Text(
-                  "+6014-2327474",
+                  serviceProvider.contact,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     color: Color(0XFF76787A),
@@ -55,7 +68,7 @@ class ProfileDetail extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "C++ Assignment",
+                  service.title,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     color: Color(0XFF76787A),
@@ -64,7 +77,7 @@ class ProfileDetail extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "RM 50 / service",
+                  "RM ${service.price} / service",
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     color: Color(0XFF76787A),

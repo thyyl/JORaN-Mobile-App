@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:joran_app/Models/NotificationModel.dart';
 import 'package:joran_app/Screens/NotificationModule/NotificationJobApplicationScreen/components/ApplicationAcceptedRejected.dart';
 import 'package:joran_app/Screens/NotificationModule/NotificationJobApplicationScreen/components/AppliedContainerIndividual.dart';
 import 'package:joran_app/Screens/NotificationModule/NotificationJobApplicationScreen/components/Background.dart';
@@ -8,6 +9,13 @@ import 'package:joran_app/Screens/NotificationModule/NotificationJobApplicationS
 import 'package:joran_app/Screens/NotificationModule/NotificationJobApplicationScreen/components/TopLevelBar.dart';
 
 class Body extends StatelessWidget {
+  const Body({
+    Key? key,
+    required this.notification,
+  }) : super(key: key);
+
+  final NotificationModel notification;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -21,7 +29,9 @@ class Body extends StatelessWidget {
             children: [
               TopLevelBar(),
               SizedBox(height: size.height * 0.03),
-              AppliedContainerIndividual(),
+              AppliedContainerIndividual(
+                notification: notification
+              ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10),
                 child: Divider(

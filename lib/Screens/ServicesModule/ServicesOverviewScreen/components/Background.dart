@@ -28,11 +28,10 @@ class _BackgroundState extends State<Background> {
 
     return Container(
       width: size.width,
-      height: size.height,
+      height: size.height - 50,
       color: Color(0XFFEDF1F4),
       child: Stack(
         children: [
-
           widget.children,
           FlashyTabBar(
             animationCurve: Curves.linear,

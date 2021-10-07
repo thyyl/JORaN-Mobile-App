@@ -6,19 +6,12 @@ class JobContainerList extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return Container(
-      height: size.height * 0.27,
-      width: size.width * 0.85,
-      child: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            JobContainerIndividual(),
-            SizedBox(height: size.height * 0.025),
-            JobContainerIndividual(),
-          ],
-        ),
-      ),
+    return Column(
+      children: [
+        JobContainerIndividual(),
+        SizedBox(height: size.height * 0.025),
+        JobContainerIndividual(),
+      ],
     );
   }
 }
