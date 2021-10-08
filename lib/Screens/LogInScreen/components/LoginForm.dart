@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:joran_app/FakeData.dart';
+import 'package:joran_app/Provider/ChatProvider.dart';
 import 'package:joran_app/Provider/NotificationProvider.dart';
 import 'package:joran_app/Provider/UserProvider.dart';
+import 'package:joran_app/Provider/UserRatingProvider.dart';
 import 'package:joran_app/Screens/LogInScreen/components/LoginButton.dart';
 import 'package:joran_app/Screens/LogInScreen/components/ForgotPassword.dart';
 import 'package:joran_app/Screens/LogInScreen/components/TextFieldLabel.dart';
@@ -45,8 +47,16 @@ class _LoginFormState extends State<LoginForm> {
                     .setUser(fakeUserData);
 
                 Provider
+                    .of<UserRatingsProvider>(context, listen: false)
+                    .setUserRatings(fakeUserRatings);
+
+                Provider
                     .of<NotificationProvider>(context, listen: false)
                     .setNotificationList(fakeNotificationList);
+
+                Provider
+                    .of<ChatProvider>(context, listen: false)
+                    .setChatRoomList(fakeChatRooms);
 
                 Navigator.push(context, PageTransition(
                     type: PageTransitionType.fade, child: UserProfileOverviewScreen())

@@ -5,13 +5,13 @@ class MidLevelBar extends StatelessWidget {
     Key? key,
     required this.job,
     required this.image,
-    required this.location,
+    required this.company,
     required this.salary,
   }) : super(key: key);
 
   final String job;
   final String image;
-  final String location;
+  final String company;
   final String salary;
 
   @override
@@ -28,7 +28,7 @@ class MidLevelBar extends StatelessWidget {
               border: Border.all(color: Colors.white)
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+            padding: const EdgeInsets.all(20.0),
             child: Image(
               image: AssetImage(image),
               fit: BoxFit.contain,
@@ -40,7 +40,7 @@ class MidLevelBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              job,
+              company,
               style: TextStyle(
                   color: Color(0XFF76787A),
                   fontFamily: "NunitoSans",
@@ -49,7 +49,7 @@ class MidLevelBar extends StatelessWidget {
               ),
             ),
             Text(
-              location,
+              job,
               style: TextStyle(
                   color: Color(0XFF76787A),
                   fontFamily: "NunitoSans",

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:joran_app/FakeData.dart';
+import 'package:joran_app/Provider/MarketJobProvider.dart';
 import 'package:joran_app/Screens/JobsModule/JobsListScreen/JobsListScreen.dart';
 import 'package:joran_app/Screens/JobsModule/JobsOverviewScreen/components/SearchButton.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class SearchForm extends StatefulWidget {
   @override
@@ -54,6 +57,17 @@ class _SearchFormState extends State<SearchForm> {
             padding: const EdgeInsets.only(top: 20.0, left: 200),
             child: SearchButton(
               function: () {
+
+                if (isFilter) {
+
+                } else {
+
+                }
+
+                Provider
+                    .of<MarketJobProvider>(context, listen: false)
+                    .setJobList(fakeJobsList);
+
                 Navigator.push(context, PageTransition(
                     type: PageTransitionType.fade, child: JobsListScreen())
                 );

@@ -7,6 +7,7 @@ class FeaturedCompany {
   String companyLogo;
   String companyBanner;
   List<Job> jobList;
+  bool isFeatured;
 
   FeaturedCompany({
     required this.companyID,
@@ -15,5 +16,6 @@ class FeaturedCompany {
     required this.companyLogo,
     required this.companyBanner,
     required this.jobList,
+    required this.isFeatured,
   });
 }

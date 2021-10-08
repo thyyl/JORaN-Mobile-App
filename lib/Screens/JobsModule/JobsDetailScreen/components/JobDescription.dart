@@ -22,13 +22,15 @@ class JobDescription extends StatelessWidget {
           height: size.height * 0.3,
           width: size.width * 0.825,
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.3),
-            borderRadius: BorderRadius.circular(20.0),
+              color: Colors.white.withOpacity(0.3),
+              borderRadius: BorderRadius.circular(20.0),
+              border: Border.all(color: Colors.white)
           ),
           child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
               child: Text(
                 "aaa",
+                textAlign: TextAlign.justify,
                 style: TextStyle(
                     color: Color(0XFF76787A),
                     fontFamily: "NunitoSans",

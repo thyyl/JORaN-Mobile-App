@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:joran_app/FakeData.dart';
+import 'package:joran_app/Provider/MarketServiceProvider.dart';
+import 'package:joran_app/Screens/ServicesModule/ServiceListScreen/ServiceListScreen.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class CategoriesIndividual extends StatelessWidget {
   const CategoriesIndividual({
     Key? key,
     required this.category,
-    required this.function,
   }) : super(key: key);
 
   final String category;
-  final VoidCallback function;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,18 @@ class CategoriesIndividual extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20.0),
       child: GestureDetector(
-        onTap: function,
+        onTap: () {
+          Provider
+              .of<MarketServiceProvider>(context, listen: false)
+              .setServiceList(
+                fakeServiceDataList.where((element) => element.category == category).toList()
+          );
+
+          Navigator.push(context, PageTransition(
+              type: PageTransitionType.fade,
+              child: ServiceListScreen())
+          );
+        },
         child: Container(
           height: size.height * 0.075,
           width: size.width * 0.8,

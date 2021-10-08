@@ -7,13 +7,9 @@ class FeaturedJobsIndividual extends StatelessWidget {
   const FeaturedJobsIndividual({
     Key? key,
     required this.job,
-    required this.companyLogo,
-    required this.companyName,
   }) : super(key: key);
 
   final Job job;
-  final String companyLogo;
-  final String companyName;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +18,9 @@ class FeaturedJobsIndividual extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.push(context, PageTransition(
           type: PageTransitionType.fade,
-          child: JobsDetailScreen()
+          child: JobsDetailScreen(
+            job: job,
+          )
       )
       ),
       child: Padding(
@@ -43,11 +41,11 @@ class FeaturedJobsIndividual extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Image(
-                      image: AssetImage(companyLogo),
+                      image: AssetImage(job.companyLogo),
                       fit: BoxFit.contain,
                     ),
                     Text(
-                      companyName,
+                      job.companyName,
                       style: TextStyle(
                         color: Color(0XFF76787A),
                         fontSize: 20,
@@ -91,7 +89,7 @@ class FeaturedJobsIndividual extends StatelessWidget {
                     Container(
                       width: size.width * 0.3,
                       child: Text(
-                        job.location,
+                        job.companyLocation,
                         textAlign: TextAlign.right,
                         style: TextStyle(
                             color: Color(0XFF76787A),

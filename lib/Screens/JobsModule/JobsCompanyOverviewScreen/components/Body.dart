@@ -47,13 +47,32 @@ class Body extends StatelessWidget {
                     ),
                     SizedBox(height: size.height * 0.025),
                     Column(
-                      children: List.generate(featuredCompany.jobList.length, (index) =>
-                        FeaturedJobsIndividual(
-                          job: featuredCompany.jobList[index],
-                          companyLogo: featuredCompany.companyLogo,
-                          companyName: featuredCompany.name,
-                        ),
-                      ),
+                      children: featuredCompany.jobList.length > 0
+                        ? List.generate(featuredCompany.jobList.length, (index) =>
+                          FeaturedJobsIndividual(
+                            job: featuredCompany.jobList[index],
+                          ),
+                        )
+                        : [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 20.0),
+                            child: Text(
+                              "There is no jobs currently offered by this company.",
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontFamily: "NunitoSans",
+                                fontWeight: FontWeight.w700,
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: size.height * 0.35,
+                            child: Image(
+                              image: AssetImage("assets/pictures/notFound.png"),
+                            ),
+                          ),
+                        ]
                     )
                   ],
                 )

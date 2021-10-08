@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:joran_app/Screens/JobsModule/JobsListScreen/components/Background.dart';
-import 'package:joran_app/Screens/JobsModule/JobsListScreen/components/BasicJobsList.dart';
 import 'package:joran_app/Screens/JobsModule/JobsListScreen/components/CarouselAdvertisement.dart';
 import 'package:joran_app/Screens/JobsModule/JobsListScreen/components/FeaturedJobsList.dart';
 import 'package:joran_app/Screens/JobsModule/JobsListScreen/components/JobTitleResults.dart';
@@ -31,16 +30,8 @@ class Body extends StatelessWidget {
                     children: [
                       CarouselAdvertisement(),
                       SizedBox(height: size.height * 0.025),
-                      JobTitleResults(
-                        job: "Cloud Computing",
-                        results: "256",
-                      ),
-                      Column(
-                        children: [
-                          FeaturedJobsList(),
-                          BasicJobsList(),
-                        ],
-                      )
+                      JobTitleResults(),
+                      FeaturedJobsList(),
                     ],
                   ),
                 ),

@@ -4,7 +4,14 @@ import 'package:joran_app/Screens/JobsModule/JobsDetailScreen/components/Require
 class JobRequirementContainer extends StatelessWidget {
   const JobRequirementContainer({
     Key? key,
+    required this.jobType,
+    required this.experience,
+    required this.education,
   }) : super(key: key);
+
+  final String jobType;
+  final String experience;
+  final String education;
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +33,13 @@ class JobRequirementContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               RequirementContainerIndividual(
-                requirement: "FullTime",
+                requirement: jobType,
               ),
               RequirementContainerIndividual(
-                requirement: "10+ years",
+                requirement: "$experience+ years",
               ),
               RequirementContainerIndividual(
-                requirement: "PhD Level",
+                requirement: education,
               ),
             ],
           ),

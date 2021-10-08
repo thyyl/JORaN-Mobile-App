@@ -1,88 +1,109 @@
 import 'package:flutter/material.dart';
+import 'package:joran_app/Models/JobModel.dart';
+import 'package:joran_app/Screens/JobsModule/JobsDetailScreen/JobsDetailScreen.dart';
+import 'package:page_transition/page_transition.dart';
 
 class FeaturedJobsIndividual extends StatelessWidget {
+  const FeaturedJobsIndividual({
+    Key? key,
+    required this.job,
+  }) : super(key: key);
+
+  final Job job;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return Container(
-      height: size.height * 0.15,
-      width: size.width * 0.8,
-      decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.5),
-          borderRadius: BorderRadius.circular(10.0)
+    return GestureDetector(
+      onTap: () => Navigator.push(context, PageTransition(
+          type: PageTransitionType.fade,
+          child: JobsDetailScreen(
+            job: job
+          )
+      )
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.5, vertical: 15.0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
+        padding: const EdgeInsets.only(bottom: 20.0),
+        child: Container(
+          height: size.height * 0.16,
+          width: size.width * 0.8,
+          decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.5),
+              borderRadius: BorderRadius.circular(10.0)
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.5, vertical: 15.0),
+            child: Column(
               children: [
-                Container(
-                    height: 40,
-                    width: 60,
-                    child: Image(
-                      image: AssetImage("assets/logo/USM.png"),
-                      fit: BoxFit.fitWidth,
-                    )
-                ),
-                Text(
-                  "3 days ago",
-                  style: TextStyle(
-                      color: Color(0XFF76787A),
-                      fontSize: 15,
-                      fontFamily: "NunitoSans",
-                      fontWeight: FontWeight.w600
-                  ),
-                )
-              ],
-            ),
-            SizedBox(height: 17.5),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      "Cloud Computing Lecturer",
-                      style: TextStyle(
-                          color: Color(0XFF76787A),
-                          fontSize: 12.5,
-                          fontFamily: "NunitoSans",
-                          fontWeight: FontWeight.w600
-                      ),
+                    Image(
+                      image: AssetImage(job.companyLogo),
+                      fit: BoxFit.contain,
                     ),
                     Text(
-                      "RM 120k / year",
+                      job.companyName,
                       style: TextStyle(
                           color: Color(0XFF76787A),
-                          fontSize: 12.5,
+                          fontSize: 20,
                           fontFamily: "NunitoSans",
-                          fontWeight: FontWeight.w600
+                          fontWeight: FontWeight.w800
                       ),
                     )
                   ],
                 ),
-                Container(
-                  width: size.width * 0.3,
-                  child: Text(
-                    "University Sains Malaysia, Penang",
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                        color: Color(0XFF76787A),
-                        fontSize: 12.5,
-                        fontFamily: "NunitoSans",
-                        fontWeight: FontWeight.w600
+                SizedBox(height: 17.5),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Container(
+                      width: size.width * 0.3,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            job.title,
+                            style: TextStyle(
+                                color: Color(0XFF76787A),
+                                fontSize: 15,
+                                fontFamily: "NunitoSans",
+                                fontWeight: FontWeight.w700
+                            ),
+                          ),
+                          Text(
+                            "RM ${job.salary}k / year",
+                            style: TextStyle(
+                                color: Color(0XFF76787A),
+                                fontSize: 15,
+                                fontFamily: "NunitoSans",
+                                fontWeight: FontWeight.w700
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
+                    Container(
+                      width: size.width * 0.3,
+                      child: Text(
+                        job.companyLocation,
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                            color: Color(0XFF76787A),
+                            fontSize: 12.5,
+                            fontFamily: "NunitoSans",
+                            fontWeight: FontWeight.w600
+                        ),
+                      ),
+                    )
+                  ],
                 )
               ],
-            )
-          ],
+            ),
+          ),
         ),
       ),
     );

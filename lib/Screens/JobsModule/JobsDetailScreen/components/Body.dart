@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:joran_app/Models/JobModel.dart';
 import 'package:joran_app/Screens/JobsModule/JobsDetailScreen/components/Background.dart';
 import 'package:joran_app/Screens/JobsModule/JobsDetailScreen/components/CarouselAdvertisement.dart';
 import 'package:joran_app/Screens/JobsModule/JobsDetailScreen/components/JobDescription.dart';
@@ -7,6 +8,13 @@ import 'package:joran_app/Screens/JobsModule/JobsDetailScreen/components/MidLeve
 import 'package:joran_app/Screens/JobsModule/JobsDetailScreen/components/TopLevelBar.dart';
 
 class Body extends StatelessWidget {
+  final Job job;
+
+  const Body({
+    Key? key,
+    required this.job
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -27,13 +35,17 @@ class Body extends StatelessWidget {
                 CarouselAdvertisement(),
                 SizedBox(height: size.height * 0.025),
                 MidLevelBar(
-                  image: "assets/logo/USM.png",
-                  job: "Cloud Computing Lecturer",
-                  location: "University Sains Malaysia, Penang",
-                  salary: "120",
+                  image: job.companyLogo,
+                  job: job.title,
+                  company: job.companyName,
+                  salary: job.salary,
                 ),
                 SizedBox(height: size.height * 0.03),
-                JobRequirementContainer(),
+                JobRequirementContainer(
+                  jobType: job.jobType,
+                  experience: job.experience,
+                  education: job.educationLevel,
+                ),
                 JobDescription()
               ],
             ),

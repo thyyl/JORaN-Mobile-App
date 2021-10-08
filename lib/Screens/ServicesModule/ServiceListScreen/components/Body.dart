@@ -38,7 +38,7 @@ class Body extends StatelessWidget {
                         SizedBox(height: size.height * 0.025),
                         Container(
                           child: Text(
-                            "Found ${marketServiceList.length} results",
+                            "Found ${marketServiceList.length} result(s)",
                             style: TextStyle(
                               fontWeight: FontWeight.w800,
                               color: Colors.black,

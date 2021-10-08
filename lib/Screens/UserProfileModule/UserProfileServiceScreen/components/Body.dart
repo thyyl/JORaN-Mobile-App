@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:joran_app/Screens/ServicesModule/ServiceDetailScreen/components/RatingsRow.dart';
+import 'package:joran_app/Screens/UserProfileModule/UserProfileServiceScreen/components/RatingsRow.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileServiceScreen/components/Background.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileServiceScreen/components/ServiceContainerList.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileServiceScreen/components/TopLevelBar.dart';

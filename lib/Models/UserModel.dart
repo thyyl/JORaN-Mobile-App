@@ -10,6 +10,7 @@ class User {
   String bank;
   String bankAccount;
   String description;
+  DateTime dateJoined;
 
   User({
     required this.userID,
@@ -22,7 +23,8 @@ class User {
     required this.specialisation,
     required this.bank,
     required this.bankAccount,
-    required this.description
+    required this.description,
+    required this.dateJoined,
   });
 
   factory User.fromJson(Map<String, dynamic> responseData){
@@ -38,6 +40,7 @@ class User {
       bank: responseData['bank'],
       bankAccount : responseData['bankAccount'],
       description: responseData['description'],
+      dateJoined: responseData['dateJoined']
     );
   }
 }

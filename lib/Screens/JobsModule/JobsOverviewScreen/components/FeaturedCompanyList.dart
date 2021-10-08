@@ -38,9 +38,12 @@ class FeaturedCompanyList extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: List.generate(featuredCompanyList.length, (index) {
-                    return FeaturedCompanyIndividual(
-                      featuredCompany: featuredCompanyList[index],
-                    );
+                    return
+                      featuredCompanyList[index].isFeatured
+                        ? FeaturedCompanyIndividual(
+                          featuredCompany: featuredCompanyList[index],
+                        )
+                        : Container();
                   }),
                 ),
               )

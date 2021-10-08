@@ -49,7 +49,6 @@ class Body extends StatelessWidget {
                     children: List.generate(categoryList.length, (index) =>
                         CategoriesIndividual(
                           category: categoryList[index],
-                          function: () {},
                         )
                     ),
                   ),

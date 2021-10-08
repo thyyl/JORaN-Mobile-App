@@ -1,9 +1,12 @@
 class Job {
   String jobID;
   String title;
-  String location;
+  String companyID;
   String salary;
   String jobType;
+  String companyName;
+  String companyLocation;
+  String companyLogo;
   String experience;
   String educationLevel;
   String jobDescription;
@@ -11,7 +14,10 @@ class Job {
   Job({
     required this.jobID,
     required this.title,
-    required this.location,
+    required this.companyID,
+    required this.companyName,
+    required this.companyLocation,
+    required this.companyLogo,
     required this.salary,
     required this.jobType,
     required this.experience,

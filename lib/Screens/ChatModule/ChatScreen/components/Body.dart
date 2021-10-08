@@ -1,65 +1,90 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:joran_app/Models/ChatModel.dart';
+import 'package:joran_app/Models/UserModel.dart';
+import 'package:joran_app/Provider/ChatProvider.dart';
+import 'package:joran_app/Provider/UserProvider.dart';
 import 'package:joran_app/Screens/ChatModule/ChatScreen/components/Background.dart';
-import 'package:joran_app/Screens/ChatModule/ChatScreen/components/ChatFakeData.dart';
+import 'package:joran_app/Screens/ChatModule/ChatScreen/components/ChatBubbles.dart';
+import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
 
 class Body extends StatefulWidget {
+  final ChatRoom chatRoom;
+
+  const Body({Key? key, required this.chatRoom}) : super(key: key);
+
   @override
   _BodyState createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
   final _messageController = TextEditingController();
+  late User user;
 
   @override
   Widget build(BuildContext context) {
+    List<Chat> chatList = Provider.of<ChatProvider>(context).chatList;
+    user = Provider.of<UserProvider>(context).user;
     Size size = MediaQuery.of(context).size;
 
-    return SafeArea(
-      child: Background(
-        children: SingleChildScrollView(
-          physics: AlwaysScrollableScrollPhysics(),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              SizedBox(height: size.height * 0.125),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: AnimatedContainer(
+    return WillPopScope(
+      onWillPop: () async {
+        _messageController.clear();
+        return true;
+      },
+      child: SafeArea(
+        child: Background(
+          chatRoom: widget.chatRoom,
+          children: SingleChildScrollView(
+            physics: AlwaysScrollableScrollPhysics(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                SizedBox(height: size.height * 0.125),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: AnimatedContainer(
+                    duration: const Duration(seconds: 1),
+                    curve: Curves.fastOutSlowIn,
+                    height: size.height * 0.72,
+                    width: size.width,
+                    child: SingleChildScrollView(
+                      reverse: true,
+                      child: Column(
+                        children: List.generate(chatList.length, (index) {
+                          return ChatBubbles(
+                            isSender: chatList[index].sender != user.userID,
+                            isChat: true,
+                            text: chatList[index].text,
+                          );
+                          // return chatFakeData[index];
+                        })
+                      ),
+                    ),
+                  ),
+                ),
+                AnimatedContainer(
                   duration: const Duration(seconds: 1),
                   curve: Curves.fastOutSlowIn,
-                  height: size.height * 0.72,
                   width: size.width,
                   child: SingleChildScrollView(
-                    reverse: true,
-                    child: Column(
-                      children: List.generate(chatFakeData.length, (index) {
-                        return chatFakeData[index];
-                      })
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          buildMessageInput(),
+                          buildSendButton(),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ),
-              AnimatedContainer(
-                duration: const Duration(seconds: 1),
-                curve: Curves.fastOutSlowIn,
-                width: size.width,
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        buildMessageInput(),
-                        buildSendButton(),
-                      ],
-                    ),
-                  ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -69,8 +94,19 @@ class _BodyState extends State<Body> {
   GestureDetector buildSendButton() {
     return GestureDetector(
       onTap: () {
-        if (_messageController.text.isNotEmpty)
+        if (_messageController.text.isNotEmpty) {
+          Provider.of<ChatProvider>(context, listen: false).addNewChat(
+            Chat(
+              chatID: Uuid().v1(),
+              chatRoomID: widget.chatRoom.chatRoomID,
+              text: _messageController.text,
+              dateTime: DateTime.now(),
+              sender: user.userID,
+            )
+          );
+
           _messageController.clear();
+        }
       },
       child: Container(
         height: 50,

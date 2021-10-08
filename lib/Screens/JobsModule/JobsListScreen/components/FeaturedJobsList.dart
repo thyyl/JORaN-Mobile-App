@@ -1,26 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:joran_app/Screens/HomeModule/HomeOverviewScreen/components/JobContainerIndividual.dart';
-import 'package:joran_app/Screens/JobsModule/JobsDetailScreen/JobsDetailScreen.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:joran_app/Models/JobModel.dart';
+import 'package:joran_app/Provider/MarketJobProvider.dart';
+import 'package:joran_app/Screens/JobsModule/JobsListScreen/components/FeaturedJobsIndividual.dart';
+import 'package:provider/provider.dart';
 
 class FeaturedJobsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    List<Job> jobList = Provider.of<MarketJobProvider>(context).jobList;
 
     return Container(
       child: Column(
-        children: List.generate(3, (index) {
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 20.0),
-            child: GestureDetector(
-              onTap: () => Navigator.push(context, PageTransition(
-                  type: PageTransitionType.fade, child: JobsDetailScreen()
-                )
-              ),
-              child: JobContainerIndividual()
-            ),
-          );
-        }),
+        children: List.generate(jobList.length, (index) =>
+           FeaturedJobsIndividual(
+             job: jobList[index],
+          )
+        ),
       ),
     );
   }
