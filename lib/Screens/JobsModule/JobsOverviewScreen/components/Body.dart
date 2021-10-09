@@ -1,21 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:joran_app/Models/FeaturedCompanyModel.dart';
 import 'package:joran_app/Screens/JobsModule/JobsOverviewScreen/components/Background.dart';
 import 'package:joran_app/Screens/JobsModule/JobsOverviewScreen/components/CarouselAdvertisement.dart';
-import 'package:joran_app/Screens/JobsModule/JobsOverviewScreen/components/FeaturedCompanyList.dart';
 import 'package:joran_app/Screens/JobsModule/JobsOverviewScreen/components/JobServiceBar.dart';
 import 'package:joran_app/Screens/JobsModule/JobsOverviewScreen/components/SearchForm.dart';
 import 'package:joran_app/Screens/ServicesModule/ServicesOverviewScreen/ServicesOverviewScreen.dart';
 import 'package:page_transition/page_transition.dart';
 
 class Body extends StatelessWidget {
-  const Body({
-    Key? key,
-    required this.featuredCompanyList
-  }) : super(key: key);
-
-  final List<FeaturedCompany> featuredCompanyList;
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -46,10 +37,6 @@ class Body extends StatelessWidget {
                     child: Column(
                       children: [
                         SearchForm(),
-                        SizedBox(height: size.height * 0.05),
-                        FeaturedCompanyList(
-                          featuredCompanyList: featuredCompanyList
-                        ),
                       ],
                     ),
                   ),

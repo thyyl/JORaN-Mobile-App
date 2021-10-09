@@ -33,9 +33,9 @@ class FeaturedCompanyIndividual extends StatelessWidget {
             borderRadius: BorderRadius.circular(30.0),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image(image: AssetImage(featuredCompany.companyLogo)),

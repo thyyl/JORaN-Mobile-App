@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:joran_app/FakeData.dart';
 import 'package:joran_app/Models/NotificationModel.dart';
+import 'package:joran_app/Provider/NotificationProvider.dart';
 import 'package:joran_app/Screens/NotificationModule/NotificationJobApplicationScreen/NotificationJobApplicationScreen.dart';
 import 'package:joran_app/Screens/NotificationModule/NotificationRateUserScreen/NotificationRateUserScreen.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class AppliedContainerIndividual extends StatelessWidget {
   const AppliedContainerIndividual({
@@ -23,15 +26,23 @@ class AppliedContainerIndividual extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return GestureDetector(
-      onTap: () => Navigator.push(context, PageTransition(
+      onTap: () {
+
+        if (notification.notificationType == "Job Application")
+          Provider
+              .of<NotificationProvider>(context, listen: false)
+              .setApplicationList(fakeApplicationData);
+
+
+        Navigator.push(context, PageTransition(
           type: PageTransitionType.fade,
           child: notification.notificationType == "Job Application"
             ? NotificationJobApplicationScreen(
               notification: notification,
             )
             : NotificationRateUserScreen()
-        )
-      ),
+        ));
+      },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(

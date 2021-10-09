@@ -1,6 +1,10 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:joran_app/Models/ChatModel.dart';
 import 'package:joran_app/Models/UserModel.dart';
 import 'package:joran_app/Provider/ChatProvider.dart';
@@ -22,6 +26,8 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   final _messageController = TextEditingController();
   late User user;
+
+  final ImagePicker _picker = ImagePicker();
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +62,8 @@ class _BodyState extends State<Body> {
                         children: List.generate(chatList.length, (index) {
                           return ChatBubbles(
                             isSender: chatList[index].sender != user.userID,
-                            isChat: true,
-                            text: chatList[index].text,
+                            isNotDateTime: true,
+                            chat: chatList[index],
                           );
                           // return chatFakeData[index];
                         })
@@ -94,19 +100,20 @@ class _BodyState extends State<Body> {
   GestureDetector buildSendButton() {
     return GestureDetector(
       onTap: () {
-        if (_messageController.text.isNotEmpty) {
+        if (_messageController.text.replaceAll(' ', '').isNotEmpty && _messageController.text.replaceAll('\n', '').isNotEmpty) {
           Provider.of<ChatProvider>(context, listen: false).addNewChat(
-            Chat(
-              chatID: Uuid().v1(),
-              chatRoomID: widget.chatRoom.chatRoomID,
-              text: _messageController.text,
-              dateTime: DateTime.now(),
-              sender: user.userID,
-            )
+              Chat(
+                chatID: Uuid().v1(),
+                chatRoomID: widget.chatRoom.chatRoomID,
+                content: _messageController.text,
+                dateTime: DateTime.now().add(Duration(hours: 8)),
+                sender: user.userID,
+                isChat: true,
+              )
           );
-
-          _messageController.clear();
         }
+
+        _messageController.clear();
       },
       child: Container(
         height: 50,
@@ -121,6 +128,19 @@ class _BodyState extends State<Body> {
         ),
       ),
     );
+  }
+
+  Future takePicture() async {
+    try {
+      final XFile? _pickedFile = await _picker.pickImage(source: ImageSource.camera);
+
+      if (_pickedFile == null)
+        return;
+
+
+    } on PlatformException {
+
+    }
   }
 
   Stack buildMessageInput() {
@@ -149,7 +169,7 @@ class _BodyState extends State<Body> {
                   color: Colors.black.withOpacity(.25)
               ),
               floatingLabelBehavior: FloatingLabelBehavior.always,
-              contentPadding: EdgeInsets.only(top: 20, left: 20, right: 35),
+              contentPadding: EdgeInsets.only(top: 20, left: 20, right: 37.5),
             ),
             style: TextStyle(
               fontFamily: "NunitoSans",
@@ -167,17 +187,29 @@ class _BodyState extends State<Body> {
 
   Positioned buildFileAttachment() {
     return Positioned(
-      right: 12.5,
-      bottom: 12.5,
-      child: Transform.rotate(
-        angle: pi / 4,
-        child: GestureDetector(
-          onTap: () {},
-          child: Icon(
-            Icons.attach_file,
-            color: Colors.black.withOpacity(.5),
+      right: 13,
+      bottom: 13,
+      child: Row(
+        children: [
+          Transform.rotate(
+            angle: pi / 4,
+            child: GestureDetector(
+              onTap: () {},
+              child: Icon(
+                Icons.attach_file,
+                color: Colors.black.withOpacity(.5),
+              ),
+            ),
           ),
-        ),
+          SizedBox(width: 15),
+          GestureDetector(
+            onTap: takePicture,
+            child: Icon(
+              Icons.photo_camera_rounded,
+              color: Colors.black.withOpacity(.5),
+            ),
+          )
+        ],
       ),
     );
   }

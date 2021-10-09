@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:joran_app/Models/FeaturedCompanyModel.dart';
 import 'package:joran_app/Screens/HomeModule/HomeOverviewScreen/components/Body.dart';
 
+class HomeOverviewScreen extends StatelessWidget {
+  const HomeOverviewScreen({
+    Key? key,
+    required this.featuredCompanyList
+  }) : super(key: key);
 
-class HomeOverviewScreen extends StatefulWidget {
-  @override
-  _HomeOverviewScreenState createState() => _HomeOverviewScreenState();
-}
+  final List<FeaturedCompany> featuredCompanyList;
 
-class _HomeOverviewScreenState extends State<HomeOverviewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0XFFEDF1F4),
-      body: Body(),
+      body: Body(featuredCompanyList: featuredCompanyList),
     );
   }
 }

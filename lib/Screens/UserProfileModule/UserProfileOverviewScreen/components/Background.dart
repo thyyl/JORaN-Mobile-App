@@ -80,10 +80,8 @@ class _BackgroundState extends State<Background> {
 
                   Navigator.pushReplacement(context, PageTransition(
                       type: PageTransitionType.fade,
-                      child: JobsOverviewScreen(
-                        featuredCompanyList: fakeFeaturedCompany,
-                      ))
-                  );
+                      child: JobsOverviewScreen()
+                  ));
                   break;
 
                 case 1:
@@ -96,7 +94,9 @@ class _BackgroundState extends State<Background> {
                 case 2:
                   Navigator.pushReplacement(context, PageTransition(
                       type: PageTransitionType.fade,
-                      child: HomeOverviewScreen())
+                      child: HomeOverviewScreen(
+                        featuredCompanyList: fakeFeaturedCompany,
+                      ))
                   );
                   break;
 

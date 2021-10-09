@@ -1,3 +1,4 @@
+import 'package:joran_app/Models/ApplicationModel.dart';
 import 'package:joran_app/Models/ChatModel.dart';
 import 'package:joran_app/Models/FeaturedCompanyModel.dart';
 import 'package:joran_app/Models/JobModel.dart';
@@ -120,7 +121,15 @@ List<NotificationModel> fakeNotificationList = [
     hasRated: false,
   ),
   NotificationModel(
-    notificationID: "123",
+    notificationID: "1123",
+    notificationType: "Job Application",
+    associateID: "12222",
+    notificationDate: DateTime(2021, 10, 1),
+    notificationDetails: "You applied for Cloud Engineer at Google LLC.",
+    hasRated: false,
+  ),
+  NotificationModel(
+    notificationID: "1213",
     notificationType: "Service Application",
     associateID: "923",
     notificationDate: DateTime(2021, 10, 3),
@@ -177,30 +186,87 @@ List<Chat> fakeChatList = [
   Chat(
     chatID: "001",
     chatRoomID: "0012",
-    text: "Hello there",
+    content: "Hello there",
     sender: fakeUserData.userID,
     dateTime: DateTime.now(),
+    isChat: true,
   ),
   Chat(
     chatID: "011",
     chatRoomID: "0012",
-    text: "Hello how are you",
+    content: "Hello how are you",
     sender: fakeUserData2.userID,
     dateTime: DateTime.now(),
+    isChat: true,
   ),
   Chat(
     chatID: "001",
     chatRoomID: "11111",
-    text: "Hello there!",
+    content: "Hello there!",
     sender: fakeUserData.userID,
     dateTime: DateTime.now(),
+    isChat: true,
   ),
   Chat(
     chatID: "011",
     chatRoomID: "11111",
-    text: "Hello how are you?",
+    content: "Hello how are you?",
     sender: fakeUserData3.userID,
     dateTime: DateTime.now(),
+    isChat: true,
+  ),
+  Chat(
+    chatID: "001",
+    chatRoomID: "0012",
+    content: "https://firebasestorage.googleapis.com/v0/b/wellyfe-d650c.appspot.com/o/images%2Fimage_cropper_1629892832634.jpg?alt=media&token=5f34e028-c617-4231-afdf-d374fd00abc0",
+    sender: fakeUserData.userID,
+    dateTime: DateTime.now(),
+    isChat: false,
+  ),
+];
+
+List<Application> fakeApplicationData = [
+  Application(
+    applicationID: "001",
+    notificationID: "123",
+    applicationCategory: "Application",
+    dateTime: DateTime(2021, 10, 5)
+  ),
+  Application(
+      applicationID: "101",
+      notificationID: "123",
+      applicationCategory: "Interview",
+      dateTime: DateTime(2021, 10, 6)
+  ),
+  Application(
+      applicationID: "011",
+      notificationID: "123",
+      applicationCategory: "Rejected",
+      dateTime: DateTime(2021, 10, 7)
+  ),
+  Application(
+      applicationID: "001",
+      notificationID: "1123",
+      applicationCategory: "Application",
+      dateTime: DateTime(2021, 10, 5)
+  ),
+  Application(
+      applicationID: "101",
+      notificationID: "1123",
+      applicationCategory: "Interview",
+      dateTime: DateTime(2021, 10, 6)
+  ),
+  Application(
+      applicationID: "101",
+      notificationID: "1123",
+      applicationCategory: "Practical",
+      dateTime: DateTime(2021, 10, 6)
+  ),
+  Application(
+      applicationID: "011",
+      notificationID: "1123",
+      applicationCategory: "Accepted",
+      dateTime: DateTime(2021, 10, 7)
   ),
 ];
 

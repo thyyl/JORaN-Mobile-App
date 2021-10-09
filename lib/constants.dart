@@ -12,7 +12,7 @@ List<FlashyTabBarItem> tabBarItemList = [
   ),
   FlashyTabBarItem(
     icon: Icon(Icons.home_rounded),
-    title: Text('Home'),
+    title: Text('Discover'),
   ),
   FlashyTabBarItem(
     icon: Icon(Icons.notifications),

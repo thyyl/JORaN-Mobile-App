@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:joran_app/FakeData.dart';
 import 'package:joran_app/FlashyTabBar.dart';
 import 'package:joran_app/Screens/ChatModule/ChatOverviewScreen/ChatOverviewScreen.dart';
 import 'package:joran_app/Screens/JobsModule/JobsOverviewScreen/JobsOverviewScreen.dart';
@@ -50,10 +49,8 @@ class _BackgroundState extends State<Background> {
                 case 0:
                   Navigator.pushReplacement(context, PageTransition(
                       type: PageTransitionType.fade,
-                      child: JobsOverviewScreen(
-                        featuredCompanyList: fakeFeaturedCompany,
-                      ))
-                  );
+                      child: JobsOverviewScreen()
+                  ));
                   break;
 
                 case 1:

@@ -14,6 +14,11 @@ class MarketJobProvider extends ChangeNotifier {
     );
   }
 
+  void setJobIndividual(Job individualJob) {
+    _individualJob = individualJob;
+    notifyListeners();
+  }
+
   void setJobList(List<Job> jobList) {
     _jobList = jobList;
     notifyListeners();

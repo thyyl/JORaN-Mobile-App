@@ -41,68 +41,58 @@ class EditProfileFormState extends State<EditProfileForm> {
     Size size = MediaQuery.of(context).size;
     User user = Provider.of<UserProvider>(context).user;
 
-    return Container(
-      height: size.height * 0.48,
-      child: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Form(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextFieldLabel(text: "Name"),
-              buildNameTextField(user.name),
-              SizedBox(height: size.height * 0.02),
+    return Form(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TextFieldLabel(text: "Name"),
+          buildNameTextField(user.name),
+          SizedBox(height: size.height * 0.02),
 
-              TextFieldLabel(text: "Email"),
-              buildEmailTextField(user.email),
-              SizedBox(height: size.height * 0.02),
+          TextFieldLabel(text: "Email"),
+          buildEmailTextField(user.email),
+          SizedBox(height: size.height * 0.02),
 
-              Padding(
-                padding: const EdgeInsets.only(right: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    TextFieldLabel(text: "Password"),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Text(
-                        "Change Password",
-                        style: TextStyle(
-                          color: Color(0XFF5783C3),
-                          fontFamily: "NunitoSans",
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TextFieldLabel(text: "Password"),
+                GestureDetector(
+                  onTap: () {},
+                  child: Text(
+                    "Change Password",
+                    style: TextStyle(
+                      color: Color(0XFF5783C3),
+                      fontFamily: "NunitoSans",
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
+                  ),
                 ),
-              ),
-              buildPasswordTextField(user.password),
-              SizedBox(height: size.height * 0.02),
-
-              TextFieldLabel(text: "Contact"),
-              buildContactTextField(user.contact),
-              SizedBox(height: size.height * 0.02),
-
-              TextFieldLabel(text: "Education Level"),
-              buildEducationFormField(),
-              SizedBox(height: size.height * 0.02),
-
-              TextFieldLabel(text: "Specialisation"),
-              buildSpecialisationTextField(user.specialisation),
-              SizedBox(height: size.height * 0.02),
-
-              TextFieldLabel(text: "Description"),
-              buildDescriptionTextField(user.description),
-              SizedBox(height: size.height * 0.02),
-
-              Container(
-                height: size.height * 0.2,
-              )
-            ],
+              ],
+            ),
           ),
-        ),
+          buildPasswordTextField(user.password),
+          SizedBox(height: size.height * 0.02),
+
+          TextFieldLabel(text: "Contact"),
+          buildContactTextField(user.contact),
+          SizedBox(height: size.height * 0.02),
+
+          TextFieldLabel(text: "Education Level"),
+          buildEducationFormField(),
+          SizedBox(height: size.height * 0.02),
+
+          TextFieldLabel(text: "Specialisation"),
+          buildSpecialisationTextField(user.specialisation),
+          SizedBox(height: size.height * 0.02),
+
+          TextFieldLabel(text: "Description"),
+          buildDescriptionTextField(user.description),
+          SizedBox(height: size.height * 0.02),
+        ],
       ),
     );
   }

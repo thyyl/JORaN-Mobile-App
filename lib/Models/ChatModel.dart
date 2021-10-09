@@ -23,25 +23,28 @@ class ChatRoom {
 class Chat {
   String chatID;
   String chatRoomID;
-  String text;
+  String content;
   String sender;
   DateTime dateTime;
+  bool isChat;
 
   Chat({
     required this.chatID,
     required this.chatRoomID,
-    required this.text,
+    required this.content,
     required this.sender,
-    required this.dateTime
+    required this.dateTime,
+    required this.isChat,
   });
 
   factory Chat.fromJson(Map<String, dynamic> responseData){
     return Chat(
       chatID: responseData['chatID'],
       chatRoomID: responseData['chatRoomID'],
-      text: responseData['text'],
+      content: responseData['text'],
       sender: responseData['sender'],
-      dateTime: responseData['dateTime']
+      dateTime: responseData['dateTime'],
+      isChat: responseData['isChat'],
     );
   }
 }

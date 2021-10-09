@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:joran_app/Models/JobModel.dart';
+import 'package:joran_app/Provider/MarketJobProvider.dart';
 import 'package:joran_app/Screens/JobsModule/JobsDetailScreen/components/Background.dart';
 import 'package:joran_app/Screens/JobsModule/JobsDetailScreen/components/CarouselAdvertisement.dart';
 import 'package:joran_app/Screens/JobsModule/JobsDetailScreen/components/JobDescription.dart';
 import 'package:joran_app/Screens/JobsModule/JobsDetailScreen/components/JobRequirementContainer.dart';
 import 'package:joran_app/Screens/JobsModule/JobsDetailScreen/components/MidLevelBar.dart';
 import 'package:joran_app/Screens/JobsModule/JobsDetailScreen/components/TopLevelBar.dart';
+import 'package:provider/provider.dart';
 
 class Body extends StatelessWidget {
-  final Job job;
-
-  const Body({
-    Key? key,
-    required this.job
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    Job job = Provider.of<MarketJobProvider>(context).individualJob;
     Size size = MediaQuery.of(context).size;
 
     return SafeArea(

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:joran_app/Models/JobModel.dart';
+import 'package:joran_app/Provider/MarketJobProvider.dart';
 import 'package:joran_app/Screens/JobsModule/JobsDetailScreen/JobsDetailScreen.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class FeaturedJobsIndividual extends StatelessWidget {
   const FeaturedJobsIndividual({
@@ -16,13 +18,16 @@ class FeaturedJobsIndividual extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return GestureDetector(
-      onTap: () => Navigator.push(context, PageTransition(
+      onTap: () {
+        Provider
+            .of<MarketJobProvider>(context, listen: false)
+            .setJobIndividual(job);
+
+        Navigator.push(context, PageTransition(
           type: PageTransitionType.fade,
-          child: JobsDetailScreen(
-            job: job
-          )
-      )
-      ),
+          child: JobsDetailScreen()
+        ));
+      },
       child: Padding(
         padding: const EdgeInsets.only(bottom: 20.0),
         child: Container(

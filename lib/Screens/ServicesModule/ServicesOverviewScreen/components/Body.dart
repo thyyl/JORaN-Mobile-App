@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:joran_app/FakeData.dart';
 import 'package:joran_app/Screens/JobsModule/JobsOverviewScreen/JobsOverviewScreen.dart';
 import 'package:joran_app/Screens/ServicesModule/ServicesOverviewScreen/components/Background.dart';
 import 'package:joran_app/Screens/ServicesModule/ServicesOverviewScreen/components/CarouselAdvertisement.dart';
@@ -32,9 +31,7 @@ class Body extends StatelessWidget {
                     jobFunction: () {
                       Navigator.pushReplacement(context, PageTransition(
                           type: PageTransitionType.fade,
-                          child: JobsOverviewScreen(
-                            featuredCompanyList: fakeFeaturedCompany,
-                          ))
+                          child: JobsOverviewScreen())
                       );
                     },
                   ),

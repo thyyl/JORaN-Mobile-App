@@ -1,9 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:joran_app/Models/ChatModel.dart';
 import 'package:joran_app/Models/UserModel.dart';
 import 'package:joran_app/Provider/UserProvider.dart';
-import 'package:joran_app/Screens/ChatModule/ChatRateUserScreen/ChatRateUserScreen.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class Background extends StatelessWidget {
@@ -85,9 +84,7 @@ class Background extends StatelessWidget {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () => Navigator.push(context, PageTransition(
-                                type: PageTransitionType.fade, child: ChatRateUserScreen())
-                            ),
+                            onTap: () => _openDialog(context),
                             child: Container(
                               height: 40,
                               width: 40,
@@ -95,7 +92,7 @@ class Background extends StatelessWidget {
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(15)
                               ),
-                              child: Icon(Icons.favorite_outline_rounded),
+                              child: Icon(Icons.done),
                             ),
                           ),
                         ],
@@ -120,4 +117,27 @@ class Background extends StatelessWidget {
       )
     );
   }
+}
+
+void _openDialog(context) {
+  showCupertinoDialog(
+    context: context,
+    builder: (_) => CupertinoAlertDialog(
+      title: Text("Service Completion Confirmation"),
+      content: Text("Has the service ended?"),
+      actions: [
+        CupertinoButton(
+            child: Text('No'),
+            onPressed: () => Navigator.of(context).pop()
+        ),
+        CupertinoButton(
+          child: Text('Yes'),
+          onPressed: () {
+
+            Navigator.of(context).pop();
+          },
+        )
+      ],
+    )
+  );
 }

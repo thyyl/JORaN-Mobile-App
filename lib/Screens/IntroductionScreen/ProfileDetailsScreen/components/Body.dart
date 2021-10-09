@@ -20,17 +20,8 @@ class Body extends StatelessWidget {
               children: [
                 TopLevelBar(),
                 SizedBox(height: size.height * 0.025),
-                Container(
-                  height: size.height * 0.67,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        ProfilePicture(image: "assets/pictures/user.png"),
-                        ProfileForm(),
-                      ],
-                    ),
-                  ),
-                )
+                ProfilePicture(image: "assets/pictures/user.png"),
+                ProfileForm()
               ],
             ),
           ),
