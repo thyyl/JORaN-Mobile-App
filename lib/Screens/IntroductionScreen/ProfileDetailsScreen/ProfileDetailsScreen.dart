@@ -14,6 +14,7 @@ class ProfileDetailsScreen extends StatelessWidget {
         toolbarOpacity: 0,
         backgroundColor: Color(0XFFC7E9F3),
         elevation: 0,
+        toolbarHeight: 0,
       ),
       backgroundColor: Color(0XFFC7E9F3),
       body: Body(),

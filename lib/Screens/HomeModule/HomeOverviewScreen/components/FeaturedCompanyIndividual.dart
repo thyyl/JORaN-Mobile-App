@@ -26,7 +26,7 @@ class FeaturedCompanyIndividual extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(right: 15.0),
         child: Container(
-          height: size.height * 0.165,
+          height: size.height * 0.175,
           width: size.width * 0.25,
           decoration: BoxDecoration(
             color: Colors.white,

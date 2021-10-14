@@ -93,18 +93,6 @@ class _BodyState extends State<Body> {
         }
       }
 
-      if (globalKey.currentState!.descriptionController.text.isNotEmpty) {
-        if (checkDifference(globalKey.currentState!.descriptionController.text, user.description)) {
-          setState(() {
-            Provider.of<UserProvider>(context, listen: false).setUpdate(6, globalKey.currentState!.descriptionController.text);
-          });
-
-          // TODO update database
-          nothingToUpdate = false;
-          showNotification("Change successful!");
-        }
-      }
-
       if (nothingToUpdate)
         showNotification("There is nothing to change.");
     }

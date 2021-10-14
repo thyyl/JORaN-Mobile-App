@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:joran_app/Provider/StringProvider.dart';
 import 'package:joran_app/Screens/SignUpConfirmationScreen/SignUpConfirmationScreen.dart';
 import 'package:joran_app/Screens/SignUpScreen/components/SignUpButton.dart';
 import 'package:joran_app/Screens/SignUpScreen/components/TextFieldLabel.dart';
 import 'package:joran_app/Services/Authentication.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
 class SignUpForm extends StatefulWidget {
   @override
@@ -39,17 +43,63 @@ class _SignUpFormState extends State<SignUpForm> {
             buildConfirmPasswordFormField(),
             SizedBox(height: size.height * 0.03),
             SignUpButton(
-              function: () {
-
-                Navigator.push(context, PageTransition(
-                    type: PageTransitionType.fade, child: SignUpConfirmationScreen())
-                );
-              },
+              function: signUpConfirmation,
             )
           ],
         ),
       ),
     );
+  }
+
+  ToastFuture showNotification(String content) {
+    return showToast(
+      content,
+      context: context,
+      animation: StyledToastAnimation.fade,
+      reverseAnimation: StyledToastAnimation.fade,
+      duration: Duration(seconds: 3),
+      position: StyledToastPosition.center,
+    );
+  }
+
+  Future<void> signUpConfirmation() async {
+    bool emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(_emailController.text);
+
+    if (emailValid) {
+      bool strongPassword = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$').hasMatch(_passwordController.text);
+
+      if (strongPassword) {
+        bool confirmMatch = _passwordController.text == _confirmPasswordController.text;
+
+        if (confirmMatch) {
+          Provider
+            .of<StringProvider>(context, listen: false)
+            .setCredentials(_emailController.text, _passwordController.text);
+
+          http.Response response = await signUpCreatePin(_emailController.text);
+
+          if (response.statusCode == 200) {
+            Navigator.push(context, PageTransition(
+              type: PageTransitionType.fade,
+              child: SignUpConfirmationScreen())
+            );
+
+            showNotification("A TAC code has been sent to your email. Please enter the TAC to verify your email");
+          }
+
+        } else {
+          showNotification("The password does not match.");
+        }
+
+      } else {
+        showNotification(
+          "The password must contain at least 1 upper case, 1 lowercase, "
+          "1 numeric, 1 special character with a minimum total of 8 characters."
+        );
+      }
+    } else {
+      showNotification("The email is invalid");
+    }
   }
 
   Padding buildConfirmPasswordFormField() {

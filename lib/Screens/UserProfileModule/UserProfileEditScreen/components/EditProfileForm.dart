@@ -27,7 +27,6 @@ class EditProfileFormState extends State<EditProfileForm> {
   final passwordController = TextEditingController();
   final contactController = TextEditingController();
   final specialisationController = TextEditingController();
-  final descriptionController = TextEditingController();
 
   bool obscure = true;
   final education;
@@ -88,50 +87,7 @@ class EditProfileFormState extends State<EditProfileForm> {
           TextFieldLabel(text: "Specialisation"),
           buildSpecialisationTextField(user.specialisation),
           SizedBox(height: size.height * 0.02),
-
-          TextFieldLabel(text: "Description"),
-          buildDescriptionTextField(user.description),
-          SizedBox(height: size.height * 0.02),
         ],
-      ),
-    );
-  }
-
-  Padding buildDescriptionTextField(String description) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10.0),
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.165,
-        width: MediaQuery.of(context).size.width * 0.8,
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.5),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: TextFormField(
-          maxLines: 5,
-          textAlign: TextAlign.justify,
-          decoration: InputDecoration(
-            hintText: description,
-            enabledBorder: outlineBorder(),
-            focusedBorder: outlineBorder(),
-            hintStyle: TextStyle(
-                fontFamily: "NunitoSans",
-                fontSize: 17.5,
-                fontWeight:
-                FontWeight.w700,
-                color: Colors.black.withOpacity(.25)
-            ),
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            contentPadding: EdgeInsets.only(top: 20, left: 20, right: 20),
-          ),
-          style: TextStyle(
-            fontFamily: "NunitoSans",
-            fontSize: 17.5,
-            fontWeight: FontWeight.w700,
-            color: Colors.black.withOpacity(.5),
-          ),
-          controller: descriptionController,
-        ),
       ),
     );
   }
