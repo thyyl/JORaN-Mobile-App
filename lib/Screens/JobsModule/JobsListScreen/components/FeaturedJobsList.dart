@@ -9,13 +9,11 @@ class FeaturedJobsList extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Job> jobList = Provider.of<MarketJobProvider>(context).jobList;
 
-    return Container(
-      child: Column(
-        children: List.generate(jobList.length, (index) =>
-           FeaturedJobsIndividual(
-             job: jobList[index],
-          )
-        ),
+    return Column(
+      children: List.generate(jobList.length, (index) =>
+         FeaturedJobsIndividual(
+           job: jobList[index],
+        )
       ),
     );
   }

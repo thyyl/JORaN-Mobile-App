@@ -39,3 +39,22 @@ Future<http.Response> tacVerification(String email, String pin) async {
 
   return response;
 }
+
+Future<Map<String, dynamic>> userLogIn(String email, String pin) async {
+  await dotenv.load();
+
+  final String backEndServer = dotenv.get('URL');
+
+  final response = await http.post(
+    Uri.parse('$backEndServer/authenticate'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String> {
+      'email': email,
+      'pin': pin,
+    }),
+  );
+
+  return jsonDecode(response.body);
+}

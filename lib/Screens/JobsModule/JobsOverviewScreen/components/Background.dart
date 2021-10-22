@@ -29,11 +29,13 @@ class _BackgroundState extends State<Background> {
 
     return Container(
       width: size.width,
-      height: size.height - 50,
+      height: size.height - 27.5,
       color: Color(0XFFEDF1F4),
       child: Stack(
         children: [
-          widget.children,
+          SingleChildScrollView(
+            child: widget.children,
+          ),
           FlashyTabBar(
             animationCurve: Curves.linear,
             selectedIndex: _selectedIndex,

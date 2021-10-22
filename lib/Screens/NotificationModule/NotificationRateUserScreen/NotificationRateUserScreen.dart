@@ -16,8 +16,8 @@ class _NotificationRateUserScreenState extends State<NotificationRateUserScreen>
   double sliderWidth = 380;
   double _dragPercent = 0.0;
   String feel = "0-";
-  ValueNotifier<String> service = ValueNotifier("Mediocre");
-  ValueNotifier<Color> background = ValueNotifier(Color(0XFFFCBDE9));
+  ValueNotifier<String> service = ValueNotifier("Awful");
+  ValueNotifier<Color> background = ValueNotifier(Color(0XFFD4B2D8));
 
   @override
   void initState() {
@@ -88,22 +88,6 @@ class _NotificationRateUserScreenState extends State<NotificationRateUserScreen>
             feel = "0-";
           });
       });
-
-    // if (_dragPercent >= 0.8)
-    //   setState(() {
-    //     service.value = "Wonderful";
-    //     background.value = Color(0XFFBCFBE4);
-    //   });
-    // else if (_dragPercent >= 0.4 && _dragPercent < 0.8)
-    //   setState(() {
-    //     service.value = "OK";
-    //     background.value = Color(0XFFF8ECBD);
-    //   });
-    // else if (_dragPercent < 0.4)
-    //   setState(() {
-    //     service.value = "Mediocre";
-    //     background.value = Color(0XFFFCBDE9);
-    //   });
   }
 
   void _onDragStart(BuildContext context, DragStartDetails details) {

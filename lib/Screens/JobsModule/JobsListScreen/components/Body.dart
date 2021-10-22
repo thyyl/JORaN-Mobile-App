@@ -23,7 +23,7 @@ class Body extends StatelessWidget {
                 child: TopLevelBar(),
               ),
               Container(
-                height: size.height * 0.8425,
+                height: size.height * 0.82,
                 child: SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
                   child: Column(

@@ -103,7 +103,7 @@ class _BodyState extends State<Body> {
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Container(
-            height: size.height * 1.35,
+            height: size.height * 1.115,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

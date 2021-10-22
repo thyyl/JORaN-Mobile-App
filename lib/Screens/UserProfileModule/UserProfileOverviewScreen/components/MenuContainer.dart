@@ -56,7 +56,7 @@ class MenuContainer extends StatelessWidget {
                 child: MenuIndividualContainer(
                   color: Colors.white,
                   title: "Your Résumé",
-                  description: "Upload Your Résumé",
+                  description: "Upload Your Résumé (PDF)",
                 ),
               ),
               SizedBox(height: size.height * 0.035),

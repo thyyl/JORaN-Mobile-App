@@ -6,8 +6,8 @@ class UserProfileMidLevel extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return Container(
-      height: size.height * 0.325,
-      width: size.width * 0.5,
+      height: size.height * 0.275,
+      width: size.width * 0.45,
       child: Hero(
         tag: "profile",
         child: ClipRRect(

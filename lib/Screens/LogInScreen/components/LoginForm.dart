@@ -1,13 +1,18 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:joran_app/FakeData.dart';
 import 'package:joran_app/Provider/ChatProvider.dart';
 import 'package:joran_app/Provider/NotificationProvider.dart';
+import 'package:joran_app/Provider/StringProvider.dart';
 import 'package:joran_app/Provider/UserProvider.dart';
 import 'package:joran_app/Provider/UserRatingProvider.dart';
 import 'package:joran_app/Screens/LogInScreen/components/LoginButton.dart';
 import 'package:joran_app/Screens/LogInScreen/components/ForgotPassword.dart';
 import 'package:joran_app/Screens/LogInScreen/components/TextFieldLabel.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileOverviewScreen/UserProfileOverviewScreen.dart';
+import 'package:joran_app/Services/Authentication.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
@@ -41,26 +46,44 @@ class _LoginFormState extends State<LoginForm> {
             ForgotPassword(),
             SizedBox(height: size.height * 0.03),
             LoginButton(
-              function: () {
-                Provider
-                    .of<UserProvider>(context, listen: false)
-                    .setUser(fakeUserData);
+              function: () async {
+                try {
+                  Map<String, dynamic> response = await userLogIn("ericcheah575@gmail.com", "715");
 
-                Provider
-                    .of<UserRatingsProvider>(context, listen: false)
-                    .setUserRatings(fakeUserRatings);
+                  print(response["code"]);
 
-                Provider
-                    .of<NotificationProvider>(context, listen: false)
-                    .setNotificationList(fakeNotificationList);
+                  if (response["code"] == "200") {
+                    Provider
+                      .of<StringProvider>(context, listen: false)
+                      .setJWT(response["code"]);
 
-                Provider
-                    .of<ChatProvider>(context, listen: false)
-                    .setChatRoomList(fakeChatRooms);
+                    Provider
+                      .of<UserProvider>(context, listen: false)
+                      .setUser(fakeUserData);
 
-                Navigator.push(context, PageTransition(
-                    type: PageTransitionType.fade, child: UserProfileOverviewScreen())
-                );
+                    Provider
+                        .of<UserRatingsProvider>(context, listen: false)
+                        .setUserRatings(fakeUserRatings);
+
+                    Provider
+                        .of<NotificationProvider>(context, listen: false)
+                        .setNotificationList(fakeNotificationList);
+
+                    Provider
+                        .of<ChatProvider>(context, listen: false)
+                        .setChatRoomList(fakeChatRooms);
+
+                    Navigator.push(context, PageTransition(
+                        type: PageTransitionType.fade, child: UserProfileOverviewScreen())
+                    );
+                  } else if (response["code"] == "404"){
+                    showNotification("User does not exist. Please enter a valid email");
+                  } else {
+                    showNotification("Something went wrong, please try again.");
+                  }
+                } on Exception {
+                  showNotification("Something went wrong, please try again.");
+                }
               },
             )
           ],
@@ -181,6 +204,17 @@ class _LoginFormState extends State<LoginForm> {
       borderRadius: BorderRadius.circular(28),
       borderSide: BorderSide(color: Color(0XFFEDF1F4)),
       gapPadding: 10,
+    );
+  }
+
+  ToastFuture showNotification(String content) {
+    return showToast(
+      content,
+      context: context,
+      animation: StyledToastAnimation.fade,
+      reverseAnimation: StyledToastAnimation.fade,
+      duration: Duration(seconds: 3),
+      position: StyledToastPosition.center,
     );
   }
 }

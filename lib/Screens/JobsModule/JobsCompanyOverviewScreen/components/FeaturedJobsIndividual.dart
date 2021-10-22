@@ -31,7 +31,7 @@ class FeaturedJobsIndividual extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(bottom: 20.0),
         child: Container(
-          height: size.height * 0.16,
+          height: size.height * 0.175,
           width: size.width * 0.8,
           decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.5),
