@@ -7,7 +7,7 @@ Future<void> queryLatestJobListing(String jwt) async {
   final String backEndServer = dotenv.get('URL');
 
   final response = await http.get(
-    Uri.parse('$backEndServer/myProfileStats'),
+    Uri.parse('$backEndServer/my_job_offers'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': "Bearer $jwt",

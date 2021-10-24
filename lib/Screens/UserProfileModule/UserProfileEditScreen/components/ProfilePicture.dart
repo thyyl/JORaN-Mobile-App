@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:joran_app/Provider/StringProvider.dart';
+import 'package:joran_app/Provider/UserProvider.dart';
+import 'package:joran_app/Services/User.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePicture extends StatefulWidget {
   @override
@@ -74,6 +78,8 @@ class ProfilePictureState extends State<ProfilePicture> {
   }
 
   Future pickImage() async {
+    String jwt = Provider.of<StringProvider>(context, listen: false).jwt;
+
     try {
       final XFile? _pickedFile = await _picker.pickImage(source: ImageSource.gallery);
       if (_pickedFile == null)
@@ -99,6 +105,10 @@ class ProfilePictureState extends State<ProfilePicture> {
       setState(() {
         image.value = File(croppedImage!.path);
       });
+
+      Map<String, dynamic> response = await updateProfilePicture(jwt, image.value);
+
+      print(response["body"]);
 
       // Provider.of<UserProvider>(context, listen: false).setUpdate(7, );
 

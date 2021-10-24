@@ -1,10 +1,11 @@
-import 'package:concentric_transition/page_route.dart';
 import 'package:flutter/material.dart';
-import 'package:joran_app/Screens/IntroductionScreen/PlanSelectionScreen/PlanSelectionScreen.dart';
 
 class TopLevelBar extends StatelessWidget {
+  final VoidCallback onSaved;
+
   const TopLevelBar({
     Key? key,
+    required this.onSaved
   }) : super(key: key);
 
   @override
@@ -22,9 +23,7 @@ class TopLevelBar extends StatelessWidget {
           ),
         ),
         GestureDetector(
-          onTap: () => Navigator.push(context, ConcentricPageRoute(builder: (ctx) {
-            return PlanSelectionScreen();
-          })),
+          onTap: onSaved,
           child: Container(
             height: 40,
             width: 40,

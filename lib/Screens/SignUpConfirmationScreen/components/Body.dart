@@ -71,9 +71,6 @@ class Body extends StatelessWidget {
                       ]
                     ),
                   ),
-                  // Button(
-                  //   function: () => Navigator.pop(context)
-                  // )
                 ],
               ),
             ),

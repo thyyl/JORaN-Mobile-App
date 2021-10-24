@@ -31,39 +31,14 @@ class _BodyState extends State<Body> {
 
           Map<String, dynamic> response = await updateName(jwt, globalKey.currentState!.nameController.text);
 
-          setState(() {
-            Provider.of<UserProvider>(context, listen: false).setUpdate(0, globalKey.currentState!.nameController.text);
-          });
+          if (response["code"] == 200) {
+            setState(() {
+              Provider.of<UserProvider>(context, listen: false).setUpdate(0, globalKey.currentState!.nameController.text);
+            });
 
-
-
-          // TODO update database
-          nothingToUpdate = false;
-          showNotification("Change successful!");
-        }
-      }
-
-      if (globalKey.currentState!.emailController.text.isNotEmpty) {
-        if (checkDifference(globalKey.currentState!.emailController.text, user.email)) {
-          setState(() {
-            Provider.of<UserProvider>(context, listen: false).setUpdate(1, globalKey.currentState!.emailController.text);
-          });
-
-          // TODO update database
-          nothingToUpdate = false;
-          showNotification("Change successful!");
-        }
-      }
-
-      if (globalKey.currentState!.passwordController.text.isNotEmpty) {
-        if (checkDifference(globalKey.currentState!.passwordController.text, user.password)) {
-          setState(() {
-            Provider.of<UserProvider>(context, listen: false).setUpdate(2, globalKey.currentState!.passwordController.text);
-          });
-
-          // TODO update database
-          nothingToUpdate = false;
-          showNotification("Change successful!");
+            nothingToUpdate = false;
+            showNotification("Change successful!");
+          }
         }
       }
 

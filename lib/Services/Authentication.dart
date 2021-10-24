@@ -21,7 +21,7 @@ Future<http.Response> signUpCreatePin(String email) async {
   return response;
 }
 
-Future<http.Response> tacVerification(String email, String pin) async {
+Future<Map<String, dynamic>> tacVerification(String email, String pin) async {
   await dotenv.load();
 
   final String backEndServer = dotenv.get('URL');
@@ -37,7 +37,7 @@ Future<http.Response> tacVerification(String email, String pin) async {
     }),
   );
 
-  return response;
+  return jsonDecode(response.body);
 }
 
 Future<Map<String, dynamic>> userLogIn(String email, String pin) async {

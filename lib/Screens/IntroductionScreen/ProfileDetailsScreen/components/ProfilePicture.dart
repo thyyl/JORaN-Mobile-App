@@ -33,7 +33,7 @@ class _ProfilePictureState extends State<ProfilePicture> {
               valueListenable: image,
               builder: (BuildContext context, File? file, Widget? children) {
                 return Container(
-                  height: size.height * 0.25,
+                  height: size.height * 0.24,
                   width: size.width * 0.375,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(30.0),

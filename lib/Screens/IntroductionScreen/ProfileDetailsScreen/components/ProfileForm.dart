@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileEditScreen/components/TextFieldLabel.dart';
 
 class ProfileForm extends StatefulWidget {
+  const ProfileForm({
+    Key? key,
+  }) : super(key: key);
+
   @override
-  _ProfileFormState createState() => _ProfileFormState();
+  ProfileFormState createState() => ProfileFormState();
 }
 
-class _ProfileFormState extends State<ProfileForm> {
+class ProfileFormState extends State<ProfileForm> {
 
-  final _nameController = TextEditingController();
-  final _contactController = TextEditingController();
-  final _specialisationController = TextEditingController();
+  final nameController = TextEditingController();
+  final contactController = TextEditingController();
+  final specialisationController = TextEditingController();
 
   bool obscure = true;
   String educationSelection = "Bachelor Degree";
@@ -77,7 +81,7 @@ class _ProfileFormState extends State<ProfileForm> {
             fontWeight: FontWeight.w700,
             color: Colors.black.withOpacity(.5),
           ),
-          controller: _specialisationController,
+          controller: specialisationController,
         ),
       ),
     );
@@ -154,7 +158,7 @@ class _ProfileFormState extends State<ProfileForm> {
             fontWeight: FontWeight.w700,
             color: Colors.black.withOpacity(.5),
           ),
-          controller: _contactController,
+          controller: contactController,
         ),
       ),
     );
@@ -192,7 +196,7 @@ class _ProfileFormState extends State<ProfileForm> {
             fontWeight: FontWeight.w700,
             color: Colors.black.withOpacity(.5),
           ),
-          controller: _nameController,
+          controller: nameController,
         ),
       ),
     );

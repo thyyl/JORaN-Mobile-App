@@ -258,8 +258,10 @@ class EditProfileFormState extends State<EditProfileForm> {
           borderRadius: BorderRadius.circular(10),
         ),
         child: TextFormField(
+          enabled: false,
           decoration: InputDecoration(
             hintText: email,
+            border: InputBorder.none,
             enabledBorder: outlineBorder(),
             focusedBorder: outlineBorder(),
             hintStyle: TextStyle(
@@ -270,7 +272,7 @@ class EditProfileFormState extends State<EditProfileForm> {
                 color: Colors.black.withOpacity(.25)
             ),
             floatingLabelBehavior: FloatingLabelBehavior.always,
-            contentPadding: EdgeInsets.only(top: 20, left: 20),
+            contentPadding: EdgeInsets.only(left: 20),
           ),
           style: TextStyle(
             fontFamily: "NunitoSans",

@@ -20,7 +20,7 @@ class MenuContainer extends StatelessWidget {
     User user = Provider.of<UserProvider>(context).user;
 
     return Container(
-      height: size.height * 0.475,
+      height: size.height * 0.465,
       width: size.width * 0.85,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

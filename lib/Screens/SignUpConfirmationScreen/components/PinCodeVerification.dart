@@ -49,29 +49,20 @@ class _PinCodeVerificationState extends State<PinCodeVerification> {
   }
 
   Future<void> tacValidation(String email) async {
-    http.Response response = await tacVerification(email, widget.tacCodeController.text);
+   Map<String, dynamic> response = await tacVerification(email, widget.tacCodeController.text);
 
-    Navigator.push(context, ConcentricPageRoute(builder: (ctx) {
+   if (response["code"] == 200) {
+     Provider
+        .of<StringProvider>(context, listen: false)
+        .setJWT(response["data"]);
+
+     Navigator.push(context, ConcentricPageRoute(builder: (ctx) {
         return LetsGetStarted();
       }));
-
-
-    print(response.body);
-
-    // if (widget.tac != widget.tacCodeController.text) {
-    //   setState(() {
-    //     hasError = true;
-    //     widget.tacCodeController.clear();
-    //   });
-    //   showNotification("You entered a wrong TAC code!");
-    //
-    // } else {
-    //   showNotification("nice!");
-    //
-    //   Navigator.push(context, ConcentricPageRoute(builder: (ctx) {
-    //     return LetsGetStarted();
-    //   }));
-    // }
+   } else {
+     widget.tacCodeController.clear();
+     showNotification("You entered a wrong TAC code!");
+   }
   }
 
 

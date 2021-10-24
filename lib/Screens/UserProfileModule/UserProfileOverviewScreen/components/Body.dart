@@ -28,7 +28,7 @@ class Body extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: size.height * 0.075),
+                SizedBox(height: size.height * 0.1),
                 UserProfileMidLevel(),
                 SizedBox(height: size.height * 0.05),
                 MenuContainer()
