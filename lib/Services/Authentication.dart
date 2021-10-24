@@ -58,3 +58,24 @@ Future<Map<String, dynamic>> userLogIn(String email, String pin) async {
 
   return jsonDecode(response.body);
 }
+
+Future<Map<String, dynamic>> userUpdatePassword(String jwt, String oldPassword, String newPassword) async {
+  await dotenv.load();
+
+  final String backEndServer = dotenv.get('URL');
+
+  final response = await http.post(
+    Uri.parse('$backEndServer/password_update'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Authorization': "Bearer $jwt",
+    },
+    body: jsonEncode(<String, String> {
+      'current_password': oldPassword,
+      'new_password': newPassword,
+    }),
+  );
+
+  print(response.body);
+  return jsonDecode(response.body);
+}

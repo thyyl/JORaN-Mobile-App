@@ -27,6 +27,44 @@ class _LoginFormState extends State<LoginForm> {
 
   bool obscure = true;
 
+  Future<void> logInValidation() async {
+    try {
+      Map<String, dynamic> response = await userLogIn("ericcheah575@gmail.com", "1111");
+
+      if (response["code"] == 200) {
+        Provider
+          .of<StringProvider>(context, listen: false)
+          .setJWT(response["data"]);
+
+        Provider
+          .of<UserProvider>(context, listen: false)
+          .setUser(fakeUserData);
+
+        Provider
+            .of<UserRatingsProvider>(context, listen: false)
+            .setUserRatings(fakeUserRatings);
+
+        Provider
+            .of<NotificationProvider>(context, listen: false)
+            .setNotificationList(fakeNotificationList);
+
+        Provider
+            .of<ChatProvider>(context, listen: false)
+            .setChatRoomList(fakeChatRooms);
+
+        Navigator.push(context, PageTransition(
+            type: PageTransitionType.fade, child: UserProfileOverviewScreen())
+        );
+      } else if (response["code"] == 404){
+        showNotification("User does not exist. Please enter a valid email");
+      } else {
+        showNotification("Something went wrong, please try again.");
+      }
+    } on Exception {
+      showNotification("Something went wrong, please try again.");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -46,45 +84,7 @@ class _LoginFormState extends State<LoginForm> {
             ForgotPassword(),
             SizedBox(height: size.height * 0.03),
             LoginButton(
-              function: () async {
-                try {
-                  Map<String, dynamic> response = await userLogIn("ericcheah575@gmail.com", "715");
-
-                  print(response["code"]);
-
-                  if (response["code"] == "200") {
-                    Provider
-                      .of<StringProvider>(context, listen: false)
-                      .setJWT(response["code"]);
-
-                    Provider
-                      .of<UserProvider>(context, listen: false)
-                      .setUser(fakeUserData);
-
-                    Provider
-                        .of<UserRatingsProvider>(context, listen: false)
-                        .setUserRatings(fakeUserRatings);
-
-                    Provider
-                        .of<NotificationProvider>(context, listen: false)
-                        .setNotificationList(fakeNotificationList);
-
-                    Provider
-                        .of<ChatProvider>(context, listen: false)
-                        .setChatRoomList(fakeChatRooms);
-
-                    Navigator.push(context, PageTransition(
-                        type: PageTransitionType.fade, child: UserProfileOverviewScreen())
-                    );
-                  } else if (response["code"] == "404"){
-                    showNotification("User does not exist. Please enter a valid email");
-                  } else {
-                    showNotification("Something went wrong, please try again.");
-                  }
-                } on Exception {
-                  showNotification("Something went wrong, please try again.");
-                }
-              },
+              function: logInValidation,
             )
           ],
         ),

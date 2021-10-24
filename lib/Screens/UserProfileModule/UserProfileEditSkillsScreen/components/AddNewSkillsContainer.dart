@@ -72,7 +72,7 @@ class _AddNewSkillsContainerState extends State<AddNewSkillsContainer> {
                       ),
                     ),
                     SizedBox(height: 5),
-                    buildAddNewSkillsDropDownField(),
+                    buildAddNewSkillsField(),
                     SizedBox(height: size.height * 0.025),
                     Text(
                       "Skills Proficiency",
@@ -132,7 +132,7 @@ class _AddNewSkillsContainerState extends State<AddNewSkillsContainer> {
     );
   }
 
-  Card buildAddNewSkillsDropDownField() {
+  Card buildAddNewSkillsField() {
     return Card(
       shadowColor: Colors.transparent,
       child: Container(

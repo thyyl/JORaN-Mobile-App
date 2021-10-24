@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:joran_app/Models/UserModel.dart';
 import 'package:joran_app/Provider/UserProvider.dart';
+import 'package:joran_app/Screens/UserProfileModule/UserProfileEditScreen/components/ChangePasswordForm.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileEditScreen/components/TextFieldLabel.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 
 class EditProfileForm extends StatefulWidget {
@@ -28,7 +30,6 @@ class EditProfileFormState extends State<EditProfileForm> {
   final contactController = TextEditingController();
   final specialisationController = TextEditingController();
 
-  bool obscure = true;
   final education;
   late String educationSelection;
   List<String> educationSelectionList = [
@@ -59,7 +60,9 @@ class EditProfileFormState extends State<EditProfileForm> {
               children: [
                 TextFieldLabel(text: "Password"),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () => showCupertinoModalBottomSheet(
+                    context: context, builder: (context) => ChangePasswordForm()
+                  ),
                   child: Text(
                     "Change Password",
                     style: TextStyle(
@@ -207,63 +210,39 @@ class EditProfileFormState extends State<EditProfileForm> {
   }
 
   Padding buildPasswordTextField(String password) {
-    String passwordObscured = "";
-
-    List.generate(password.length, (index) {
-      passwordObscured += "•";
-    });
-
     return Padding(
       padding: const EdgeInsets.only(top: 10.0),
-      child: Stack(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height * 0.055,
-            width: MediaQuery.of(context).size.width * 0.8,
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.5),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: TextFormField(
-              readOnly: true,
-              decoration: InputDecoration(
-                hintText: obscure ? passwordObscured : password,
-                enabledBorder: outlineBorder(),
-                focusedBorder: outlineBorder(),
-                hintStyle: TextStyle(
-                    fontFamily: "NunitoSans",
-                    fontSize: 17.5,
-                    fontWeight:
-                    FontWeight.w700,
-                    color: Colors.black.withOpacity(.25)
-                ),
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                contentPadding: EdgeInsets.only(top: 20, left: 20),
-              ),
-              style: TextStyle(
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.055,
+        width: MediaQuery.of(context).size.width * 0.8,
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.5),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: TextFormField(
+          readOnly: true,
+          decoration: InputDecoration(
+            hintText: "••••••••••••••••",
+            enabledBorder: outlineBorder(),
+            focusedBorder: outlineBorder(),
+            hintStyle: TextStyle(
                 fontFamily: "NunitoSans",
                 fontSize: 17.5,
-                fontWeight: FontWeight.w700,
-                color: Colors.black.withOpacity(.5),
-              ),
-              controller: passwordController,
+                fontWeight:
+                FontWeight.w700,
+                color: Colors.black.withOpacity(.25)
             ),
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+            contentPadding: EdgeInsets.only(top: 20, left: 20),
           ),
-          Positioned(
-            right: 15,
-            top: 10,
-            child: GestureDetector(
-              onTap: () =>
-                  setState(() {
-                    obscure = !obscure;
-                  }),
-              child: Icon(
-                obscure ? Icons.visibility : Icons.visibility_off,
-                color: Colors.black.withOpacity(.25),
-              ),
-            ),
-          )
-        ],
+          style: TextStyle(
+            fontFamily: "NunitoSans",
+            fontSize: 17.5,
+            fontWeight: FontWeight.w700,
+            color: Colors.black.withOpacity(.5),
+          ),
+          controller: passwordController,
+        ),
       ),
     );
   }

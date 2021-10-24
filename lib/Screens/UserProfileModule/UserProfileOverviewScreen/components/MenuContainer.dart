@@ -4,10 +4,12 @@ import 'package:joran_app/FakeData.dart';
 import 'package:joran_app/Models/UserModel.dart';
 import 'package:joran_app/Provider/ServiceProvider.dart';
 import 'package:joran_app/Provider/SkillsProvider.dart';
+import 'package:joran_app/Provider/StringProvider.dart';
 import 'package:joran_app/Provider/UserProvider.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileEditSkillsScreen/UserProfileEditSkillsScreen.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileOverviewScreen/components/MenuContainerIndividual.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileServiceScreen/UserProfileServiceScreen.dart';
+import 'package:joran_app/Services/Query.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
@@ -64,10 +66,13 @@ class MenuContainer extends StatelessWidget {
                 onTap: () {
                   Provider.of<SkillsProvider>(context, listen: false).setSkillsList(skillData);
 
-                  Navigator.push(
-                      context, MaterialPageRoute(
-                      builder: (context) => UserProfileEditSkillsScreen())
-                  );
+                  String jwt = Provider.of<StringProvider>(context, listen: false).jwt;
+                  queryLatestJobListing(jwt);
+
+                  // Navigator.push(
+                  //     context, MaterialPageRoute(
+                  //     builder: (context) => UserProfileEditSkillsScreen())
+                  // );
                 },
                 child: Container(
                   width: size.width * 0.375,

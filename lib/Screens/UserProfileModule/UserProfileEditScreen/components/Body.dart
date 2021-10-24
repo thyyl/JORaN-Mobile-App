@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:joran_app/Models/UserModel.dart';
+import 'package:joran_app/Provider/StringProvider.dart';
 import 'package:joran_app/Provider/UserProvider.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileEditScreen/components/EditProfileForm.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileEditScreen/components/ProfilePicture.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileEditScreen/components/TopLevelBar.dart';
+import 'package:joran_app/Services/User.dart';
 import 'package:provider/provider.dart';
 
 class Body extends StatefulWidget {
@@ -18,16 +20,22 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     User user = Provider.of<UserProvider>(context).user;
+    String jwt = Provider.of<StringProvider>(context, listen: false).jwt;
     Size size = MediaQuery.of(context).size;
 
-    void validateForm() {
+    Future<void> validateForm() async {
       bool nothingToUpdate = true;
 
       if (globalKey.currentState!.nameController.text.isNotEmpty) {
         if (checkDifference(globalKey.currentState!.nameController.text, user.name)) {
+
+          Map<String, dynamic> response = await updateName(jwt, globalKey.currentState!.nameController.text);
+
           setState(() {
             Provider.of<UserProvider>(context, listen: false).setUpdate(0, globalKey.currentState!.nameController.text);
           });
+
+
 
           // TODO update database
           nothingToUpdate = false;
