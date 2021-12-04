@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
-import 'package:joran_app/Models/ServiceModel.dart';
-import 'package:joran_app/Models/UserModel.dart';
-import 'package:joran_app/Provider/ServiceProvider.dart';
-import 'package:joran_app/Provider/UserProvider.dart';
 import 'package:joran_app/Screens/ServicesModule/ServicesAddServiceScreen/components/PostButton.dart';
 import 'package:joran_app/Screens/ServicesModule/ServicesAddServiceScreen/components/TextFieldLabel.dart';
 import 'package:joran_app/constants.dart';
-import 'package:provider/provider.dart';
-import 'package:uuid/uuid.dart';
 
 class AddServiceForm extends StatefulWidget {
   @override
@@ -24,29 +18,28 @@ class _AddServiceFormState extends State<AddServiceForm> {
 
   @override
   Widget build(BuildContext context) {
-    User user = Provider.of<UserProvider>(context).user;
     Size size = MediaQuery.of(context).size;
 
     void addNewService() {
-      if (_nameController.text.isNotEmpty && _priceController.text.isNotEmpty) {
-
-        var uuid = Uuid();
-
-        Service service = Service(
-            serviceID: uuid.v1(),
-            title: _nameController.text,
-            category: categorySelection,
-            price: _priceController.text,
-            userID: user.userID,
-        );
-
-        Provider.of<ServiceProvider>(context, listen: false).addNewService(service);
-
-        showNotification("Successfully added.");
-        //TODO UPDATE TO DATABASE
-      } else {
-        showNotification("There is nothing to add.");
-      }
+      // if (_nameController.text.isNotEmpty && _priceController.text.isNotEmpty) {
+      //
+      //   var uuid = Uuid();
+      //
+      //   Service service = Service(
+      //       serviceID: uuid.v1(),
+      //       title: _nameController.text,
+      //       category: categorySelection,
+      //       price: _priceController.text,
+      //       userID: user.userID,
+      //   );
+      //
+      //   Provider.of<ServiceProvider>(context, listen: false).addNewService(service);
+      //
+      //   showNotification("Successfully added.");
+      //   //TODO UPDATE TO DATABASE
+      // } else {
+      //   showNotification("There is nothing to add.");
+      // }
     }
 
     return Form(

@@ -38,6 +38,7 @@ dependencies:
   intl: ^0.17.0
   pin_code_fields: ^7.3.0
   flutter_styled_toast: ^2.0.0
+  flutter_spinkit: ^5.1.0
   fl_chart: ^0.40.0
   responsive_framework: ^0.1.4
   concentric_transition: ^1.0.1+1

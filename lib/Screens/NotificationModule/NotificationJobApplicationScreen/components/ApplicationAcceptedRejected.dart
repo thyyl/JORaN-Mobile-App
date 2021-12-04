@@ -36,7 +36,7 @@ class ApplicationAcceptedRejected extends StatelessWidget {
               date: date
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,

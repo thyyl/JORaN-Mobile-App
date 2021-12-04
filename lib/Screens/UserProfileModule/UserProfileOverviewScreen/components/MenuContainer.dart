@@ -1,23 +1,28 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:joran_app/FakeData.dart';
-import 'package:joran_app/Models/UserModel.dart';
 import 'package:joran_app/Provider/ServiceProvider.dart';
 import 'package:joran_app/Provider/SkillsProvider.dart';
 import 'package:joran_app/Provider/StringProvider.dart';
-import 'package:joran_app/Provider/UserProvider.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileEditSkillsScreen/UserProfileEditSkillsScreen.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileOverviewScreen/components/MenuContainerIndividual.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileServiceScreen/UserProfileServiceScreen.dart';
-import 'package:joran_app/Services/Query.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class MenuContainer extends StatelessWidget {
+  final Map<String, dynamic> userInfo;
+
+  const MenuContainer({
+    Key? key,
+    required this.userInfo
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    User user = Provider.of<UserProvider>(context).user;
+    String jwt = Provider.of<StringProvider>(context).jwt;
+    String userID = Provider.of<StringProvider>(context).id;
 
     return Container(
       height: size.height * 0.465,
@@ -30,8 +35,8 @@ class MenuContainer extends StatelessWidget {
             children: [
               MenuIndividualContainer(
                 color: Color(0XFFE2C57A),
-                title: user.educationLevel,
-                description: "${user.educationLevel} in ${user.specialisation}",
+                title: userInfo['details']['education_level'],
+                description: "testing",
               ),
               GestureDetector(
                 onTap: () {
@@ -54,7 +59,9 @@ class MenuContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               GestureDetector(
-                onTap: pdfPicker,
+                onTap: () {
+                  pdfPicker(jwt, userID);
+                },
                 child: MenuIndividualContainer(
                   color: Colors.white,
                   title: "Your Résumé",
@@ -66,13 +73,10 @@ class MenuContainer extends StatelessWidget {
                 onTap: () {
                   Provider.of<SkillsProvider>(context, listen: false).setSkillsList(skillData);
 
-                  String jwt = Provider.of<StringProvider>(context, listen: false).jwt;
-                  queryLatestJobListing(jwt);
-
-                  // Navigator.push(
-                  //     context, MaterialPageRoute(
-                  //     builder: (context) => UserProfileEditSkillsScreen())
-                  // );
+                  Navigator.push(
+                      context, MaterialPageRoute(
+                      builder: (context) => UserProfileEditSkillsScreen())
+                  );
                 },
                 child: Container(
                   width: size.width * 0.375,
@@ -101,7 +105,7 @@ class MenuContainer extends StatelessWidget {
     );
   }
 
-  Future<void> pdfPicker() async {
+  Future<void> pdfPicker(String jwt, String userID) async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       allowMultiple: false,
       type: FileType.custom,
@@ -109,13 +113,11 @@ class MenuContainer extends StatelessWidget {
 
     );
 
-  //   if (result != null) {
-  //     Uint8List? fileBytes = result.files.first.bytes;
-  //     String fileName = result.files.first.name;
-  //     print(fileName);
-  //     await FirebaseStorage.instance.ref('uploads/$fileName').putData(fileBytes);
-  //   } else {
-  //     User canceled the picker
-  //   }
+    // if (result != null) {
+    //   http.Response response = await uploadUserResume(jwt, userID, result);
+    //   print(response.statusCode);
+    // } else {
+    //
+    // }
   }
 }

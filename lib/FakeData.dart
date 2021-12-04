@@ -1,12 +1,10 @@
 import 'package:joran_app/Models/ApplicationModel.dart';
-import 'package:joran_app/Models/ChatModel.dart';
 import 'package:joran_app/Models/FeaturedCompanyModel.dart';
 import 'package:joran_app/Models/JobModel.dart';
 import 'package:joran_app/Models/NotificationModel.dart';
 import 'package:joran_app/Models/ServiceModel.dart';
 import 'package:joran_app/Models/SkillsModel.dart';
 import 'package:joran_app/Models/UserModel.dart';
-import 'package:joran_app/Models/UserRatingsModel.dart';
 
 User fakeUserData = User(
   userID: "1166",
@@ -39,12 +37,6 @@ List<Skills> skillData = [
   Skills(skillID: "005",name: 'Dart Programming', proficiency: 72),
   Skills(skillID: "006",name: '.Net Programming', proficiency: 100),
 ];
-
-UserRatings fakeUserRatings = UserRatings(
-  successRate: 97,
-  ratings: 4.8,
-  servicesOffered: 567,
-);
 
 List<Job> fakeJobsList = [
   Job(
@@ -168,62 +160,6 @@ User fakeUserData3 = User(
     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
 );
 
-List<ChatRoom> fakeChatRooms = [
-  ChatRoom(
-    chatRoomID: "0012",
-    chatParticipants: [fakeUserData, fakeUserData2],
-    newMessages: 2,
-  ),
-  ChatRoom(
-      chatRoomID: "11111",
-      chatParticipants: [fakeUserData, fakeUserData3],
-      newMessages: 0,
-  ),
-] ;
-
-
-List<Chat> fakeChatList = [
-  Chat(
-    chatID: "001",
-    chatRoomID: "0012",
-    content: "Hello there",
-    sender: fakeUserData.userID,
-    dateTime: DateTime.now(),
-    isChat: true,
-  ),
-  Chat(
-    chatID: "011",
-    chatRoomID: "0012",
-    content: "Hello how are you",
-    sender: fakeUserData2.userID,
-    dateTime: DateTime.now(),
-    isChat: true,
-  ),
-  Chat(
-    chatID: "001",
-    chatRoomID: "11111",
-    content: "Hello there!",
-    sender: fakeUserData.userID,
-    dateTime: DateTime.now(),
-    isChat: true,
-  ),
-  Chat(
-    chatID: "011",
-    chatRoomID: "11111",
-    content: "Hello how are you?",
-    sender: fakeUserData3.userID,
-    dateTime: DateTime.now(),
-    isChat: true,
-  ),
-  Chat(
-    chatID: "001",
-    chatRoomID: "0012",
-    content: "https://firebasestorage.googleapis.com/v0/b/wellyfe-d650c.appspot.com/o/images%2Fimage_cropper_1629892832634.jpg?alt=media&token=5f34e028-c617-4231-afdf-d374fd00abc0",
-    sender: fakeUserData.userID,
-    dateTime: DateTime.now(),
-    isChat: false,
-  ),
-];
 
 List<Application> fakeApplicationData = [
   Application(

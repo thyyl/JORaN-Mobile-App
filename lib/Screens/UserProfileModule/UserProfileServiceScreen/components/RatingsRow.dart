@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:joran_app/Models/UserModel.dart';
-import 'package:joran_app/Models/UserRatingsModel.dart';
-import 'package:joran_app/Provider/UserProvider.dart';
-import 'package:joran_app/Provider/UserRatingProvider.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileEditSkillsScreen/components/RatingContainer.dart';
-import 'package:provider/provider.dart';
 
 class RatingsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    User user = Provider.of<UserProvider>(context).user;
-    UserRatings userRatings = Provider.of<UserRatingsProvider>(context).userRatings;
     Size size = MediaQuery.of(context).size;
 
     return Container(
@@ -21,19 +14,19 @@ class RatingsRow extends StatelessWidget {
         children: [
           RatingContainer(
             title: "Success",
-            value: "${userRatings.successRate}%",
+            value: "90%",
           ),
           RatingContainer(
             title: "Services",
-            value: userRatings.servicesOffered.toString(),
+            value: "657",
           ),
           RatingContainer(
             title: "Rate",
-            value: userRatings.ratings.toString(),
+            value: "4.5",
           ),
           RatingContainer(
             title: "Days",
-            value: DateTime.now().difference(user.dateJoined).inDays.toString(),
+            value: "200",
           ),
         ],
       ),

@@ -29,18 +29,18 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> responseData){
     return User(
-      userID: responseData['userID'],
-      name: responseData['name'],
-      email : responseData['email'],
-      password: responseData['password'],
-      userProfilePicture: responseData['userProfilePicture'],
-      contact : responseData['contact'],
-      educationLevel: responseData['educationLevel'],
-      specialisation : responseData['specialisation'],
-      bank: responseData['bank'],
-      bankAccount : responseData['bankAccount'],
-      description: responseData['description'],
-      dateJoined: responseData['dateJoined']
+        userID: responseData['userID'],
+        name: responseData['name'],
+        email : responseData['email'],
+        password: responseData['password'],
+        userProfilePicture: responseData['userProfilePicture'],
+        contact : responseData['contact'],
+        educationLevel: responseData['educationLevel'],
+        specialisation : responseData['specialisation'],
+        bank: responseData['bank'],
+        bankAccount : responseData['bankAccount'],
+        description: responseData['description'],
+        dateJoined: responseData['dateJoined']
     );
   }
 }

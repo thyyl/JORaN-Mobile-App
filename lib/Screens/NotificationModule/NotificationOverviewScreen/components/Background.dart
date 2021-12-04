@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:joran_app/FakeData.dart';
 import 'package:joran_app/FlashyTabBar.dart';
-import 'package:joran_app/Screens/ChatModule/ChatOverviewScreen/ChatOverviewScreen.dart';
 import 'package:joran_app/Screens/HomeModule/HomeOverviewScreen/HomeOverviewScreen.dart';
 import 'package:joran_app/Screens/JobsModule/JobsOverviewScreen/JobsOverviewScreen.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileOverviewScreen/UserProfileOverviewScreen.dart';
@@ -54,12 +53,12 @@ class _BackgroundState extends State<Background> {
                   ));
                   break;
 
-                case 1:
-                  Navigator.pushReplacement(context, PageTransition(
-                      type: PageTransitionType.fade,
-                      child: ChatOverviewScreen())
-                  );
-                  break;
+                // case 1:
+                //   Navigator.pushReplacement(context, PageTransition(
+                //       type: PageTransitionType.fade,
+                //       child: ChatOverviewScreen())
+                //   );
+                //   break;
 
                 case 2:
                   Navigator.pushReplacement(context, PageTransition(

@@ -3,13 +3,9 @@ import 'dart:async';
 import 'package:concentric_transition/page_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
-import 'package:joran_app/Provider/StringProvider.dart';
 import 'package:joran_app/Screens/IntroductionScreen/LetsGetStartedScreen/LetsGetStartedScreen.dart';
 import 'package:joran_app/Screens/IntroductionScreen/ProfileDetailsScreen/ProfileDetailsScreen.dart';
-import 'package:joran_app/Services/Authentication.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:provider/provider.dart';
-import 'package:http/http.dart' as http;
 
 class PinCodeVerification extends StatefulWidget {
   const PinCodeVerification({
@@ -49,20 +45,20 @@ class _PinCodeVerificationState extends State<PinCodeVerification> {
   }
 
   Future<void> tacValidation(String email) async {
-   Map<String, dynamic> response = await tacVerification(email, widget.tacCodeController.text);
-
-   if (response["code"] == 200) {
-     Provider
-        .of<StringProvider>(context, listen: false)
-        .setJWT(response["data"]);
+   // Map<String, dynamic> response = await tacVerification(email, widget.tacCodeController.text);
+   //
+   // if (response["code"] == 200) {
+   //   Provider
+   //      .of<StringProvider>(context, listen: false)
+   //      .setJWT(response["data"]);
 
      Navigator.push(context, ConcentricPageRoute(builder: (ctx) {
         return LetsGetStarted();
       }));
-   } else {
-     widget.tacCodeController.clear();
-     showNotification("You entered a wrong TAC code!");
-   }
+   // } else {
+   //   widget.tacCodeController.clear();
+   //   showNotification("You entered a wrong TAC code!");
+   // }
   }
 
 
@@ -82,7 +78,7 @@ class _PinCodeVerificationState extends State<PinCodeVerification> {
 
   @override
   Widget build(BuildContext context) {
-    String email = Provider.of<StringProvider>(context).email;
+    // String email = Provider.of<StringProvider>(context).email;
 
     return Form(
       key: formKey,
@@ -131,7 +127,8 @@ class _PinCodeVerificationState extends State<PinCodeVerification> {
                   blurRadius: 5,
                 )
               ],
-              onCompleted: (v) => tacValidation(email),
+              // onCompleted: (v) => tacValidation(email),
+              onCompleted: (v) => tacValidation("sad"),
               onChanged: (value) {
                 setState(() {
                   currentText = value;

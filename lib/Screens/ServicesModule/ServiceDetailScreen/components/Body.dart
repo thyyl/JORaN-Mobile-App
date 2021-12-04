@@ -8,7 +8,6 @@ import 'package:flutter/widgets.dart';
 import 'package:joran_app/Models/ServiceModel.dart';
 import 'package:joran_app/Models/SkillsModel.dart';
 import 'package:joran_app/Models/UserModel.dart';
-import 'package:joran_app/Models/UserRatingsModel.dart';
 import 'package:joran_app/Screens/ServicesModule/ServiceDetailScreen/components/Background.dart';
 import 'package:joran_app/Screens/ServicesModule/ServiceDetailScreen/components/ProfileDetail.dart';
 import 'package:joran_app/Screens/ServicesModule/ServiceDetailScreen/components/RatingsRow.dart';
@@ -22,14 +21,12 @@ class Body extends StatefulWidget {
   final User serviceProvider;
   final Service service;
   final List<Skills> skills;
-  final UserRatings serviceRatings;
 
   const Body({
     Key? key,
     required this.serviceProvider,
     required this.service,
     required this.skills,
-    required this.serviceRatings,
   }) : super(key: key);
 }
 
@@ -56,7 +53,6 @@ class _BodyState extends State<Body> {
                   SizedBox(height: size.height * 0.01),
                   RatingsRow(
                     dateJoined: widget.serviceProvider.dateJoined,
-                    serviceRatings: widget.serviceRatings,
                   ),
                   SizedBox(height: size.height * 0.01),
                   SkillsContainer(

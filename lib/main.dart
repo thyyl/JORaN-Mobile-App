@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:joran_app/Models/HomeModel.dart';
-import 'package:joran_app/Provider/ChatProvider.dart';
 import 'package:joran_app/Provider/MarketJobProvider.dart';
 import 'package:joran_app/Provider/MarketServiceProvider.dart';
 import 'package:joran_app/Provider/NotificationProvider.dart';
 import 'package:joran_app/Provider/ServiceProvider.dart';
 import 'package:joran_app/Provider/SkillsProvider.dart';
-import 'package:joran_app/Provider/UserRatingProvider.dart';
 import 'package:joran_app/Screens/LogInScreen/LogInScreen.dart';
 import 'package:joran_app/Screens/SplashScreen/SplashScreen.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -33,13 +31,11 @@ Future main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => HomeModel()),
         ChangeNotifierProvider(create: (_) => UserProvider()),
-        ChangeNotifierProvider(create: (_) => UserRatingsProvider()),
         ChangeNotifierProvider(create: (_) => ServiceProvider()),
         ChangeNotifierProvider(create: (_) => SkillsProvider()),
         ChangeNotifierProvider(create: (_) => NotificationProvider()),
         ChangeNotifierProvider(create: (_) => MarketJobProvider()),
         ChangeNotifierProvider(create: (_) => MarketServiceProvider()),
-        ChangeNotifierProvider(create: (_) => ChatProvider()),
         ChangeNotifierProvider(create: (_) => StringProvider()),
       ],
       child: MyApp(),
@@ -63,6 +59,7 @@ class MyApp extends StatelessWidget {
           ResponsiveBreakpoint.resize(1000, name: DESKTOP),
         ],
       ),
+
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
       initialRoute: '/home',

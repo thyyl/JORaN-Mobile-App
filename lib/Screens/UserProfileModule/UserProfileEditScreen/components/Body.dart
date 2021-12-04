@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:joran_app/Models/UserModel.dart';
-import 'package:joran_app/Provider/StringProvider.dart';
 import 'package:joran_app/Provider/UserProvider.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileEditScreen/components/EditProfileForm.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileEditScreen/components/ProfilePicture.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileEditScreen/components/TopLevelBar.dart';
-import 'package:joran_app/Services/User.dart';
+import 'package:joran_app/Screens/UserProfileModule/UserProfileOverviewScreen/UserProfileOverviewScreen.dart';
 import 'package:provider/provider.dart';
 
 class Body extends StatefulWidget {
@@ -20,64 +19,62 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     User user = Provider.of<UserProvider>(context).user;
-    String jwt = Provider.of<StringProvider>(context, listen: false).jwt;
     Size size = MediaQuery.of(context).size;
 
     Future<void> validateForm() async {
       bool nothingToUpdate = true;
+      String message = "There is nothing to update!";
 
-      if (globalKey.currentState!.nameController.text.isNotEmpty) {
-        if (checkDifference(globalKey.currentState!.nameController.text, user.name)) {
+      // if (globalKey.currentState!.nameController.text.isNotEmpty) {
+      //   if (checkDifference(globalKey.currentState!.nameController.text, user.name)) {
+      //
+      //    UPDATE ENDPOINT
+      //     Map<String, dynamic> response = await updateName(jwt, globalKey.currentState!.nameController.text);
+      //
+      //     if (response["code"] == 200) {
+      //
+      //       nothingToUpdate = false;
+      //       message = "Change successful!";
+      //     }
+      //   }
+      // }
+      //
+      // if (globalKey.currentState!.contactController.text.isNotEmpty) {
+      //   if (checkDifference(globalKey.currentState!.contactController.text, user.contact)) {
+      //
+      //     // TODO update database
+      //     nothingToUpdate = false;
+      //      message = "Change successful!";
+      //   }
+      // }
+      //
+      // if (checkDifference(globalKey.currentState!.educationSelection, user.educationLevel)) {
+      //
+      //   // TODO update database
+      //   nothingToUpdate = false;
+      //    message = "Change successful!";
+      // }
+      //
+      // if (globalKey.currentState!.specialisationController.text.isNotEmpty) {
+      //   if (checkDifference(globalKey.currentState!.specialisationController.text, user.specialisation)) {
+      //
+      //
+      //     // TODO update database
+      //     nothingToUpdate = false;
+      //      message = "Change successful!";
+      //   }
+      // }
+      //
 
-          Map<String, dynamic> response = await updateName(jwt, globalKey.currentState!.nameController.text);
+      if (!nothingToUpdate)
 
-          if (response["code"] == 200) {
-            setState(() {
-              Provider.of<UserProvider>(context, listen: false).setUpdate(0, globalKey.currentState!.nameController.text);
-            });
+        // TODO PLEASE CHANGE TO POP AND PUSH
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(
+            builder: (context) => UserProfileOverviewScreen()
+        ));
 
-            nothingToUpdate = false;
-            showNotification("Change successful!");
-          }
-        }
-      }
-
-      if (globalKey.currentState!.contactController.text.isNotEmpty) {
-        if (checkDifference(globalKey.currentState!.contactController.text, user.contact)) {
-          setState(() {
-            Provider.of<UserProvider>(context, listen: false).setUpdate(3, globalKey.currentState!.contactController.text);
-          });
-
-          // TODO update database
-          nothingToUpdate = false;
-          showNotification("Change successful!");
-        }
-      }
-
-      if (checkDifference(globalKey.currentState!.educationSelection, user.educationLevel)) {
-        setState(() {
-          Provider.of<UserProvider>(context, listen: false).setUpdate(4, globalKey.currentState!.educationSelection);
-        });
-
-        // TODO update database
-        nothingToUpdate = false;
-        showNotification("Change successful!");
-      }
-
-      if (globalKey.currentState!.specialisationController.text.isNotEmpty) {
-        if (checkDifference(globalKey.currentState!.specialisationController.text, user.specialisation)) {
-          setState(() {
-            Provider.of<UserProvider>(context, listen: false).setUpdate(5, globalKey.currentState!.specialisationController.text);
-          });
-
-          // TODO update database
-          nothingToUpdate = false;
-          showNotification("Change successful!");
-        }
-      }
-
-      if (nothingToUpdate)
-        showNotification("There is nothing to change.");
+      showNotification(message);
     }
 
     return SafeArea(
@@ -86,7 +83,7 @@ class _BodyState extends State<Body> {
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Container(
-            height: size.height * 1.115,
+            height: size.height * 1.215,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

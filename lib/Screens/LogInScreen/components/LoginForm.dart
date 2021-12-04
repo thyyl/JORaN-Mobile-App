@@ -3,18 +3,18 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:joran_app/FakeData.dart';
-import 'package:joran_app/Provider/ChatProvider.dart';
 import 'package:joran_app/Provider/NotificationProvider.dart';
 import 'package:joran_app/Provider/StringProvider.dart';
 import 'package:joran_app/Provider/UserProvider.dart';
-import 'package:joran_app/Provider/UserRatingProvider.dart';
 import 'package:joran_app/Screens/LogInScreen/components/LoginButton.dart';
 import 'package:joran_app/Screens/LogInScreen/components/ForgotPassword.dart';
 import 'package:joran_app/Screens/LogInScreen/components/TextFieldLabel.dart';
 import 'package:joran_app/Screens/UserProfileModule/UserProfileOverviewScreen/UserProfileOverviewScreen.dart';
 import 'package:joran_app/Services/Authentication.dart';
+import 'package:joran_app/Services/User.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
 class LoginForm extends StatefulWidget {
   @override
@@ -29,33 +29,32 @@ class _LoginFormState extends State<LoginForm> {
 
   Future<void> logInValidation() async {
     try {
-      Map<String, dynamic> response = await userLogIn("ericcheah575@gmail.com", "7159");
+      http.Response response = await userLogIn("r@b.com", "secret");
+      var responseMap = jsonDecode(response.body);
 
-      if (response["code"] == 200) {
+      if (response.statusCode == 200) {
+        var userResponseMap = await getUserID(responseMap["access_token"]);
+
         Provider
           .of<StringProvider>(context, listen: false)
-          .setJWT(response["data"]);
+          .setJWT(responseMap["access_token"]);
+
+        Provider
+            .of<StringProvider>(context, listen: false)
+            .setID(userResponseMap["id"]);
 
         Provider
           .of<UserProvider>(context, listen: false)
           .setUser(fakeUserData);
 
         Provider
-            .of<UserRatingsProvider>(context, listen: false)
-            .setUserRatings(fakeUserRatings);
-
-        Provider
             .of<NotificationProvider>(context, listen: false)
             .setNotificationList(fakeNotificationList);
-
-        Provider
-            .of<ChatProvider>(context, listen: false)
-            .setChatRoomList(fakeChatRooms);
 
         Navigator.push(context, PageTransition(
             type: PageTransitionType.fade, child: UserProfileOverviewScreen())
         );
-      } else if (response["code"] == 404){
+      } else if (response.statusCode == 404){
         showNotification("User does not exist. Please enter a valid email");
       } else {
         showNotification("Something went wrong, please try again.");

@@ -4,7 +4,6 @@ import 'package:joran_app/FakeData.dart';
 import 'package:joran_app/Models/ServiceModel.dart';
 import 'package:joran_app/Models/SkillsModel.dart';
 import 'package:joran_app/Models/UserModel.dart';
-import 'package:joran_app/Models/UserRatingsModel.dart';
 import 'package:joran_app/Screens/ServicesModule/ServiceDetailScreen/ServiceDetailScreen.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -31,7 +30,6 @@ class ServiceContainer extends StatelessWidget {
               service: service,
               skills: getSkills(serviceProvider.userID),
               serviceProvider: serviceProvider,
-              serviceRatings: getServiceRatings(serviceProvider.userID),
             ))
         ),
         child: Container(
@@ -113,8 +111,5 @@ class ServiceContainer extends StatelessWidget {
     return skillData;
   }
 
-  UserRatings getServiceRatings(String id) {
-    return fakeUserRatings;
-  }
 
 }
